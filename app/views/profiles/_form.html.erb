@@ -1,0 +1,66 @@
+<div data-controller="form-error">
+
+  <ul class="post-errors" data-target="form-error.postErrors"></ul>
+
+  <%= form_with(model: @user_agent.profile, html: { class: local_assigns[:class], data: { target: local_assigns[:target] } }) do |form| %>
+    <div class="z-10 relative profile_bg p-4 shadow-lg rounded-lg" style="background: radial-gradient(at top, #00036566, #000727);">
+      <%= form.text_field :bio, label: false, maxlength: 150, placeholder: 'Коротко о Вас', class: 'field mb-2' %>
+      <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'field mb-2' %>
+      <%= form.text_field :prof, label: false, maxlength: 150, placeholder: 'О Вашей профессии или образовании', class: 'field mb-2' %>
+
+      <div class="w-full max-w-md">
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full md:w-1/2 px-3 md:mb-0">
+            <%= form.email_field :email, label: false, maxlength: 50, placeholder: 'E-mail (видно всем)', class: 'field mb-2' %>
+          </div>
+          <div class="w-full md:w-1/2 px-3">
+            <%= form.telephone_field :phone, label: false, maxlength: 50, placeholder: 'Телефон (видно всем)', class: 'field mb-2' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full max-w-md">
+        <div class="flex flex-wrap -mx-3 mb-6 text-gray-300">
+          <div class="w-full md:w-1/2 px-3 md:mb-0">
+            <%= form.label :avatar do %>
+              <span class="pr-2 cursor-pointer">Загрузить аватар</span>
+              <% if @user_agent.profile.avatar.attached? %>
+                <div class="float-left">
+                  <%= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer' %>
+                  <%= form.label :avatar_purge, 'Удалить' %>
+                </div>
+                <%= user_avatar_helper(@user_agent, 37, "8px 18px") %>
+              <% end %>
+            <% end %>
+            <div class="float-left">
+              <%= form.file_field :avatar, direct_upload: true, label: false, class: 'hidden_file_field' %>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 px-3">
+            <%= form.label :fon do %>
+              <span class="pr-2 cursor-pointer">Загрузить фон</span>
+              <% if @user_agent.profile.fon.attached? %>
+                <%= user_fon_helper(@user_agent, 37, "8px 18px") %>
+                <div class="float-left">
+                  <%= form.check_box :fon_purge, checked: false, class: 'cursor-pointer' %>
+                  <%= form.label :fon_purge, 'Удалить' %>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="float-right">
+              <%= form.file_field :fon, direct_upload: true, label: false, class: 'hidden_file_field' %>
+              <div class="flex items-center">
+                <%= form.label :bgcolor, "Оттенок фона" %>
+                <%= form.color_field :bgcolor, class: 'cursor-pointer p-0 ml-2 w-5' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= content_tag(:button, icon("fas", "check-circle", "Сохранить"), class: 'btn mb-2', type: 'submit', data: {disable_with: disable_helper('Сохранение')}) %>
+      <%= link_to icon("fas", "times-circle", "Отмена"), '#', class: 'link mb-2', data: { action: "click->reply#toggle" } %>
+    </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,125 @@
+$transition: all 0.2s ease;
+
+html {
+  @apply .relative .min-h-full;
+}
+
+body {
+  @apply .text-gray-700 .bg-gray-200 .mb-16;
+}
+
+a {
+  @apply .no-underline .outline-none;
+  transition: $transition;
+  &:hover,
+  &:active {
+    @apply .no-underline .outline-none;
+  }
+}
+
+input {
+  background: none;
+}
+
+.rgba {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.logotip {
+  padding: 20px 90px;
+  &--header {
+    padding: 35px;
+  }
+}
+
+.h-screen-show {
+  min-height: 30rem;
+}
+
+.sign .active {
+  @apply .text-white .underline;
+}
+
+.field {
+  @apply .appearance-none .border-b-2 .w-full .px-3 .py-1 .mb-1 .text-gray-700 .leading-tight;
+  &:focus {
+    @apply .outline-none .border-blue-200;
+  }
+}
+
+.btn {
+  @apply .bg-gray-300 .shadow .text-gray-700 .py-2 .px-4 .border-b-4 .border-blue-400 .rounded .no-underline;
+  transition: $transition;
+  &:hover,
+  &:active,
+  &:focus {
+    @apply .bg-gray-400 .border-blue-600;
+  }
+}
+
+.link {
+  @apply .text-teal-700;
+  &:hover,
+  &:active,
+  &.active {
+    @apply .text-blue-500;
+  }
+  &--destroy {
+    @apply .text-red-700;
+    &:hover,
+    &:active,
+    &.active {
+      @apply .text-red-500;
+    }
+  }
+}
+.nav-link {
+  @apply .pr-3 .text-gray-300 .no-underline;
+  &:hover,
+  &:active,
+  &.active {
+    @apply .text-white;
+  }
+}
+.nav-footer {
+  @apply .pr-3 .text-gray-500 .no-underline;
+  &:hover,
+  &:active,
+  &.active {
+    @apply .text-gray-300;
+  }
+}
+
+h1 {
+  @apply .text-gray-600 .pt-2 .font-normal .leading-tight .text-3xl;
+}
+
+.pagination {
+  @apply .mt-4 .text-center;
+  .pg-link {
+    @apply .px-2 .py-1 .text-gray-700 .text-center;
+    &:hover {
+      @apply .border-b-4 .border-blue-200;
+    }
+  }
+  .active {
+    @apply .select-text .pointer-events-none .border-b-4 .border-blue-400;
+  }
+}
+
+.comment {
+  @apply .border-l-2 .rounded .pt-1 .pl-2 .mt-4;
+  &:target {
+    @apply .border-red-700;
+  }
+  .trix-content {
+    @apply .pb-0;
+  }
+}
+
+.hidden_file_field { opacity: 0; }
+
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }

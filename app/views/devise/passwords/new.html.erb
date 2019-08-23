@@ -1,0 +1,21 @@
+<% content_for :header_title do %>
+  <h1 class="pt-10">Забыли пароль?</h1>
+<% end %>
+
+<div class="p-4 px-3 py-10 flex justify-center">
+  <div class="w-full max-w-sm">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <p class="text-center">Введите свой email. Вам будет отправлена ссылка для восстановления пароля</p>
+      <div class="form-group">
+        <%= f.email_field :email, label: false, autofocus: true, placeholder: 'Email адрес', class: 'field m-2' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Отправить ссылку на email", class: 'btn mt-4' %>
+      </div>
+    <% end %>
+    <div class="text-center mt-8">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

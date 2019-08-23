@@ -1,0 +1,12 @@
+<div data-controller="reply">
+  <div data-target="reply.message">
+    <% flash.each do |msg_type, message| %>
+      <div class="border-t-4 w-full shadow-lg <%= notice_class_for(msg_type) %> text-center">
+        <p class="font-bold">
+          <%= message %>!
+          <%= link_to 'Закрыть', '#', class: "ml-4", data: {action: "click->reply#mess"} %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

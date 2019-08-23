@@ -1,0 +1,8 @@
+<footer class="absolute bottom-0 text-xs p-4">
+  <%= content_tag :span, "© #{Date.today.year} SkLife.Ru", class: color %>
+  <%= active_link_to "Реквизиты", main_app.contacts_url(subdomain: false), class: color %>
+  <%= active_link_to "Услуги", main_app.about_url(subdomain: false), class: color %>
+  <%= active_link_to "Конфиденциальность и соглашение", main_app.privacy_url(subdomain: false), class: color %>
+  <%= active_link_to "Способы оплаты", main_app.payments_url(subdomain: false), class: color %>
+  <%= active_link_to 'Тарифы', main_app.subscribes_url(subdomain: false), class: color %>
+</footer>

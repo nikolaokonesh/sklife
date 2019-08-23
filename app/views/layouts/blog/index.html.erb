@@ -1,0 +1,18 @@
+<% content_for :header do %>
+  <div class="w-full h-screen-show border-b-8" style="<%= background_helper(@user_agent) %>">
+    <div class="flex flex-wrap">
+      <div class="z-50 container max-w-3xl mx-auto">
+        <%= render 'shared/navbar' %>
+      </div>
+      <div class="container max-w-3xl mx-auto">
+        <%= render 'shared/profile' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :menu do %>
+  <%= render partial: 'article/categories/category', collection: @user_agent.categories.where(type: 'Article::Blog::Category') %>
+<% end %>
+
+<%= render template: "layouts/application" %>

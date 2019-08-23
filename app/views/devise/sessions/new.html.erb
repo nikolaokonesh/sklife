@@ -1,0 +1,34 @@
+<% content_for :header_title do %>
+  <h1 class="pt-10"><%= "Войти".to_s.upcase %></h1>
+<% end %>
+
+
+<div class="p-4 px-3 py-10 flex justify-center">
+  <div class="w-full max-w-sm">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="mb-4">
+        <%= f.email_field :email, label: false, autofocus: true, placeholder: 'E-mail адрес', required: true, class: 'field' %>
+      </div>
+      <div class="mb-6">
+        <%= f.password_field :password, label: false, autocomplete: "off", placeholder: 'Введите пароль', required: true, class: "field" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div hidden>
+          <%= f.check_box :remember_me, checked: true %>
+        </div>
+      <% end -%>
+
+      <div class="flex items-center justify-between">
+        <div>
+          <%= content_tag(:button, 'Вход', type: 'submit', data: {disable_with: disable_helper('Вход')}, class: 'btn') %>
+        </div>
+        <div>
+          <p class="text-center text-xs">
+            <%= render "devise/shared/links" %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

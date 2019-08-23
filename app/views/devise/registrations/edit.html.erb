@@ -1,0 +1,44 @@
+<% content_for :header_title do %>
+  <h1 class=""><%= "Настройки аккаунта".to_s.upcase %></h1>
+<% end %>
+
+<div class="p-4 px-3 py-10 flex justify-center">
+  <div class="w-full max-w-sm">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="mb-4">
+        <%= f.text_field :name, autofocus: true, placeholder: "Имя и фамилия", required: true, class: 'field' %>
+      </div>
+      <div class="mb-4">
+        <%= f.text_field :slug, autofocus: true, placeholder: "Домен", required: true, pattern: '^[a-z-0-9]+$', class: 'field' %>
+        <small>
+          Ваша персональная ссылка (Домен):
+          <br/>https://<b><%= current_user.slug %></b>.<%= request.domain %>
+        </small>
+      </div>
+
+      <div class="mb-4">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Ваша электронная почта', class: 'field' %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="mb-6">
+        <%= f.password_field :password, autocomplete: "off", placeholder: 'Новый пароль', class: 'field' %>
+        <small>Только если хотите сменить пароль.</small>
+      </div>
+
+      <div class="mb-6">
+        <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Пароль', class: 'field' %>
+        <small>Введите свой действующий пароль чтобы изменения вступили в силу.</small>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Обновление')}, class: 'btn') %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<nav class="w-full flex items-center justify-between flex-wrap pt-4 xl:mb-0">
+  <div class="flex items-center flex-no-shrink text-white">
+    <%= link_to main_app.root_url(subdomain: false) do %>
+      <div style="background-image: url('<%= image_path('logo.png') %>')" class='ml-2 logotip'></div>
+    <% end %>
+  </div>
+
+  <div class="flex items-center w-auto p-2">
+    <div class="bg-transparent">
+      <div class="inline-block">
+        <% if user_signed_in? %>
+          <div class="md:flex">
+            <div>
+              <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'nav-link lg:inline-block' do %>
+                <%= user_avatar_helper(current_user, 38) %>
+                <%= current_user.username %>
+              <% end %>
+            </div>
+            <div class="p-2 md:p-0">
+              <%= active_link_to main_app.notifications_url(subdomain: false), class: "nav-link inline-block #{unread_notifications(current_user)}", title: 'Уведомления' do %>
+                <%= icon('fas', 'bell') %>
+                <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
+              <% end %>
+              <% if current_user.subscribed? %>
+                <%= link_to main_app.subscribes_url(subdomain: false), title: 'Вы подписчик', class: "nav-link inline-block" do %>
+                  <%= icon('fas', 'crown') %>
+                <% end %>
+              <% end %>
+              <%= link_to icon('fas', 'user-cog'), main_app.edit_user_registration_url(subdomain: false), class: 'inline-block mr-2 text-gray-400 hover:text-white no-underline' %>
+              <%= link_to icon('fas', 'sign-out-alt'), main_app.destroy_user_session_path, class: 'inline-block text-gray-400 hover:text-white no-underline', method: :delete %>
+            </div>
+          </div>
+        <% else %>
+          <div class="sign">
+            <%= active_link_to "Вход", main_app.new_user_session_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white' %>
+            <%= active_link_to "Регистрация", main_app.new_user_registration_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

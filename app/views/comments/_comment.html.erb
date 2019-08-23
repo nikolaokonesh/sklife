@@ -1,0 +1,59 @@
+<% nesting     = local_assigns.fetch(:nesting, 1) %>
+<% max_nesting = local_assigns[:max_nesting] %>
+<% continue_thread = local_assigns[:continue_thread] %>
+
+<%= tag.div id: dom_id(comment), class: "comment" do %>
+  <div class="block">
+    <% if comment.deleted? %>
+      <span class="text-gray-700">[Комментарий удален]</span>
+    <% else %>
+      <div class="flex items-center">
+        <%= image_tag user_avatar(comment.user, 38), class: 'rounded-full mr-1' %>
+        <div>
+          <%= link_to comment.user.username, main_app.root_url(subdomain: comment.user.slug), class: 'link' %>
+          <small class="text-gray-500">
+            <%= time_tag(comment.created_at) %>  №:<%= comment.id %>
+            <% unless comment.deleted? %>
+              <% if comment.user == current_user or can?(:manage, comment) %>
+                <small><%= link_to 'Удалить', [comment.commentable, comment], class: 'text-red-400 hover:text-red-700 ml-1', method: :delete, remote: true %></small>
+              <% end %>
+            <% end %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= comment_body_helper(comment) %>
+
+  <div data-controller="reply">
+    <small>
+      <%= link_to icon('fas', 'level-up-alt', "Ответить"), "#", class: 'pl-4 link', data: { action: "click->reply#toggle" } unless comment.deleted? %>
+    </small>
+
+    <% if local_assigns[:full] %>
+      <% if comment.commentable.subscribe? %>
+        <% if current_user_subscribed? %>
+          <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 pl-1 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
+        <% else %>
+          <%= content_tag :div, class: "mt-2 pl-2 hidden", data: { target: "reply.form" } do %>
+            <div class="block text-red-600 form-commenting">
+              Оставить комментарий может только подписчик
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
+      <% end %>
+    <% else %>
+      <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
+    <% end %>
+  </div>
+
+  <%= tag.div id: "#{dom_id(comment)}_comments", class: 'ml-1' do %>
+    <% if continue_thread.present? && nesting >= continue_thread && comment.comments.any? %>
+      <%= link_to "Продолжить чтение комментариев", url_for(comment: comment.id, anchor: dom_id(comment)) %>
+    <% else %>
+      <%= render partial: 'comments/comment', collection: comment.comments.includes(:user, :commentable).order(created_at: :desc), continue_thread: continue_thread, nesting: nesting + 1, max_nesting: local_assigns[:max_nesting] %>
+    <% end %>
+  <% end %>
+<% end %>
