@@ -5,7 +5,7 @@ class CreateMarketKnigiBooks < ActiveRecord::Migration[6.0]
       t.string :author
       t.references :user, null: false, foreign_key: true
       t.string :slug
-      t.decimal :price
+      t.decimal :price, precision: 10
       t.date :data
       t.boolean :public
 

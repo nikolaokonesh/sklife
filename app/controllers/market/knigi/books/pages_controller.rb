@@ -1,13 +1,13 @@
 class Market::Knigi::Books::PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-  before_action :set_commentable
   before_action :authenticate_user!, except: [:show]
-  load_and_authorize_resource except: [:index, :show]
+  before_action :set_commentable
+  # load_and_authorize_resource except: [:index, :show]
   layout 'root/index'
 
   def show
     unless request.subdomain.present?
-      @page = @page.commentable.pages.order(created_at: :asc)
+      @pages = @page.commentable.pages.order(created_at: :asc)
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
     end
@@ -20,6 +20,7 @@ class Market::Knigi::Books::PagesController < ApplicationController
     else
       render partial: 'error', page: @page, status: :bad_request
     end
+    authorize! :manage, @page
   end
 
   def edit
@@ -27,6 +28,7 @@ class Market::Knigi::Books::PagesController < ApplicationController
     else
       redirect_to root_url, alert: 'Не вами добавлена книга!'
     end
+    authorize! :manage, @page
   end
   def update
     if @commentable.user == current_user
@@ -38,6 +40,7 @@ class Market::Knigi::Books::PagesController < ApplicationController
     else
       redirect_to root_url, alert: 'Ошибка. Вы не в своей добавленной книге!'
     end
+    authorize! :manage, @page
   end
 
   def destroy
@@ -48,6 +51,7 @@ class Market::Knigi::Books::PagesController < ApplicationController
     else
       redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
     end
+    authorize! :manage, @page
   end
 
   private
@@ -60,6 +64,6 @@ class Market::Knigi::Books::PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:title, :body)
+      params.require(:page).permit(:title, :body, :commentable_id)
     end
 end

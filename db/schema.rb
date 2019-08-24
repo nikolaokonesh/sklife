@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_001317) do
     t.string "author"
     t.bigint "user_id", null: false
     t.string "slug"
-    t.decimal "price"
+    t.decimal "price", precision: 10
     t.date "data"
     t.boolean "public"
     t.datetime "created_at", precision: 6, null: false
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_001317) do
   create_table "orders", force: :cascade do |t|
     t.string "number"
     t.string "about"
-    t.string "price"
+    t.decimal "price", precision: 10
     t.bigint "user_id", null: false
     t.string "type"
     t.datetime "created_at", precision: 6, null: false

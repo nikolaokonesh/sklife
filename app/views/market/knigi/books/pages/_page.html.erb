@@ -1,0 +1,8 @@
+<%= tag.div id: dom_id(page), class: "page" do %>
+  <div class="block">
+    <%= active_link_to sanitize(strip_tags(page.title)), [page.commentable, page], class: 'link' %>
+
+    <%= link_to icon('fas', 'pen'), edit_book_page_path(page.commentable, page, anchor: :vid), title: "Редактировать", class: 'link mx-2 text-xs' if page.commentable.user == current_user %>
+    <%= link_to icon('fas', 'trash'), [page.commentable, page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true if page.commentable.user == current_user %>
+  </div>
+<% end %>

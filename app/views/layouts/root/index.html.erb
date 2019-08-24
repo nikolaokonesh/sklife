@@ -8,6 +8,17 @@
 
 <% content_for :menu do %>
   <%= render partial: 'article/categories/category', collection: Article::Category.where(type: nil) %>
+
+  <%= active_link_to main_app.books_path, class: 'link' do %>
+    <div class="tracking-wide font-bold border-b  px-2 py-3">
+      Книги
+      <% if user_signed_in? %>
+        <%= link_to icon('fas', 'plus'), main_app.new_book_path, class: 'float-right', title: 'Добавить книгу' if current_user.admin? %>
+      <% end %>
+    </div>
+  <% end %>
+
+
 <% end %>
 
 <%= render template: "layouts/application" %>

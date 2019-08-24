@@ -1,0 +1,18 @@
+<div class="mt-2" data-controller="form-error">
+
+  <ul class="post-errors" data-target="form-error.postErrors"></ul>
+
+  <%= form_with(model: [commentable, @page], html: { class: local_assigns[:class], data: { target: local_assigns[:target],
+                     type: "html",
+                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+
+    <div class="sod">
+      <%= form.rich_text_area :body, placeholder: 'Содержание' %>
+    </div>
+
+    <div class="px-2 mt-4">
+      <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+    </div>
+  <% end %>
+</div>

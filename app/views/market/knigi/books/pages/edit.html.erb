@@ -1,0 +1,10 @@
+<% content_for :titleise do %>
+  <h1>Изменить страницу</h1>
+<% end %>
+<div class="py-5 flex justify-center">
+  <div class="w-full max-w-md">
+    <div class="bg-white shadow-md pb-4">
+      <%= render partial: "market/knigi/books/pages/form", locals: { commentable: @page.commentable } %>
+    </div>
+  </div>
+</div>

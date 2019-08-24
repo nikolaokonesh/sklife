@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   scope module: :market do
     scope module: :knigi do
-      resources :books, except: :index do
+      resources :books, path: 'market/book' do
         resources :pages, path: 'page', module: :books
         member do
           put "add", to: "books#library"

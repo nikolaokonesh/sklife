@@ -18,16 +18,8 @@ class Market::Knigi::BooksController < ApplicationController
 
   def show
     unless request.subdomain.present?
-      @booklists = @book.booklists.where(parent_id: nil)
-      @booklists = @booklists.order(created_at: :asc)
-
-      if @book.booklists.present?
-        if @booklists.first == nil
-          @booklists_parent = @book.booklists.order(created_at: :asc).where(id: @booklists.first)
-        else
-          @booklists_parent = @book.booklists.order(created_at: :asc).where(id: @booklists.first.parent_id)
-        end
-      end
+      @page = Market::Knigi::Page.new
+      @pages = @book.pages.order(created_at: :asc)
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
     end
@@ -46,7 +38,7 @@ class Market::Knigi::BooksController < ApplicationController
     if @book.save
       flash[:notice] = 'Категория успешно добавлена!'
     else
-      render(partial: "form", status: 422)
+      render partial: 'error', book: @book, status: :bad_request
     end
   end
 
@@ -62,7 +54,7 @@ class Market::Knigi::BooksController < ApplicationController
       if @book.update(book_params)
         flash[:notice] = 'Пост успешно обновлен!'
       else
-        render(partial: "form", status: 422)
+        render partial: 'error', book: @book, status: :bad_request
       end
     else
       redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
@@ -103,26 +95,29 @@ class Market::Knigi::BooksController < ApplicationController
     @libre = current_user.libraries.where(user: current_user, book: @book).any?
 
     if @libre
-      redirect_to root_url, notice: 'Вы уже приобрели этот товар'
+      redirect_to books_url, notice: 'Вы уже приобрели этот товар'
     else
       status = @sbrf_client.get_order_status_extended(order_id: params[:orderId])
       if status.success? && status.order_status == 2
         sbrf_order = Market::Knigi::Order.where(number: status.orderNumber).limit(1)
         if sbrf_order.present? == false
-          current_user.book_orders.create(number: status.orderNumber, about: "книга: #{@book.title}")
+          current_user.book_orders.create(
+            number: status.orderNumber,
+            about: "книга: #{@book.title}",
+            price: @book.price)
           current_user.library_additions << @book
-          redirect_to library_index_path, notice: "Вы добавили в библиотеку книгу: #{@book.title}"
+          redirect_to books_url, notice: "Вы добавили в библиотеку книгу: #{@book.title}"
         else
-          redirect_to root_url, alert: 'Данный запрос был ранее задан и обработан.'
+          redirect_to books_url, alert: 'Данный запрос был ранее задан и обработан.'
         end
       else
-        redirect_to root_url, alert: status.error_message
+        redirect_to books_url, alert: status.error_message
       end
     end
   end
 
   def fail
-    redirect_to root_url, alert: 'Fail'
+    redirect_to books_url, alert: 'Fail'
   end
 
   private

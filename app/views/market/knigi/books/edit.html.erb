@@ -1,6 +1,4 @@
-<h1>Editing Market Knigi Book</h1>
-
-<%= render 'form', market_knigi_book: @market_knigi_book %>
-
-<%= link_to 'Show', @market_knigi_book %> |
-<%= link_to 'Back', market_knigi_books_path %>
+<% content_for :titleise do %>
+  <h1>Изменить книгу</h1>
+<% end %>
+<%= render 'form', book: @book %>

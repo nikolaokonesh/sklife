@@ -22,7 +22,7 @@
                 <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
               <% end %>
               <% if current_user.subscribed? %>
-                <%= link_to main_app.subscribes_url(subdomain: false), title: 'Вы подписчик', class: "nav-link inline-block" do %>
+                <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), title: 'Вы подписчик', class: "nav-link inline-block" do %>
                   <%= icon('fas', 'crown') %>
                 <% end %>
               <% end %>

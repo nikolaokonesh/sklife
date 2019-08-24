@@ -1,0 +1,10 @@
+<div class="bg-green-300 pt-3 pb-4 px-4 mb-8 shadow-md rounded">
+  <div class="lg:inline-block block text-center">
+    <%= link_to add_book_path(book, type: "add", amountorub: (book.price.to_s+"00").to_i), method: :put, class: "btn--green font-bold", data: {disable_with: disable_helper('Переход в Сбербанк-Онлайн')} do %>
+      Купить за <%= book.price %> руб
+    <% end %>
+  </div>
+  <div class="mt-2 ml-2 inline-block text-center text-gray-700">
+    Книга будет сохранена в вашей онлайн-библиотеке
+  </div>
+</div>
