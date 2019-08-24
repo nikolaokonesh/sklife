@@ -1,0 +1,86 @@
+<% keywords truncate(strip_tags(@category.body.body.to_s), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@category.body.body.to_s), length: 200) %>
+<% content_for :canonical_link, category_url(@category, subdomain: false) %>
+
+
+<% content_for :titleise do %>
+  <div class="flex flex-wrap">
+    <div class="w-full max-w-3xl mx-auto text-center">
+      <div class="text-left">
+        <%= link_to icon('fas', 'chevron-left', 'Назад'), root_path, class: 'text-gray-500 hover:text-gray-400' %>
+      </div>
+      <h1 class="inline-block">
+        <span class="inline-block"><%= title sanitize(strip_tags(@category.title)) %></span>
+        <small class="h6">
+          <%= link_to icon('fas', 'pen'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-4' if @category.user == current_user %>
+          <%= link_to icon('fas', 'trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @category.user == current_user %>
+        </small>
+      </h1>
+    </div>
+  </div>
+<% end %>
+
+<div class="py-3 mb-4 flex justify-center">
+  <div class="w-full">
+    <div id="show-listed">
+      <div class="pb-4">
+        <%= @category.body if @category.body.present? %>
+
+        <% @category.youtubes.all.each do |tube| %>
+          <div class="py-2">
+            <iframe id="ytplayer" type="text/html" width="100%" height="280" class="rounded border-2" src="https://www.youtube.com/embed/<%= tube.uid %>" frameborder="0" allowfullscreen></iframe>
+          </div>
+        <% end %>
+
+        <% if @category.no_data.blank? %>
+          <div class="text-right text-gray-600 text-sm mb-2">
+            Опубликовано <%= time_tag(@category.created_at, :format=>'%d %B %Y в %H:%M') %>
+          </div>
+        <% end %>
+        <% if @category.user == current_user %>
+          <div data-controller="reply" class="my-4">
+            <div class="text-center">
+              <%= link_to icon("fas", "plus", "Добавить страницу"), "#", class: 'btn', data: { action: "click->reply#toggle" } %>
+            </div>
+            <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="cate-show-<%= @category.id %>" data-turbolinks-permanent>
+        <div class="block" id="categories-show-columns">
+          <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
+        </div>
+        <div class="block pagination mb-4" id="categories-show-paginator">
+          <%= link_to_next_page(@posts, icon('fas', 'chevron-down', 'Далее'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+        </div>
+      </div>
+    </div>
+
+    <% if @category.no_comments.present? %>
+      <div class="pt-2 mb-4 flex justify-center">
+        <div class="w-full mt-4">
+          <% unless params[:comment] %>
+            <div id="commentos_back">
+              <%= render partial: "comments/form", locals: { commentable: @category, postas: 'postas_post' } %>
+            </div>
+          <% end %>
+          <div class="px-1" id="comments">
+            <% if params[:comment] %>
+              <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
+              <%= render partial: 'comments/comment', collection: @comments_parent, locals: {full: false}, continue_thread: 10  %>
+            <% end %>
+            <div class="block" id="comments-show-columns">
+              <%= render partial: 'comments/comment', collection: @comments, locals: {full: false}, continue_thread: 10 unless @comments_parent.present? %>
+            </div>
+          </div>
+          <br />
+          <div class="block pagination mb-4" id="comments-show-paginator">
+            <%= link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', param_name: :pagina, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

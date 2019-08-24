@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  author: MyString
+  user: one
+  slug: MyString
+  price: 9.99
+  data: 2019-08-24
+  public: false
+
+two:
+  title: MyString
+  author: MyString
+  user: two
+  slug: MyString
+  price: 9.99
+  data: 2019-08-24
+  public: false

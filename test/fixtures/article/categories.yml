@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  no_data: false
+  no_comments: false
+  upgrade: 2019-08-24 11:01:50
+  user: one
+  type: 
+  slug: MyString
+
+two:
+  title: MyString
+  no_data: false
+  no_comments: false
+  upgrade: 2019-08-24 11:01:50
+  user: two
+  type: 
+  slug: MyString

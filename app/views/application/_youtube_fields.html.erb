@@ -1,6 +1,7 @@
 <%= content_tag :div, class: "nested-fields", data: { new_record: form.object.new_record? } do %>
   <div class="p-1">
     <%= form.text_field :url, label: false, required: true, placeholder: 'Вставьте url-ссылку с youtube.com', class: 'w-full max-w-sm border-b' %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
     <small><%= link_to "Удалить", "#", data: { action: "click->nested-form#remove_association" }, class: 'link--destroy' %></small>
   </div>
 

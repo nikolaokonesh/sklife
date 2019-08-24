@@ -1,0 +1,135 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA не прошла проверку, повторите снова.'
+  ckeditor:
+    page_title: 'Файловый менеджер CKEditor'
+    confirm_delete: 'Удалить файл?'
+    buttons:
+      cancel: 'Отмена'
+      upload: 'Загрузить'
+      delete: 'Удалить'
+      next: 'Следующий'
+  activerecord:
+    errors:
+      messages:
+        too_large: "слишком большой"
+        download_failed: "не может быть загружена"
+        invalid_content_type: "имеет неверный формат файла"
+        invalid_extension: "имеет неверный формат файла"
+    attributes:
+      article/category:
+        title: "Заголовок"
+        body: "Содержание"
+        user: "Пользователь"
+        slug: "Ссылка"
+        type: "Тип"
+        no_data: "Не показывать дату публикации"
+        no_comments: "Разрешить комментарии"
+      article/post:
+        title: "Заголовок"
+        body: "Содержание"
+        user: "Пользователь"
+        category_id: "Категория"
+        slug: "Ссылка"
+        type: "Тип"
+        subscribe: "По подписке"
+        no_comments: "Разрешить комментарии"
+      feedback:
+        username: "Имя и фамилия"
+        email: "Ваш e-mail"
+        title: "Тема письма"
+        body: "Содержание"
+        address: "Откуда Вы?"
+      comment:
+        body: "Комментарий"
+      sub_comment:
+        body: "Ответить"
+      user:
+        email: 'E-mail'
+        first_name: "Имя"
+        last_name: "Фамилия"
+        name: "Имя и фамилия"
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+        password_confirmation: 'Повторите пароль'
+        current_password: 'Действующий пароль'
+        sign_in_count: 'Количество входа'
+        current_sign_in_ip: 'IP-адрес'
+        last_sign_in_ip: 'Последний вход из IP-адреса'
+        slug: 'Домен'
+        authentication_token: 'API-токен авторизации'
+        reset_password_sent_at: 'Замена пароля'
+        remember_created_at: 'Дата запоминания входа'
+        confirmation_token: 'Токен подтверждения'
+        confirmed_at: 'Дата подтверждения'
+        confirmation_sent_at: 'Дата отправки подтверждения'
+        unconfirmed_email: 'Неподтвержденный e-mail'
+        is_admin: 'Привилегии'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+        posts: 'Посты'
+        roles: 'Ваша роль'
+      profile:
+        name: 'Ваше имя'
+        bio: 'Коротко о себе'
+        profit: 'Профессия'
+        profit_map: 'Место работы'
+        profit_start: 'Начало проф.деятельности'
+        birthday: 'Дата рождения'
+        location: 'Район, город, село'
+        education: 'Образование'
+        contacts: 'Контактные данные'
+        avatar: 'Фото профиля (аватар)'
+        fon: 'Фоновая картинка'
+  views:
+    pagination:
+      first: "«"
+      last: "»"
+      previous: "<"
+      next: ">"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+  layouts:
+    application:
+      admin: 'Админ'
+      manager: 'Менеджер'
+  # Menu sites helper
+  home: 'Главная'
+  contacts: 'Контакты'
+  about: 'О нас'
+  services_and_offers: 'Улсуги и предложения'
+  not_identity_user: 'Попытка доступа к несуществующей странице!'
+  zakon: 'Вы заблокированы. Возможные причины: спам, использование корпоративной почты, нецензурная брань или нарушение законодательства РФ.'
+
+  # new: 'Новое'
+  # top: 'Тема дня'
+  # pro: 'PRO'
+  # photo: 'Фото'

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  posttable_id: 1
+  posttable_type: MyString
+  no_comments: false
+  subscribe: false
+  upgrade: 2019-08-24 11:03:46
+  user: one
+  type: 
+  slug: MyString
+
+two:
+  title: MyString
+  posttable_id: 1
+  posttable_type: MyString
+  no_comments: false
+  subscribe: false
+  upgrade: 2019-08-24 11:03:46
+  user: two
+  type: 
+  slug: MyString

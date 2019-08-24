@@ -1,0 +1,8 @@
+var clearCacheOnce = function() {
+  Turbolinks.clearCache()
+  document.removeEventListener("turbolinks:load", clearCacheOnce)
+}
+
+document.addEventListener("turbolinks:load", clearCacheOnce)
+
+Turbolinks.visit("<%= category_post_path(@post.posttable, @post) %>");

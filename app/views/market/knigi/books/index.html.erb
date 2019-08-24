@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Market Knigi Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>User</th>
+      <th>Slug</th>
+      <th>Price</th>
+      <th>Data</th>
+      <th>Public</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @market_knigi_books.each do |market_knigi_book| %>
+      <tr>
+        <td><%= market_knigi_book.title %></td>
+        <td><%= market_knigi_book.author %></td>
+        <td><%= market_knigi_book.user_id %></td>
+        <td><%= market_knigi_book.slug %></td>
+        <td><%= market_knigi_book.price %></td>
+        <td><%= market_knigi_book.data %></td>
+        <td><%= market_knigi_book.public %></td>
+        <td><%= link_to 'Show', market_knigi_book %></td>
+        <td><%= link_to 'Edit', edit_market_knigi_book_path(market_knigi_book) %></td>
+        <td><%= link_to 'Destroy', market_knigi_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Market Knigi Book', new_market_knigi_book_path %>

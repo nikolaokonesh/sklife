@@ -1,0 +1,41 @@
+<div class="mt-2" data-controller="form-error">
+
+  <ul class="post-errors" data-target="form-error.postErrors"></ul>
+
+  <%= form_with(model: @category, html: { data: { type: "html",
+                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+    <div class="sod">
+      <%= form.rich_text_area :body, placeholder: 'Содержание' %>
+
+      <div data-controller="nested-form">
+        <template data-target="nested-form.template">
+          <%= form.fields_for :youtubes, Article::Youtube.new, child_index: 'NEW_RECORD' do |task| %>
+            <%= render "youtube_fields", form: task %>
+          <% end %>
+        </template>
+
+        <% unless current_page?(new_category_path(@category)) %>
+          <%= form.fields_for :youtubes do |task| %>
+            <%= render "youtube_fields", form: task %>
+          <% end %>
+        <% end %>
+
+        <div class="mb-3 mt-3" data-target="nested-form.links">
+          <%= link_to "Добавить видео с YouTube", "#", class: "link", data: { action: "click->nested-form#add_association" } %>
+        </div>
+      </div>
+
+    </div>
+    <div class="px-2">
+      <%= form.check_box :no_data, class: 'my-4' %>
+      <%= form.label :no_data %>
+      <%= form.check_box :no_comments %>
+      <%= form.label :no_comments %>
+    </div>
+    <div class="px-2 mt-4">
+      <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+      <%= link_to 'Отмена', @category, class: 'link ml-3' %>
+    </div>
+  <% end %>
+</div>

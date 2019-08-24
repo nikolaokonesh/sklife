@@ -1,0 +1,102 @@
+<% keywords truncate(strip_tags(@post.body.body.to_s), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@post.body.body.to_s), length: 200) %>
+<% content_for :canonical_link, category_post_url(@post.posttable, @post, subdomain: false) %>
+
+<% content_for :titleise do %>
+  <div class="flex flex-wrap">
+    <div class="w-full max-w-3xl mx-auto text-center">
+      <div class="text-left">
+        <%= link_to icon('fas', 'chevron-left', title(sanitize(strip_tags(@post.posttable.title)))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600' %>
+      </div>
+      <h1 class="pt-3 leading-tight">
+        <span class="d-inline-block">
+          <%= title sanitize(strip_tags(@post.title)) %>
+          <small class="h6">
+            <%= link_to icon('fas', 'pen'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-4' if @post.user == current_user %>
+            <%= link_to icon('fas', 'trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>
+          </small>
+        </span>
+      </h1>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="w-full px-0 lg:px-1">
+  <div class="py-5 block justify-center">
+    <% if @post.subscribe.present? %>
+      <% if current_user_subscribed? %>
+        <%= @post.body if @post.body.present? %>
+      <% else %>
+        <%= render 'tarif', full: true %>
+      <% end %>
+    <% else %>
+      <%= @post.body if @post.body.present? %>
+    <% end %>
+
+    <% @post.youtubes.all.each do |tube| %>
+      <div class="py-2">
+        <iframe id="ytplayer" type="text/html" width="100%" height="280" class="rounded border-2" src="https://www.youtube.com/embed/<%= tube.uid %>" frameborder="0" allowfullscreen></iframe>
+      </div>
+    <% end %>
+
+    <div class="block">
+      <div class="float-right inline-block mb-2 text-sm text-gray-600">
+        Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
+      </div>
+      <div class="inline-block">
+        <%#= link_to icon('fas', 'chevron-left fa-2x'), url_for(@post.posttable), class: 'text-gray-dark hover:text-gray-darker' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mb-12 block md:flex flex-row-reverse">
+  <% if @next_posts.present? %>
+    <div class="w-full text-center m-2">
+        <%= content_tag :div, 'Читайте далее', class: 'py-1 border-b-4 border-gray-400 rounded-t text-gray-500' %>
+        <%= render partial: 'post_small', collection: @next_posts, cached: true %>
+    </div>
+  <% end %>
+  <% if @prev_posts.present? %>
+    <div class="w-full text-center m-2">
+        <%= content_tag :div, 'Ранее опубликованные', class: 'py-1 border-b-4 border-gray-400 rounded-t text-gray-500' %>
+        <%= render partial: 'post_small', collection: @prev_posts, cached: true %>
+    </div>
+  <% end %>
+</div>
+
+<% if @post.no_comments.present? %>
+  <div class="pt-2 mb-4 flex justify-center">
+    <div class="w-full mt-4">
+      <% unless params[:comment] %>
+        <div id="commentos_back">
+          <% if @post.subscribe? %>
+            <% if current_user_subscribed? %>
+              <%= render partial: "comments/form", locals: { commentable: @post, postas: 'postas_post' } %>
+            <% else %>
+              <div class="text-gray-700 px-2">
+                Оставить комментарий может только подписчик
+              </div>
+            <% end %>
+          <% else %>
+            <%= render partial: "comments/form", locals: { commentable: @post, postas: 'postas_post' } %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="px-1" id="comments">
+        <% if params[:comment] %>
+          <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
+          <%= render partial: 'comments/comment', collection: @comments_parent, locals: {full: true}, continue_thread: 10  %>
+        <% end %>
+        <div class="d-block" id="comments-show-columns">
+          <%= render partial: 'comments/comment', collection: @comments, locals: {full: true}, continue_thread: 10 unless @comments_parent.present? %>
+        </div>
+      </div>
+      <br />
+      <div class="d-block pagination mb-4" id="comments-show-paginator">
+        <%= link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+      </div>
+    </div>
+  </div>
+<% end %>

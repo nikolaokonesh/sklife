@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @market_knigi_book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @market_knigi_book.author %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @market_knigi_book.user_id %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @market_knigi_book.slug %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @market_knigi_book.price %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @market_knigi_book.data %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @market_knigi_book.public %>
+</p>
+
+<%= link_to 'Edit', edit_market_knigi_book_path(@market_knigi_book) %> |
+<%= link_to 'Back', market_knigi_books_path %>

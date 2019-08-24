@@ -1,0 +1,5 @@
+var colum = document.querySelector("#comments-show-columns")
+var pagin = document.querySelector("#comments-show-paginator")
+
+colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
+pagin.innerHTML = ("<%= j link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>");
