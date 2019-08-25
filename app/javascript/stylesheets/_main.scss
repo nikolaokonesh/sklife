@@ -117,6 +117,12 @@ h1 {
   }
 }
 
+.book_page_body {
+  .trix-content {
+    @apply .leading-relaxed .text-lg;
+  }
+}
+
 .hidden_file_field { opacity: 0; }
 
 .css1 { font-size: 1.0em; }

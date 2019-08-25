@@ -3,11 +3,11 @@ class Market::Knigi::Books::PagesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_commentable
   # load_and_authorize_resource except: [:index, :show]
-  layout 'root/index'
+  layout 'book/show'
 
   def show
     unless request.subdomain.present?
-      @pages = @page.commentable.pages.order(created_at: :asc)
+      list_pages
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
     end
@@ -25,6 +25,7 @@ class Market::Knigi::Books::PagesController < ApplicationController
 
   def edit
     if @commentable.user == current_user
+      list_pages
     else
       redirect_to root_url, alert: 'Не вами добавлена книга!'
     end
@@ -55,8 +56,13 @@ class Market::Knigi::Books::PagesController < ApplicationController
   end
 
   private
+
     def set_page
       @page = Market::Knigi::Page.find(params[:id])
+    end
+
+    def list_pages
+      @pages = @page.commentable.pages.order(created_at: :asc)
     end
 
     def set_commentable

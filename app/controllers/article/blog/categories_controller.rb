@@ -5,7 +5,7 @@ class Article::Blog::CategoriesController < Article::CategoriesController
 
   def index
     @posts = @user_agent.posts.includes(:user, :comments).where(type: 'Article::Blog::Post').order(created_at: :desc).page params[:page].to_i
-    @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
+    # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
   end
 
   def show

@@ -1,0 +1,6 @@
+<% if params[:page] %>
+  var colum = document.querySelector("#books_index");
+  var pagin = document.querySelector("#books_index_paginate");
+  colum.innerHTML += ("<%= j render partial: 'market/knigi/books/book', collection: @books, cached: true %>");
+  pagin.innerHTML = ("<%= link_to_next_page(@books, icon('fas', 'chevron-down', 'Далее'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>");
+<% end %>

@@ -6,7 +6,7 @@ class Article::CategoriesController < ApplicationController
   def index
     @posts = Article::Post.where(type: nil).order(created_at: :desc).page params[:page].to_i
     # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
-    @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
+    # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
     # @projects = Project.order(created_at: :desc).page params[:projects].to_i
     # if user_signed_in? && current_user.admin?
     #   @books = Book.order(created_at: :desc).page params[:books].to_i

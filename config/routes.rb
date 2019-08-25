@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   concern :article do
-    resources :categories, path: "/", except: :index do
+    resources :categories, except: :index do
       resources :comments, module: :categories
       resources :posts, module: :categories
     end

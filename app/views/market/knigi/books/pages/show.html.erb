@@ -5,44 +5,28 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-md mx-auto text-center">
-      <div class="text-left">
-        <%= link_to icon('fas', 'chevron-left', title(sanitize(strip_tags(@page.commentable.title)))), url_for(@page.commentable), class: 'text-gray-300 hover:text-gray-100' %>
-      </div>
       <h1 class="pt-3">
         <span class="d-inline-block">
           <%= title sanitize(strip_tags(@page.title)) %>
+          <div class="inline-block">
+            <%= link_to icon('fas', 'pen'), edit_book_page_path(@page.commentable, @page, anchor: :vid), title: "Редактировать", class: 'link mx-1 text-xs' if @page.commentable.user == current_user %>
+            <%= link_to icon('fas', 'trash'), [@page.commentable, @page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true if @page.commentable.user == current_user %>
+          </div>
         </span>
       </h1>
     </div>
   </div>
 <% end %>
 
-<div class="flex md:flex-row-reverse flex-wrap">
-  <div class="w-full md:w-3/5 p-4 mr-auto">
-    <div class="w-full max-w-lg">
-      <div class="bg-white shadow-md rounded px-4 pt-6 pb-4 leading-normal">
-        <% if user_added_to_library?(current_user, @page.commentable) %>
-          <%= @page.body %>
-        <% elsif @page.commentable.user == current_user %>
-          <%= @page.body %>
-        <% else %>
-          <span class="text-gray-500">
-            <%= truncate(strip_tags(@page.body.body.to_s), length: 300, omission: '...') %>
-          </span>
-          <%= link_to 'Приобрести полную версию', @page.commentable, class: 'block mt-2 bg-green-400 text-gray-200 text-center p-3 hover:bg-green-500 hover:text-white rounded shadow' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="w-full md:w-1/3 p-4 ml-auto">
-    <div class="flex justify-center">
-      <div class="w-full bg-white shadow-md rounded">
-        <%= content_tag :div, 'Содержание', class: 'p-1 pl-4 border-b rounded-t bg-grey-dark text-grey-lightest' %>
-        <div class="p-2">
-          <%= render partial: 'market/knigi/books/pages/page', collection: @pages, continue_thread: 10 %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mt-2 book_page_body">
+  <% if user_added_to_library?(current_user, @page.commentable) %>
+    <%= @page.body %>
+  <% elsif @page.commentable.user == current_user %>
+    <%= @page.body %>
+  <% else %>
+    <span class="text-gray-500">
+      <%= truncate(strip_tags(@page.body.body.to_s), length: 300, omission: '...') %>
+    </span>
+    <%= link_to 'Приобрести полную версию', @page.commentable, class: 'block mt-2 bg-green-400 text-gray-200 text-center p-3 hover:bg-green-500 hover:text-white rounded shadow' %>
+  <% end %>
 </div>

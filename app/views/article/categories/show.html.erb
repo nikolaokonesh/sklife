@@ -47,7 +47,7 @@
         <% end %>
       </div>
 
-      <div id="cate-show-<%= @category.id %>" data-turbolinks-permanent>
+      <div id="cate-show-<%= @category.id %>-<%= (@category.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
         <div class="block" id="categories-show-columns">
           <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
         </div>

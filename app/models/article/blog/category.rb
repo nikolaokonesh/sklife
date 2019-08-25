@@ -2,6 +2,7 @@ class Article::Blog::Category < Article::Category
   include InputConcern
   include SlugConcern
   include UpgradeConcern
+  include YoutubeConcern
 
   belongs_to :user
   has_many :posts, as: :posttable, dependent: :destroy
