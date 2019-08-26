@@ -2,7 +2,7 @@
   var colum = document.querySelector("#categories-show-columns")
   var pagin = document.querySelector("#categories-show-paginator")
 
-  colum.innerHTML += ('<%=j render(partial: "article/posts/post", collection: @posts, cached: true) %>')
+  colum.innerHTML += ('<%= j render(partial: "article/posts/post", collection: @posts, cached: true) %>')
   pagin.innerHTML = ("<%= j link_to_next_page(@posts, icon('fas', 'chevron-down', 'Далее'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>");
 <% end %>
 
