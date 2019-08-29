@@ -51,8 +51,8 @@
         <div class="block" id="categories-show-columns">
           <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
         </div>
-        <div class="block pagination mb-4" id="categories-show-paginator">
-          <%= link_to_next_page(@posts, icon('fas', 'chevron-down', 'Далее'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+        <div class="block text-center text-3xl mb-4" id="categories-show-paginator">
+          <%= render partial: "next_link", locals: {pagy: @pagy} %>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
           </div>
           <br />
           <div class="block pagination mb-4" id="comments-show-paginator">
-            <%= link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', param_name: :pagina, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+            <%= render partial: "next_link", locals: {pagy: @pagy_comment} %>
           </div>
         </div>
       </div>

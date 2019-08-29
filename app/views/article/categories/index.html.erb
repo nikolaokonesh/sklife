@@ -3,6 +3,6 @@
 <div id="categories_index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
-<div class='text-center pagination' id="categories_index_paginate" data-turbolinks-permanent>
-  <%= link_to_next_page(@posts, icon('fas', 'chevron-down', 'Далее'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+<div class='text-center' id="categories_index_paginate" data-turbolinks-permanent>
+  <%= render partial: "next_link", locals: {pagy: @pagy} %>
 </div>

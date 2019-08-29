@@ -1,5 +1,15 @@
-var colum = document.querySelector("#comments-show-columns")
-var pagin = document.querySelector("#comments-show-paginator")
+<% if params[:page] %>
+  var colum = document.querySelector("#categories-show-columns")
+  var pagin = document.querySelector("#categories-show-paginator")
 
-colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
-pagin.innerHTML = ("<%= j link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>");
+  colum.innerHTML += ('<%= j render(partial: "article/posts/post", collection: @posts, cached: true) %>')
+  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>");
+<% end %>
+
+<% if params[:pagina] %>
+  var colum = document.querySelector("#comments-show-columns")
+  var pagin = document.querySelector("#comments-show-paginator")
+
+  colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
+  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy_comment} %>");
+<% end %>

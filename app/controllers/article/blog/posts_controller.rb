@@ -5,15 +5,14 @@ class Article::Blog::PostsController < Article::PostsController
 
   def show
     if @post.user == @user_agent
-      @prev_posts = @post.posttable.posts.includes(:user, :comments).order(created_at: :asc).where(["id > ?", @post.id]).limit(7).reverse
-      @next_posts = @post.posttable.posts.includes(:user, :comments).order(created_at: :desc).where(["id < ?", @post.id]).limit(7)
+      @pagy, @posts = pagy(@post.posttable.posts.includes(:user, :comments).order(created_at: :desc).where.not(id: @post.id), link_extra: 'data-remote="true"')
 
       @comments = if params[:comment]
                     @post.comments.where(id: params[:comment])
                   else
                     @post.comments.where(parent_id: nil)
                   end
-      @comments = @comments.includes(:user).order(created_at: :desc).page params[:page].to_i
+      @pagy_comment, @comments = pagy(@comments.includes(:user).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
 
       if @post.comments.present?
         @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)

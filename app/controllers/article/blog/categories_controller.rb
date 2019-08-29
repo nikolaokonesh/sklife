@@ -4,15 +4,15 @@ class Article::Blog::CategoriesController < Article::CategoriesController
   layout 'blog/index'
 
   def index
-    @posts = @user_agent.posts.includes(:user, :comments).where(type: 'Article::Blog::Post').order(created_at: :desc).page params[:page].to_i
     # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
+    @pagy, @posts = pagy(@user_agent.posts.includes(:user, :comments).where(type: 'Article::Blog::Post').order(created_at: :desc), link_extra: 'data-remote="true"')
   end
 
   def show
     if @category.user == @user_agent
       @post = Article::Blog::Post.new
       @posttable = @category
-      @posts = @category.posts.includes(:user, :comments).order(created_at: :desc).page params[:page].to_i
+      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).order(created_at: :desc), link_extra: 'data-remote="true"')
 
       if @category.no_comments.present?
         @comments = if params[:comment]
@@ -20,7 +20,7 @@ class Article::Blog::CategoriesController < Article::CategoriesController
                     else
                       @category.comments.where(parent_id: nil)
                     end
-        @comments = @comments.includes(:user).order(created_at: :desc).page params[:pagina].to_i
+        @pagy_comment, @comments = pagy(@comments.includes(:user).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
 
         if @category.comments.present?
           @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)

@@ -4,7 +4,7 @@ class Article::CategoriesController < ApplicationController
   layout 'root/index'
 
   def index
-    @posts = Article::Post.where(type: nil).order(created_at: :desc).page params[:page].to_i
+    @pagy, @posts = pagy(Article::Post.where(type: nil).order(created_at: :desc), link_extra: 'data-remote="true"')
     # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
     # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
     # @projects = Project.order(created_at: :desc).page params[:projects].to_i
@@ -19,7 +19,7 @@ class Article::CategoriesController < ApplicationController
     unless request.subdomain.present?
       @post = Article::Post.new
       @posttable = @category
-      @posts = @category.posts.includes(:user, :comments).order(created_at: :desc).page params[:page].to_i
+      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).order(created_at: :desc), link_extra: 'data-remote="true"')
 
       if @category.no_comments.present?
         @comments = if params[:comment]
@@ -27,7 +27,7 @@ class Article::CategoriesController < ApplicationController
                     else
                       @category.comments.where(parent_id: nil)
                     end
-        @comments = @comments.includes(:user).order(created_at: :desc).page params[:pagina].to_i
+        @pagy_comment, @comments = pagy(@comments.includes(:user).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
 
         if @category.comments.present?
           @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)

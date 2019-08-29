@@ -51,17 +51,15 @@
   </div>
 </div>
 
-<div class="mb-12 block md:flex flex-row-reverse">
-  <% if @next_posts.present? %>
-    <div class="w-full text-center m-2">
-        <%= content_tag :div, 'Читайте далее', class: 'py-1 border-b-4 border-gray-400 rounded-t text-gray-500' %>
-        <%= render partial: 'post_small', collection: @next_posts, cached: true %>
-    </div>
-  <% end %>
-  <% if @prev_posts.present? %>
-    <div class="w-full text-center m-2">
-        <%= content_tag :div, 'Ранее опубликованные', class: 'py-1 border-b-4 border-gray-400 rounded-t text-gray-500' %>
-        <%= render partial: 'post_small', collection: @prev_posts, cached: true %>
+<div class="mb-12 block">
+  <% if @posts.present? %>
+    <div id="cate-show-<%= @post.id %>-<%= (@post.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
+      <div class="w-full text-center m-2" id="categories-show-columns">
+        <%= render partial: 'post_small', collection: @posts, cached: true %>
+      </div>
+      <div class="block text-center mb-4" id="categories-show-paginator">
+        <%= render partial: "next_link", locals: {pagy: @pagy} %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -95,7 +93,7 @@
       </div>
       <br />
       <div class="d-block pagination mb-4" id="comments-show-paginator">
-        <%= link_to_next_page(@comments, icon('fas', 'chevron-down', 'Еще комментарии'), class: 'pg-link', remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')}) %>
+        <%= render partial: "next_link", locals: {pagy: @pagy_comment} %>
       </div>
     </div>
   </div>

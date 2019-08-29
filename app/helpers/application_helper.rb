@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include Pagy::Frontend
+
   def notice_class_for(flash_type)
     {
       success: "bg-teal-400 border-teal-300 text-teal-800",
