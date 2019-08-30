@@ -21,6 +21,10 @@
                 <%= icon('fas', 'bell') %>
                 <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
               <% end %>
+              <%= active_link_to main_app.library_index_url(subdomain: false), class: "nav-link inline-block", title: 'Онлайн-Библиотека' do %>
+                <%= icon('fas', 'book-open') %>
+                <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
+              <% end %>
               <% if current_user.subscribed? %>
                 <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), title: 'Вы подписчик', class: "nav-link inline-block" do %>
                   <%= icon('fas', 'crown') %>

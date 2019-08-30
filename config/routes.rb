@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   concern :article do
-    resources :categories, except: :index do
+    resources :categories, path: '/', except: :index do
       resources :comments, module: :categories
       resources :posts, module: :categories
     end
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
           get :fail
         end
       end
-      resources :library, only:[:index]
+      resources :library, path: 'market/library', only:[:index]
     end
   end
 

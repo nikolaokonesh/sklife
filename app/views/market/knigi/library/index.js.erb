@@ -1,0 +1,6 @@
+<% if params[:page] %>
+  var colum = document.querySelector("#library_index");
+  var pagin = document.querySelector("#library_index_paginate");
+  colum.innerHTML += ("<%= j render partial: 'market/knigi/books/book', collection: @library_books, cached: true %>");
+  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>");
+<% end %>
