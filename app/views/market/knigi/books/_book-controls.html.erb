@@ -1,4 +1,4 @@
-<div class="bg-green-500 pt-3 pb-4 px-4 mb-8 shadow-md rounded text-center">
+<div class="bg-green-500 border-t-4 border-b-2 border-green-600 pt-3 pb-4 px-4 mb-8 shadow-md rounded text-center">
   <div class="lg:inline-block block">
     <%= link_to add_book_path(book, type: "add", amountorub: (book.price.to_s+"00").to_i), method: :put, class: "btn font-bold", data: {disable_with: disable_helper('Переход в Сбербанк-Онлайн')} do %>
       Купить за <%= book.price %> руб
