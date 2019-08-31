@@ -4,7 +4,8 @@
       Купить за <%= book.price %> руб
     <% end %>
   </div>
-  <div class="mt-2 ml-2 inline-block text-gray-200">
-    Книга будет сохранена в вашей онлайн-библиотеке
+  <div class="mt-2 ml-2 inline-block text-gray-300">
+    Книга будет сохранена в вашей
+    <%= link_to 'онлайн-библиотеке', main_app.library_index_url(subdomain: false), class: 'hover:text-white' %>
   </div>
 </div>

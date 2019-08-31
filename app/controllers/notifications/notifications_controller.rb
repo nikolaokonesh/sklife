@@ -4,7 +4,7 @@ module Notifications
     layout 'root/index'
 
     def index
-      @notifications = notifications.includes(:actor).order('id desc').page(params[:page])
+      @pagy, @notifications = pagy(notifications.includes(:actor).order('id desc'), items: 15)
 
       unread_ids = @notifications.reject(&:read?).select(&:id)
       Notification.read!(unread_ids)
