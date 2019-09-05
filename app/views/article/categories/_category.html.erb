@@ -1,5 +1,5 @@
 <%= active_link_to main_app.category_path(category), class: 'link' do %>
-  <div class="tracking-wide font-bold border-b  px-2 py-3">
+  <div class="menu">
     <%= sanitize(strip_tags(category.title)) %>
     <%= content_tag :span, icon('fas', 'comment-dots', category.comments.count), class: 'pl-2 inline-block text-sm' if category.comments.present? %>
   </div>

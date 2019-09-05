@@ -18,7 +18,15 @@ a {
 }
 
 input {
-  background: none;
+  @apply .bg-transparent;
+  &::placeholder {
+    @apply .text-gray-900;
+  }
+  &:focus {
+    &::placeholder {
+      @apply .text-gray-600;
+    }
+  }
 }
 
 .rgba {
@@ -74,7 +82,7 @@ input {
   }
 }
 .nav-link {
-  @apply .pr-1 .text-gray-300 .no-underline;
+  @apply .pr-2 .text-gray-300 .no-underline;
   &:hover,
   &:active,
   &.active {
@@ -88,6 +96,10 @@ input {
   &.active {
     @apply .text-gray-300;
   }
+}
+
+.menu {
+  @apply .tracking-wide .border-b .px-2 .py-2;
 }
 
 h1 {
