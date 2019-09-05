@@ -8,6 +8,9 @@ class Market::Knigi::Books::PagesController < ApplicationController
   def show
     unless request.subdomain.present?
       list_pages
+      if user_signed_in?
+        page_views_complite
+      end
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
     end
@@ -63,6 +66,17 @@ class Market::Knigi::Books::PagesController < ApplicationController
 
     def list_pages
       @pages = @page.commentable.pages.order(created_at: :asc)
+    end
+
+    def page_views_complite
+      @my_book = current_user.libraries.where(user: current_user, book: @page.commentable).any?
+      @page_no_view = current_user.views.where(user: current_user, page: @page).blank?
+
+      if @my_book
+        if @page_no_view
+          current_user.views.create(page: @page)
+        end
+      end
     end
 
     def set_commentable

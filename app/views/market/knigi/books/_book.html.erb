@@ -1,28 +1,38 @@
-<% cache book do %>
-  <div class="block w-full max-w-md justify-center text-center pt-4 pb-4 px-2 mx-auto">
-    <%= link_to book_url(book, subdomain: false), class: 'card--book max-w-md w-full lg:flex' do %>
-      <% ActiveStorage::Attachment.where(record: book.body.id).limit(1).each do |img| %>
-        <% if img.blob.representable? %>
-          <div class="shadow-lg h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l bg-center text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ])) %>')"></div>
-        <% end %>
+<div class="block w-full max-w-md justify-center text-center pt-4 pb-4 px-2 mx-auto">
+  <%= link_to book_url(book, subdomain: false), class: 'card--book max-w-md w-full lg:flex' do %>
+    <% ActiveStorage::Attachment.where(record: book.body.id).limit(1).each do |img| %>
+      <% if img.blob.representable? %>
+        <div class="shadow-lg h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l bg-center text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ])) %>')"></div>
       <% end %>
-      <div class="shadow-lg bg-white rounded-b lg:rounded-b-none lg:rounded-r p-3 flex flex-col justify-between leading-normal">
-        <div class="mb-1">
-          <p class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
-            <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
-          </p>
-          <div class="text-xl mb-2"><%= sanitize(strip_tags(book.title)) %></div>
-          <p class="text-base"><%= truncate(strip_tags(book.body.body.to_s), length: 200, omission: '...') %></p>
-        </div>
-        <div class="block lg:flex items-center">
-          <p class="block lg:inline-block lg:p-3 no-underline text-sm">
-            Автор: <%= sanitize(strip_tags(book.author)) %>
-          </p>
-          <small class="block lg:inline-block lg:p-3 pb-2 text-sm">
-            Книга <%= time_tag(book.data, :format=>'%Y года') %>
-          </small>
-        </div>
-      </div>
     <% end %>
-  </div>
-<% end %>
+    <div class="shadow-lg bg-white rounded-b lg:rounded-b-none lg:rounded-r p-3 flex flex-col justify-between leading-normal">
+      <div class="mb-1">
+        <p class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
+          <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
+        </p>
+        <div class="text-xl mb-2"><%= sanitize(strip_tags(book.title)) %></div>
+        <p class="text-base"><%= truncate(strip_tags(book.body.body.to_s), length: 200, omission: '...') %></p>
+      </div>
+      <div class="block lg:flex items-center">
+        <p class="block lg:inline-block lg:p-3 no-underline text-sm">
+          Автор: <%= sanitize(strip_tags(book.author)) %>
+        </p>
+        <small class="block lg:inline-block lg:p-3 pb-2 text-sm">
+          Книга <%= time_tag(book.data, :format=>'%Y года') %>
+        </small>
+        <% if user_signed_in? %>
+          <% if current_user.libraries.where(book: book).any? %>
+            <small class="block lg:inline-block lg:p-3 pb-2 text-sm">
+              <% if views_pages_helper(book, current_user) == book.pages.count %>
+                <%= icon('fas', 'check', class: 'text-green-500') %>
+              <% else %>
+                Прочтено
+              <% end %>
+              <%= views_pages_helper(book, current_user) %>/<%= book.pages.count %>
+            </small>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

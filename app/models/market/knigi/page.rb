@@ -10,4 +10,6 @@ class Market::Knigi::Page < ApplicationRecord
 
   belongs_to :commentable, polymorphic: true, touch: true
 
+  has_many :views, dependent: :destroy, class_name: 'Market::Knigi::View'
+
 end

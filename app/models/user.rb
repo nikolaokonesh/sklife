@@ -16,10 +16,13 @@ class User < ApplicationRecord
   has_many :book_orders, dependent: :destroy, class_name: "Market::Knigi::Order"
   has_many :libraries, class_name: "Market::Knigi::Library"
   has_many :library_additions, through: :libraries, source: :book
+  has_many :views, dependent: :destroy, class_name: "Market::Knigi::View"
+  # has_many :view_addition, through: :views, source: :page
 
   has_many :comments, dependent: :destroy
   has_many :notifications, foreign_key: :user_id, dependent: :destroy
   has_many :youtubes, dependent: :destroy
+
 
   noname = %w(Админ Менеджер Автор Агент www
              Admin Administrator Adminka Halyma Sklife

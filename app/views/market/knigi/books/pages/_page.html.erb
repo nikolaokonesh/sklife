@@ -1,3 +1,4 @@
 <%= active_link_to [page.commentable, page], class: "block border-b link p-1" do %>
+  <%= user_view_page(current_user, page) if user_signed_in? %>
   <%= sanitize(strip_tags(page.title)) %>
 <% end %>
