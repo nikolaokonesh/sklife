@@ -102,6 +102,14 @@ input {
   @apply .tracking-wide .border-b .px-2 .py-2;
 }
 
+.dropdown-menu {
+  @apply .no-underline .block .p-2 .text-gray-700 .bg-white .whitespace-no-wrap;
+  &:hover,
+  &.active {
+    @apply .bg-gray-300;
+  }
+}
+
 h1 {
   @apply .text-gray-600 .pt-2 .font-normal .leading-tight .text-3xl;
 }

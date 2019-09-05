@@ -26,20 +26,20 @@
               </div>
               <div data-target="dropdown.menu" class="absolute right-0 text-xs mt-3 hidden">
                 <div class="bg-white shadow rounded border overflow-hidden">
-                  <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'no-underline block p-2 text-gray-700 bg-white hover:bg-gray-300 whitespace-no-wrap' do %>
+                  <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu' do %>
                     <%= icon('fas', 'user-circle', 'Моя страница') %>
                   <% end %>
-                  <%= active_link_to main_app.library_index_url(subdomain: false), class: "no-underline block p-2 text-gray-700 bg-white hover:bg-gray-300 whitespace-no-wrap" do %>
+                  <%= active_link_to main_app.library_index_url(subdomain: false), class: "dropdown-menu" do %>
                     <%= icon('fas', 'book-open', 'Онлайн-Библиотека') %>
                     <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
                   <% end %>
                   <% if current_user.subscribed? %>
-                    <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), class: "no-underline block p-2 text-gray-700 bg-white hover:bg-gray-300 whitespace-no-wrap" do %>
+                    <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), class: "dropdown-menu" do %>
                       <%= icon('fas', 'crown', 'Вы подписчик') %>
                     <% end %>
                   <% end %>
-                  <%= link_to icon('fas', 'user-cog', 'Настройки'), main_app.edit_user_registration_url(subdomain: false), class: 'no-underline block p-2 text-gray-700 bg-white hover:bg-gray-300 whitespace-no-wrap' %>
-                  <%= link_to icon('fas', 'sign-out-alt', 'Выйти'), main_app.destroy_user_session_path, class: 'no-underline block p-2 text-gray-700 bg-white hover:bg-gray-300 whitespace-no-wrap', method: :delete %>
+                  <%= link_to icon('fas', 'user-cog', 'Настройки'), main_app.edit_user_registration_url(subdomain: false), class: 'dropdown-menu' %>
+                  <%= link_to icon('fas', 'sign-out-alt', 'Выйти'), main_app.destroy_user_session_path, class: 'dropdown-menu', method: :delete %>
                 </div>
               </div>
             </div>

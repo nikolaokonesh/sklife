@@ -40,7 +40,10 @@
 </div>
 
 <% if @book.user == current_user %>
-  <%= render partial: "market/knigi/books/pages/form", locals: { commentable: @book } %>
+  <div class="mt-8 bg-gray-100 py-2 rounded">
+    <div class="text-gray-500 pl-3">Добавить страницу</div>
+    <%= render partial: "market/knigi/books/pages/form", locals: { commentable: @book } %>
+  </div>
 <% end %>
 
 <div class="block mt-5">
