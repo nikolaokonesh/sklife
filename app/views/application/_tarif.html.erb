@@ -37,17 +37,25 @@
         <div class="lg:flex">
           <div class="lg:mr-4 lg:ml-auto">
             <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_large_month+"00").to_i), method: :post do |f| %>
-              <%= content_tag(:button, class: 'bg-green-500 text-gray-200 text-lg hover:text-white hover:bg-green-600 py-2 px-4 mb-2 rounded border-t-4 border-b-4 hover:border-green-200', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+              <%= content_tag(:button, class: 'bg-blue-600 text-gray-200 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-blue-200 hover:border-blue-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
                 <div class="font-bold lg:block inline-block"><%= summ_large_month %> <%= icon('fas', 'ruble-sign fa-xs') %></div>
                 6 месяцев
               <% end %>
             <% end %>
           </div>
-          <div class="lg:mr-auto">
+          <div class="lg:mx-auto">
             <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_small_month+"00").to_i), method: :post do |f| %>
-              <%= content_tag(:button, class: 'bg-green-500 text-gray-200 text-lg hover:text-white hover:bg-green-600 py-2 px-4 mb-2 rounded border-t-4 border-b-4 hover:border-green-200', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+              <%= content_tag(:button, class: 'bg-red-600 text-gray-200 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-red-200 hover:border-red-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
                   <div class="font-bold lg:block inline-block"><%= summ_small_month %> <%= icon('fas', 'ruble-sign fa-xs') %></div>
                   3 месяцa
+              <% end %>
+            <% end %>
+          </div>
+          <div class="lg:ml-auto">
+            <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_largest_month+"00").to_i), method: :post do |f| %>
+              <%= content_tag(:button, class: 'bg-green-600 text-gray-200 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+                  <div class="font-bold lg:block inline-block"><%= summ_largest_month %> <%= icon('fas', 'ruble-sign fa-xs') %></div>
+                  12 месяцев
               <% end %>
             <% end %>
           </div>

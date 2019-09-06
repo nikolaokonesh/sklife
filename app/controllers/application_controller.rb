@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_subscribed?
   helper_method :summ_small_month
   helper_method :summ_large_month
+  helper_method :summ_largest_month
   before_action :user_show
   before_action :sbrf_action
 
@@ -53,6 +54,9 @@ class ApplicationController < ActionController::Base
     end
     def summ_large_month
       "740"
+    end
+    def summ_largest_month
+      "1280"
     end
 
 end

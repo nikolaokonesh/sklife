@@ -1,4 +1,5 @@
-<footer class="absolute bottom-0 text-xs p-4">
+<div class="mt-10"></div>
+<footer class="absolute bottom-0 text-xs py-8 px-4">
   <%= content_tag :span, "© #{Date.today.year} SkLife.Ru", class: color %>
   <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
   <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>

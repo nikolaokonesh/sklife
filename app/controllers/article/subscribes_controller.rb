@@ -56,6 +56,8 @@ class Article::SubscribesController < ApplicationController
         3.month
       elsif status.amount == (summ_large_month+"00").to_i
         6.month
+      elsif status.amount == (summ_largest_month+"00").to_i
+        12.month
       end
     end
 
@@ -64,6 +66,8 @@ class Article::SubscribesController < ApplicationController
         summ_small_month
       elsif status.amount == (summ_large_month+"00").to_i
         summ_large_month
+      elsif status.amount == (summ_largest_month+"00").to_i
+        summ_largest_month
       end
     end
 
