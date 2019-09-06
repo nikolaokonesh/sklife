@@ -1,5 +1,11 @@
 <% content_for :canonical_link, root_url(subdomain: false) %>
 
+<% if user_signed_in? %>
+  <div class="block">
+    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link float-right', title: 'Добавить категорию' if current_user.admin? %>
+  </div>
+<% end %>
+
 <div id="categories_index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>

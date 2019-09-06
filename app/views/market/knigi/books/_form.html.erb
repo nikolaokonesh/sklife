@@ -1,6 +1,6 @@
 <div class="mt-2">
   <%= form_with(model: @book) do |form| %>
-    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Название книги', class: 'field' %>
     <div class="w-full">
       <div class="flex flex-wrap mb-2">
         <div class="w-full md:w-1/3 pr-2 md:mb-0">
@@ -14,9 +14,6 @@
           <%#= form.select :data, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), { label: false}, { class: 'field bg-white' } %>
         </div>
       </div>
-    </div>
-    <div>
-      <%= form.rich_text_area :body, placeholder: 'Содержание', data: { controller: "mentions", target: "mentions.field" } %>
     </div>
     <div class="px-2">
       <%= form.check_box :public, class: 'my-4' %>

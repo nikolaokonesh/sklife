@@ -49,10 +49,10 @@ class ApplicationController < ActionController::Base
     end
 
     def summ_small_month
-      "750"
+      "420"
     end
     def summ_large_month
-      "1450"
+      "740"
     end
 
 end
