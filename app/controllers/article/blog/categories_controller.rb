@@ -5,14 +5,14 @@ class Article::Blog::CategoriesController < Article::CategoriesController
 
   def index
     # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
-    @pagy, @posts = pagy(@user_agent.posts.includes(:user, :comments).where(type: 'Article::Blog::Post').order(created_at: :desc), link_extra: 'data-remote="true"')
+    @pagy, @posts = pagy(@user_agent.posts.includes(:user, :comments).where(type: 'Article::Blog::Post').with_rich_text_body_post.order(created_at: :desc), link_extra: 'data-remote="true"')
   end
 
   def show
     if @category.user == @user_agent
       @post = Article::Blog::Post.new
       @posttable = @category
-      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).order(created_at: :desc), link_extra: 'data-remote="true"')
+      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).with_rich_text_body_post.order(created_at: :desc), link_extra: 'data-remote="true"')
 
       if @category.no_comments.present?
         @comments = if params[:comment]

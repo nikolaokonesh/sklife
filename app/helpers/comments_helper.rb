@@ -13,17 +13,17 @@ module CommentsHelper
 
   def comment_body_helper(comment)
     if comment.deleted?
-      content_tag :div, truncate(strip_tags(comment.body.body.to_s), length: 35, omission: '......'), class: 'line-through text-gray-500'
+      content_tag :div, truncate(strip_tags(comment.body_comment.body.to_s), length: 35, omission: '......'), class: 'line-through text-gray-500'
     else
-      content_tag :div, comment.body, class: 'text-gray-700'
+      content_tag :div, comment.body_comment, class: 'text-gray-700'
     end
   end
 
   def comment_body_notification_helper(comment)
     if comment.deleted?
-      content_tag :div, truncate(strip_tags(comment.body.body.to_s), length: 30, omission: '...'), class: 'line-through text-gray-500'
+      content_tag :div, truncate(strip_tags(comment.body_comment.body.to_s), length: 30, omission: '...'), class: 'line-through text-gray-500'
     else
-      truncate(strip_tags(comment.body.body.to_s), length: 30, omission: '...')
+      truncate(strip_tags(comment.body_comment.body.to_s), length: 30, omission: '...')
     end
   end
 

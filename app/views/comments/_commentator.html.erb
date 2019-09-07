@@ -11,6 +11,6 @@
         </div>
       </div>
     </div>
-    <i>«<%= truncate(strip_tags(commentator.body.body.to_s), length: 80, omission: '...') %>»</i>
+    <i>«<%= truncate(strip_tags(commentator.body_comment.body.to_s), length: 80, omission: '...') %>»</i>
   <% end %>
 </div>

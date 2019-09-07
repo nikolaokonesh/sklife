@@ -6,7 +6,7 @@
         <%= current_user.username %>
       </div>
       <div class="p-1">
-        <%= form.rich_text_area :body, id: "#{postas}", placeholder: 'Напишите свой комментарий', data: { controller: "mentions", target: "mentions.field" } %>
+        <%= form.rich_text_area :body_comment, id: "#{postas}", placeholder: 'Напишите свой комментарий', data: { controller: "mentions", target: "mentions.field" } %>
       </div>
       <ul class="post-errors" data-target="form-error.postErrors"></ul>
       <div class="px-2">

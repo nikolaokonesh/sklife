@@ -1,6 +1,6 @@
 <% cache post do %>
   <%= link_to [post.posttable, post], class: 'md:flex hover:text-gray-600' do %>
-    <% ActiveStorage::Attachment.where(record: post.body.id).limit(1).each do |img| %>
+    <% ActiveStorage::Attachment.where(record: post.body_post.id).limit(1).each do |img| %>
       <% if img.blob.representable? %>
         <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ]))%>');">
         </div>
@@ -12,8 +12,8 @@
         <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
         <%= sanitize(strip_tags(post.title)) %>
       </div>
-      <% if post.body.body.present? %>
-        <p class="mt-2"><%= truncate(strip_tags(post.body.body.to_s), length: 200, omission: '...') %></p>
+      <% if post.body_post.body.present? %>
+        <p class="mt-2"><%= truncate(strip_tags(post.body_post.body.to_s), length: 200, omission: '...') %></p>
       <% end %>
       <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
 

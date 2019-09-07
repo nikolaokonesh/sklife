@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :user_id, dependent: :destroy
   has_many :youtubes, dependent: :destroy
 
+  has_many :feedbacks, dependent: :destroy
 
   noname = %w(Админ Менеджер Автор Агент www
              Admin Administrator Adminka Halyma Sklife

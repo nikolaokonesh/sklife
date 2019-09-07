@@ -15,9 +15,9 @@ class Comment < ApplicationRecord
     user.nil?
   end
 
-  has_rich_text :body
-  validates_presence_of :body
-  validates :body, length: { maximum: 3500 }
+  has_rich_text :body_comment
+  validates_presence_of :body_comment
+  validates :body_comment, length: { maximum: 3500 }
 
   # Alternatively, we could move all the children to point to our parent instead
 

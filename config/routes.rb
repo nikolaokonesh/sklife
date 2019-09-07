@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   end
 
   resources :profiles
+  resources :feedbacks
 
   get "info/:page" => "static#show"
 

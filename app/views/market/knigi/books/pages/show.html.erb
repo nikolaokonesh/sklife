@@ -1,5 +1,5 @@
-<% keywords truncate(strip_tags(@page.body.body.to_s), length: 100, omission: '').split.uniq.sort %>
-<% description truncate(strip_tags(@page.body.body.to_s), length: 200) %>
+<% keywords truncate(strip_tags(@page.body_page.body.to_s), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@page.body_page.body.to_s), length: 200) %>
 <% content_for :canonical_link, book_page_url(@page.commentable, @page, subdomain: false) %>
 
 <% content_for :titleise do %>
@@ -20,12 +20,12 @@
 
 <div class="mt-2 book_page_body">
   <% if user_added_to_library?(current_user, @page.commentable) %>
-    <%= @page.body %>
+    <%= @page.body_page %>
   <% elsif @page.commentable.user == current_user %>
-    <%= @page.body %>
+    <%= @page.body_page %>
   <% else %>
     <span class="text-gray-500">
-      <%= truncate(strip_tags(@page.body.body.to_s), length: 500, omission: '...') %>
+      <%= truncate(strip_tags(@page.body_page.body.to_s), length: 500, omission: '...') %>
     </span>
     <%= link_to 'Приобрести полную версию', @page.commentable, class: 'block mt-2 bg-green-400 text-gray-200 text-center p-3 hover:bg-green-500 hover:text-white rounded shadow' %>
   <% end %>

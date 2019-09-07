@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_062555) do
+ActiveRecord::Schema.define(version: 2019_09_07_080218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 2019_09_05_062555) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -214,6 +221,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_062555) do
   add_foreign_key "article_categories", "users"
   add_foreign_key "article_posts", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "market_knigi_books", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "profiles", "users"

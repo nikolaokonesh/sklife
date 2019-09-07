@@ -1,5 +1,5 @@
-<% keywords truncate(strip_tags(@post.body.body.to_s), length: 100, omission: '').split.uniq.sort %>
-<% description truncate(strip_tags(@post.body.body.to_s), length: 200) %>
+<% keywords truncate(strip_tags(@post.body_post.body.to_s), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@post.body_post.body.to_s), length: 200) %>
 <% content_for :canonical_link, category_post_url(@post.posttable, @post, subdomain: false) %>
 
 <% content_for :titleise do %>
@@ -26,12 +26,12 @@
   <div class="py-5 block justify-center">
     <% if @post.subscribe.present? %>
       <% if current_user_subscribed? %>
-        <%= @post.body if @post.body.present? %>
+        <%= @post.body_post if @post.body_post.present? %>
       <% else %>
         <%= render 'tarif', full: true %>
       <% end %>
     <% else %>
-      <%= @post.body if @post.body.present? %>
+      <%= @post.body_post if @post.body_post.present? %>
     <% end %>
 
     <% @post.youtubes.all.each do |tube| %>

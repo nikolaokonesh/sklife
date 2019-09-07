@@ -22,8 +22,8 @@
         <%= render "devise/shared/links" %>
       </div>
     <% end %>
-    <p class="text-center text-grey text-xs mt-8">
-      <%= active_link_to "Пользовательское соглашение и Политика конфиденциальности", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: 'block align-baseline font-bold text-sm text-blue-400 hover:text-blue-700' %>
+    <p class="text-center mt-8">
+      <%= active_link_to "Пользовательское соглашение и Политика конфиденциальности", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: 'block align-baseline text-xs text-blue-500 hover:text-blue-700' %>
     </p>
   </div>
 </div>

@@ -84,6 +84,6 @@ class Market::Knigi::Books::PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:title, :body, :commentable_id)
+      params.require(:page).permit(:title, :body_page, :commentable_id)
     end
 end

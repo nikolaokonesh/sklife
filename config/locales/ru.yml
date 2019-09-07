@@ -49,7 +49,7 @@ ru:
         no_comments: "Разрешить комментарии"
       article/post:
         title: "Заголовок"
-        body: "Содержание"
+        body_post: "Содержание"
         user: "Пользователь"
         category_id: "Категория"
         slug: "Ссылка"
@@ -57,15 +57,9 @@ ru:
         subscribe: "По подписке"
         no_comments: "Разрешить комментарии"
       feedback:
-        username: "Имя и фамилия"
-        email: "Ваш e-mail"
-        title: "Тема письма"
-        body: "Содержание"
-        address: "Откуда Вы?"
+        message: "Содержание"
       comment:
-        body: "Комментарий"
-      sub_comment:
-        body: "Ответить"
+        body_comment: "Комментарий"
       user:
         email: 'E-mail'
         first_name: "Имя"

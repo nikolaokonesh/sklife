@@ -1,0 +1,18 @@
+<div class="mt-10" data-controller="form-error">
+
+  <%= form_with(model: current_user.feedbacks.new, html: { data: { type: "html",
+                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
+
+    <div class="sod">
+      <%= form.rich_text_area :message, placeholder: 'Содержание' %>
+    </div>
+
+    <div class="px-2 mt-4 lg:flex">
+      <div class="pr-5">
+        <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+      </div>
+      <ul class="mt-2 lg:mt-0 block w-full post-errors" data-target="form-error.postErrors"></ul>
+    </div>
+
+  <% end %>
+</div>

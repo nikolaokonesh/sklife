@@ -4,7 +4,7 @@ class Article::CategoriesController < ApplicationController
   layout 'root/index'
 
   def index
-    @pagy, @posts = pagy(Article::Post.where(type: nil).order(created_at: :desc), link_extra: 'data-remote="true"')
+    @pagy, @posts = pagy(Article::Post.where(type: nil).with_rich_text_body_post.order(created_at: :desc), link_extra: 'data-remote="true"')
     # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
     # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
     # @projects = Project.order(created_at: :desc).page params[:projects].to_i
@@ -19,7 +19,7 @@ class Article::CategoriesController < ApplicationController
     unless request.subdomain.present?
       @post = Article::Post.new
       @posttable = @category
-      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).order(created_at: :desc), link_extra: 'data-remote="true"')
+      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).with_rich_text_body_post.order(created_at: :desc), link_extra: 'data-remote="true"')
 
       if @category.no_comments.present?
         @comments = if params[:comment]

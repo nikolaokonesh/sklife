@@ -4,8 +4,8 @@ class Market::Knigi::Page < ApplicationRecord
             presence: true,
             length: { minimum: 3, maximum: 150 }
 
-  has_rich_text :body
-  validates :body,
+  has_rich_text :body_page
+  validates :body_page,
             length: { maximum: 32000 }
 
   belongs_to :commentable, polymorphic: true, touch: true
