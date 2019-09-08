@@ -1,11 +1,11 @@
 <div class="notifications row">
   <div class="list">
     <% if @notifications.blank? %>
-      <%= render 'notifications/notifications/titleise', title: 'Уведомлений нет' %>
+      <%= render 'notifications/titleise', title: 'Уведомлений нет' %>
     <% else %>
-      <%= render 'notifications/notifications/titleise', title: 'Все уведомления' %>
+      <%= render 'notifications/titleise', title: 'Все уведомления' %>
       <div class="block mb-5 text-right">
-        <%= link_to icon('fas', 'trash', 'Удалить всё'), notifications.clean_notifications_path, class: 'btn text-sm', method: 'delete' %>
+        <%= link_to icon('fas', 'trash', 'Удалить всё'), clean_notifications_path, class: 'btn text-sm', method: 'delete' %>
       </div>
       <% @notification_groups.each do |group, notifications| %>
         <div class="notification-group  leading-normal">

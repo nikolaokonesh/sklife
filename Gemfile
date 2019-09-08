@@ -65,7 +65,7 @@ gem 'meta-tags', '~> 2.11', '>= 2.11.1'
 gem 'name_of_person', '~> 1.1', '>= 1.1.1'
 gem 'sberbank-acquiring', '~> 0.2.1'
 gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
-gem 'notifications', '~> 0.6.1'
+# gem 'notifications', '~> 0.6.1'
 gem 'validate_url', '~> 1.0', '>= 1.0.8'
 # gem 'phonelib'
 

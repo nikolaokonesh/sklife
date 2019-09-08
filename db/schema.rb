@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_080218) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "notifications", id: :serial, force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "actor_id"
     t.string "notify_type", null: false
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 2019_09_07_080218) do
     t.string "third_target_type"
     t.integer "third_target_id"
     t.datetime "read_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "notify_type"], name: "index_notifications_on_user_id_and_notify_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end

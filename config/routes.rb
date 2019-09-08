@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  mount Notifications::Engine => "/notifications"
   devise_for :users
 
   concern :article do
@@ -49,6 +48,11 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :feedbacks
+  resources :notifications, path: 'info/notifications' do
+    collection do
+      delete :clean
+    end
+  end
 
   get "info/:page" => "static#show"
 
