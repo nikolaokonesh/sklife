@@ -6,7 +6,7 @@ class Article::Post < ApplicationRecord
 
   has_rich_text :body_post
   validates_presence_of :body_post
-  validates :body_post, length: { maximum: 3500 }
+  validates :body_post, length: { maximum: 32000 }
 
   belongs_to :user
   belongs_to :posttable, polymorphic: true, touch: true

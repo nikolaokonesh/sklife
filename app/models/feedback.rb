@@ -4,6 +4,6 @@ class Feedback < ApplicationRecord
 
   has_rich_text :message
   validates_presence_of :message
-  validates :message, length: { maximum: 3500 }
+  validates :message, length: { maximum: 32000 }
 
 end

@@ -2,7 +2,7 @@ class Market::Knigi::Page < ApplicationRecord
 
   validates :title,
             presence: true,
-            length: { minimum: 3, maximum: 150 }
+            length: { minimum: 3, maximum: 350 }
 
   has_rich_text :body_page
   validates :body_page,

@@ -1,0 +1,15 @@
+<div class="media-heading leading-normal">
+  <div class="pb-1">
+    <%= user_avatar_helper(notification.actor, 35, '5px 15px') %>
+    <%= notification.actor.username %> <span class="bg-red-700 text-gray-300 px-2">Обратная связь</span>
+    <div class="inline-block">
+      <div class="flex items-center">
+        <div class="inline-block media-content border-left bg-gray-200 text-gray-700 rounded px-2">
+          <%= notification.target.message %>
+          <%#= truncate(strip_tags(notification.target.message.body.to_s), length: 300, omission: '...') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

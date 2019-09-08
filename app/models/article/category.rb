@@ -5,7 +5,7 @@ class Article::Category < ApplicationRecord
   include YoutubeConcern
 
   has_rich_text :body
-  validates :body, length: { maximum: 3500 }
+  validates :body, length: { maximum: 32000 }
 
   belongs_to :user
   has_many :posts, as: :posttable, dependent: :destroy

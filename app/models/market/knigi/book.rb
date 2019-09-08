@@ -2,7 +2,7 @@ class Market::Knigi::Book < ApplicationRecord
 
   validates :title,
             presence: true,
-            length: { minimum: 3, maximum: 150 }
+            length: { minimum: 3, maximum: 350 }
   validates_presence_of :user_id
 
   include SlugConcern
