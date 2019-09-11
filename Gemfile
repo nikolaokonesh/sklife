@@ -53,25 +53,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise', github: 'plataformatec/devise'
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'sitemap_generator', '~> 6.0', '>= 6.0.2'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'russian', '~> 0.6.0'
-# gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'pagy'
 gem 'active_link_to', '~> 1.0', '>= 1.0.5'
 gem 'meta-tags', '~> 2.11', '>= 2.11.1'
 gem 'name_of_person', '~> 1.1', '>= 1.1.1'
 gem 'sberbank-acquiring', '~> 0.2.1'
 gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
-# gem 'notifications', '~> 0.6.1'
 gem 'validate_url', '~> 1.0', '>= 1.0.8'
 # gem 'phonelib'
-
-gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
+# gem 'notifications', '~> 0.6.1'
 # gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'whenever', require: false
-
 # gem 'foundation_rails_helper'
-# gem 'responders', '~> 2.4.1'
+
+gem 'devise', github: 'plataformatec/devise'
+gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
+gem 'whenever', require: false
