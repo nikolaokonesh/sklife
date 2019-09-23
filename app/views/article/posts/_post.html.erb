@@ -7,7 +7,7 @@
       <% end %>
     <% end %>
     <div class="mt-4 md:mt-0 md:ml-6">
-      <div class="uppercase tracking-wide text-xs"><%= sanitize(strip_tags(post.posttable.title)) %></div>
+      <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %></div>
       <div class="block mt-1 text-lg leading-tight font-semibold">
         <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
         <%= sanitize(strip_tags(post.title)) %>
