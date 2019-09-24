@@ -6,6 +6,7 @@ class CreateArticlePosts < ActiveRecord::Migration[6.0]
       t.string :posttable_type
       t.boolean :no_comments
       t.boolean :subscribe
+      t.boolean :top
       t.datetime :upgrade
       t.references :user, null: false, foreign_key: true
       t.string :type

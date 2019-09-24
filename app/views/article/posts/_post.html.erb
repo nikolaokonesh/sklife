@@ -1,26 +1,31 @@
-<% cache post do %>
-  <%= link_to [post.posttable, post], class: 'md:flex hover:text-gray-600' do %>
-    <% ActiveStorage::Attachment.where(record: post.body_post.id).limit(1).each do |img| %>
-      <% if img.blob.representable? %>
-        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ]))%>');">
-        </div>
-      <% end %>
-    <% end %>
-    <div class="mt-4 md:mt-0 md:ml-6">
-      <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %></div>
-      <div class="block mt-1 text-lg leading-tight font-semibold">
-        <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
-        <%= sanitize(strip_tags(post.title)) %>
+<%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600' do %>
+  <% ActiveStorage::Attachment.where(record: post.body_post.id).limit(1).each do |img| %>
+    <% if img.blob.representable? %>
+      <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ]))%>');">
       </div>
-      <% if post.body_post.body.present? %>
-        <p class="mt-2"><%= truncate(strip_tags(post.body_post.body.to_s), length: 200, omission: '...') %></p>
-      <% end %>
-      <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
-
-      <small class="inline-block text-xs pl-2">
-        <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
-      </small>
-    </div>
+    <% end %>
   <% end %>
-  <div class="border-b my-3"></div>
+  <div class="mt-4 md:mt-0 md:ml-6">
+    <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %></div>
+    <div class="block mt-1 text-lg leading-tight font-semibold">
+      <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
+      <%= sanitize(strip_tags(post.title)) %>
+    </div>
+    <% if post.body_post.body.present? %>
+      <p class="mt-2"><%= truncate(strip_tags(post.body_post.body.to_s), length: 200, omission: '...') %></p>
+    <% end %>
+    <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
+
+    <small class="inline-block text-xs pl-2">
+      <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
+
+      <% if post.type.present? && request.subdomain.blank? %>
+        <span class="ml-2">
+          <%= user_avatar_helper(post.user, 38) %>
+          <%= post.user.name_full %>
+        </span>
+      <% end %>
+    </small>
+  </div>
 <% end %>
+<div class="border-b my-3"></div>

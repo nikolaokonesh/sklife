@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_080218) do
     t.string "posttable_type"
     t.boolean "no_comments"
     t.boolean "subscribe"
+    t.boolean "top"
     t.datetime "upgrade"
     t.bigint "user_id", null: false
     t.string "type"

@@ -2,6 +2,6 @@
   var colum = document.querySelector("#categories_index")
   var pagin = document.querySelector("#categories_index_paginate")
 
-  colum.innerHTML += ("<%= j render partial: 'article/posts/post', collection: @posts, cached: true %>")
+  colum.innerHTML += ("<%= j render partial: 'article/posts/post', collection: @posts %>")
   pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>")
 <% end %>

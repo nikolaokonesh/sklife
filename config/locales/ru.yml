@@ -52,6 +52,7 @@ ru:
         body_post: "Содержание"
         user: "Пользователь"
         category_id: "Категория"
+        top: "Показать на главной странице sklife.ru"
         slug: "Ссылка"
         type: "Тип"
         subscribe: "По подписке"
