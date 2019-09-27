@@ -53,7 +53,7 @@
 
 <div class="mb-12 block">
   <% if @posts.present? %>
-    <div id="category-post-show-<%= @post.posttable.id %>" data-turbolinks-permanent>
+    <div id="category-post-show-<%= @post.posttable.id %>" <%= data_turbolinks_permanent_helper(@pagy) %>>
       <div class="w-full text-center m-2" id="categories-show-columns">
         <%= render partial: 'post_small', collection: @posts %>
       </div>

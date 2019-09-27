@@ -45,4 +45,10 @@ module ApplicationHelper
     end
   end
 
+  def data_turbolinks_permanent_helper(pagy)
+    unless pagy.last == pagy.page
+      "data-turbolinks-permanent"
+    end
+  end
+
 end
