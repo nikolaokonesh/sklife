@@ -1,41 +1,30 @@
-<% unless local_assigns[:full] %>
-  <% content_for :titleise do %>
-    <div class="flex flex-wrap">
-      <div class="w-full max-w-md mx-auto text-center">
-        <h1 class="">
-          <%= icon('fas', 'crown', class: 'fa-2x') %>
-          Оформите подписку
-        </h1>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class="flex flex-wrap bg-gray-800 rounded-t">
-    <div class="w-full max-w-md mx-auto text-center">
-      <h1 class="m-2 p-2 font-bold text-yellow-400 mb-2">
-        <%= icon('fas', 'crown', class: 'fa-2x') %>
-        Оформите подписку
-      </h1>
-    </div>
+<div class="flex flex-wrap bg-gray-800 rounded-t">
+  <div class="w-full max-w-md mx-auto text-center">
+    <h1 class="m-2 p-2 font-bold text-yellow-400 mb-2">
+      <%= icon('fas', 'crown', class: 'fa-2x') %>
+      Оформите подписку
+    </h1>
   </div>
-<% end %>
+</div>
 
-<div class="mb-4 text-center text-gray-700">
-
+<div class="rounded-b mb-4 text-center text-gray-700 bg-blue-100">
   <h3 class="leading-normal font-normal">
     <div class="max-w-md text-lg text-gray-600 w-full mx-auto lg:flex border-b">
       <div class="py-5 pl-2 pr-4 lg:mr-0 lg:border-r">
-        Доступ к закрытым материалам
+        Доступ к уникальным материалам
       </div>
       <div class="py-5 px-2 lg:ml-2">
         Полное управление профилем
+      </div>
+      <div class="py-5 px-2 lg:ml-2 lg:border-l">
+        Поддержка и увеличение контента
       </div>
     </div>
     <div class="py-5 px-2 mb-2">
       <% if user_signed_in? %>
         <div class="text-gray-600 mb-4">Выберите подходящий для вас тариф</div>
         <div class="lg:flex">
-          <div class="lg:mr-4 lg:ml-auto">
+          <div class="lg:ml-auto">
             <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_large_month+"00").to_i), method: :post do |f| %>
               <%= content_tag(:button, class: 'bg-blue-600 text-gray-200 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-blue-200 hover:border-blue-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
                 <div class="font-bold lg:block inline-block"><%= summ_large_month %> <%= icon('fas', 'ruble-sign fa-xs') %></div>
@@ -51,7 +40,7 @@
               <% end %>
             <% end %>
           </div>
-          <div class="lg:ml-auto">
+          <div class="lg:mr-auto">
             <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_largest_month+"00").to_i), method: :post do |f| %>
               <%= content_tag(:button, class: 'bg-green-600 text-gray-200 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
                   <div class="font-bold lg:block inline-block"><%= summ_largest_month %> <%= icon('fas', 'ruble-sign fa-xs') %></div>
@@ -61,14 +50,16 @@
           </div>
         </div>
       <% else %>
-        Зарегистрируйтесь и получите
-        <%= link_to '7 дней бесплатно!', main_app.new_user_registration_path, class: 'btn' %>
+        <span class="text-gray-600 leading-normal font-normal">Зарегистрируйтесь и получите</span>
+        <%= link_to '7 дней бесплатно!', main_app.new_user_registration_path, class: 'btn block lg:inline' %>
       <% end %>
     </div>
-    <div class="inline-flex items-center text-center">
-      <%= image_tag 'logo_cards_small.png', width: 200, class: 'mx-4' %>
-      <%= image_tag 'logo-sberbank-online.png', width: 200, class: 'mx-4' %>
-    </div>
   </h3>
+</div>
 
+<div class="text-center">
+  <div class="inline-flex items-center">
+    <%= image_tag 'logo_cards_small.png', width: 200, class: 'mx-4' %>
+    <%= image_tag 'logo-sberbank-online.png', width: 200, class: 'mx-4' %>
+  </div>
 </div>
