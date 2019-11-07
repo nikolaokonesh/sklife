@@ -50,8 +50,11 @@
           </div>
         </div>
       <% else %>
-        <span class="text-gray-600 leading-normal font-normal">Зарегистрируйтесь и получите</span>
-        <%= link_to '7 дней бесплатно!', main_app.new_user_registration_path, class: 'btn block lg:inline' %>
+        <span class="text-gray-600 leading-normal font-normal">
+          <%= link_to 'Войдите', main_app.new_user_session_path, class: 'link' %>
+          или
+          <%= link_to 'зарегистрируйтесь', main_app.new_user_registration_path, class: 'link' %>
+        </span>
       <% end %>
     </div>
   </h3>

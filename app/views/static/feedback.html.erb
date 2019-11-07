@@ -3,14 +3,23 @@
   <div class="text-gray-600 text-center">Напишите нашему менеджеру о ваших предпочтениях в работе сайта или задайте любой другой интересующий вас вопрос.</div>
 </div>
 
-<div id="feedbacking_show" data-turbolinks-permanent>
-  <div id="complate_hidden" >
-    <%= render partial: "feedbacks/form" %>
-  </div>
-  <div id="complate_text" class="hidden">
-    <div class="font-bold mt-10 text-green-700 text-center">
-      Ваше обращение успешно отправлено менеджеру.
-      <br/>Спасибо!
+<% if user_signed_in? %>
+  <div id="feedbacking_show" data-turbolinks-permanent>
+    <div id="complate_hidden" >
+      <%= render partial: "feedbacks/form" %>
+    </div>
+    <div id="complate_text" class="hidden">
+      <div class="font-bold mt-10 text-green-700 text-center">
+        Ваше обращение успешно отправлено менеджеру.
+        <br/>Спасибо!
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="block text-gray-600 leading-normal font-normal text-center">
+    Перед этим
+    <%= link_to 'войдите', main_app.new_user_session_path, class: 'link' %>
+    или
+    <%= link_to 'зарегистрируйтесь', main_app.new_user_registration_path, class: 'link' %>
+  </div>
+<% end %>

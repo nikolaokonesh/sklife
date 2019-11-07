@@ -4,7 +4,7 @@ module SubscribeConcern
   included do
     before_create :subscribe_create_date
     def subscribe_create_date
-      self.subscribe_at = Date.today + 1.week
+      self.subscribe_at = Date.today # + 1.week
     end
     # Подписка
     def subscribed?
