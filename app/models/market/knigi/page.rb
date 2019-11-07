@@ -12,4 +12,12 @@ class Market::Knigi::Page < ApplicationRecord
 
   has_many :views, dependent: :destroy, class_name: 'Market::Knigi::View'
 
+
+  def next(post)
+    Market::Knigi::Page.where("id > ?", id).where(commentable: post.commentable).order(id: :asc).limit(1).first
+  end
+  def prev(post)
+    Market::Knigi::Page.where("id < ?", id).where(commentable: post.commentable).order(id: :desc).limit(1).first
+  end
+
 end

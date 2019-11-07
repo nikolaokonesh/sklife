@@ -1,6 +1,6 @@
-<div class="mt-10"></div>
-<footer class="absolute bottom-0 text-xs py-8 px-4">
-  <%= content_tag :span, "© #{Date.today.year} SkLife.Ru", class: 'inline-block font-bold text-gray-400 pr-2' %>
+<div class="mt-32"></div>
+<footer class="absolute bottom-0 text-xs py-8 px-4 lg:px-10">
+  <%= content_tag :span, "© #{Date.today.year} SkLife.Ru", class: 'inline-block font-bold text-gray-700 pr-2' %>
   <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
   <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
   <%= active_link_to "Конфиденциальность и соглашение", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
