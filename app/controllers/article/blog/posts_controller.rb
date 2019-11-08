@@ -23,7 +23,7 @@ class Article::Blog::PostsController < Article::PostsController
   end
 
   def new
-    if current_user.subscribed?
+    if current_user.newsubscribed?
       if @user_agent == current_user
         @post = post_scope.new
         @post.youtubes.new
@@ -31,33 +31,37 @@ class Article::Blog::PostsController < Article::PostsController
         redirect_to root_url, alert: 'Это не ваш домен...'
       end
     else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes), alert: 'Доступно только для подписчиков!'
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
     end
   end
 
   def create
-    if @posttable.user == current_user
-      @post = @posttable.posts.new(post_params)
-      @post.user = current_user
-      if @post.save
-        @posttable.update(upgrade: @posttable.updated_at)
-        flash[:notice] = 'Пост успешно добавлен!'
+    if current_user.newsubscribed?
+      if @posttable.user == current_user
+        @post = @posttable.posts.new(post_params)
+        @post.user = current_user
+        if @post.save
+          @posttable.update(upgrade: @posttable.updated_at)
+          flash[:notice] = 'Пост успешно добавлен!'
+        else
+          render partial: 'error', post: @post, status: :bad_request
+        end
       else
-        render partial: 'error', post: @post, status: :bad_request
+        raise ActionController::RoutingError.new('User Not Found')
       end
     else
-      raise ActionController::RoutingError.new('User Not Found')
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
     end
   end
 
   def edit
-    if current_user.subscribed?
+    if current_user.newsubscribed?
       if @post.user == current_user
       else
         redirect_to root_url, alert: 'Не ваша Категория!'
       end
     else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes), alert: 'Доступно только для подписчиков!'
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
     end
   end
 

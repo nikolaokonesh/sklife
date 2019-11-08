@@ -42,7 +42,13 @@
             <div class="text-center">
               <%= link_to icon("fas", "plus", "Добавить страницу"), "#", class: 'btn', data: { action: "click->reply#toggle" } %>
             </div>
-            <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
+            <% if current_user.newsubscribed? %>
+              <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
+            <% else %>
+              <div class="mt-4 hidden" data-target="reply.form">
+                <%= render 'tarif' %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>

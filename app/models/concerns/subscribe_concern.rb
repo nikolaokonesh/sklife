@@ -10,5 +10,9 @@ module SubscribeConcern
     def subscribed?
       Date.parse(subscribe_at.to_s) > Date.today
     end
+    # Бесплатно подписка впервые зарегистрированному
+    def newsubscribed?
+      Date.parse(subscribe_at.to_s) + 2.weeks > Date.today
+    end
   end
 end
