@@ -1,7 +1,7 @@
 class Article::Blog::CategoriesController < Article::CategoriesController
   before_action :authenticate_user!, except: [:index, :show, :people]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  layout 'blog/index'
+  layout :determine_layout
 
   def index
     # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
@@ -57,6 +57,10 @@ class Article::Blog::CategoriesController < Article::CategoriesController
   end
 
   private
+
+    def determine_layout
+      %w(show new edit).include?(action_name) ? "blog/show" : "blog/index"
+    end
 
     def set_category
       @category = category_scope.friendly.find(params[:id])

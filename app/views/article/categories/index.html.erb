@@ -6,9 +6,9 @@
   </div>
 <% end %>
 
-<div id="categories_index" data-turbolinks-permanent>
+<div id="categories-index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts %>
 </div>
-<div class='text-center' id="categories_index_paginate" data-turbolinks-permanent>
+<div class='text-center' id="categories-index-paginate" data-turbolinks-permanent>
   <%= render partial: "next_link", locals: {pagy: @pagy} %>
 </div>

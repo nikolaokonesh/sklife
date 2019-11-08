@@ -1,6 +1,6 @@
 <% if params[:page] %>
-  var colum = document.querySelector("#categories_index")
-  var pagin = document.querySelector("#categories_index_paginate")
+  var colum = document.querySelector("#categories-index")
+  var pagin = document.querySelector("#categories-index-paginate")
 
   colum.innerHTML += ("<%= j render partial: 'article/posts/post', collection: @posts %>")
   pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>")

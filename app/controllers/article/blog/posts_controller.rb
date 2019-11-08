@@ -1,7 +1,7 @@
 class Article::Blog::PostsController < Article::PostsController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  layout 'blog/index'
+  layout :determine_layout
 
   def show
     if @post.user == @user_agent
@@ -66,6 +66,10 @@ class Article::Blog::PostsController < Article::PostsController
   end
 
   private
+
+    def determine_layout
+      %w(show new edit).include?(action_name) ? "blog/show" : "blog/index"
+    end
 
     def set_post
       @post = post_scope.friendly.find(params[:id])

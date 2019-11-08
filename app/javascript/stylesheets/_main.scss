@@ -42,6 +42,9 @@ input {
 
 .h-screen-show {
   min-height: 30rem;
+  &-mini {
+    min-height: 15rem;
+  }
 }
 
 .sign .active {
