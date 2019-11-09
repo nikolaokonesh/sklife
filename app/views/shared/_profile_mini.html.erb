@@ -1,22 +1,17 @@
-<div class="lax lg:flex items-center pb-4 lg:mb-10" data-lax-opacity="0 1, 100 0.5, 400 0">
-  <%= link_to root_path do %>
-  <div class="h-24 w-24 table rounded-full border-2 shadow-2xl mb-2 lg:mr-6 mx-auto bg-cover" style="background-image: url('<%= user_avatar(@user_agent, 180) %>')">
+<%= link_to root_path, class: "lax lg:flex items-center pb-4 lg:mb-10 text-white hover:text-gray-300", data: {'lax-opacity' => '0 1, 100 0.5, 400 0'} do %>
+  <div class="h-24 w-24 table rounded-full border-2 hover:border-blue-400 shadow-2xl lg:mr-4 mx-auto lg:mx-0 bg-cover" style="background-image: url('<%= user_avatar(@user_agent, 180) %>')">
   </div>
-  <% end %>
   <div class="text-center lg:text-left">
-    <h2 class="text-2xl text-white">
+    <h2 class="text-2xl">
       <%= @user_agent.name_full %>
-      <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'text-xs inline-block text-gray-200' if @user_agent.profile.email.present? %>
-      <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'text-xs inline-block text-gray-200' if @user_agent.profile.phone.present? %>
-
+      <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'text-xs inline-block' if @user_agent.profile.email.present? %>
+      <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'text-xs inline-block' if @user_agent.profile.phone.present? %>
     </h2>
     <div class="text-xs">
-      <div class="text-white">
-        <%= sanitize(strip_tags(@user_agent.profile.bio)) %>
-      </div>
-      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'text-gray-300' %>
-      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.prof)), class: 'block text-xs text-gray-100' %>
+      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.bio)), class: 'block' %>
+      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'block' %>
+      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.prof)), class: 'block' %>
     </div>
   </div>
-</div>
+<% end %>
 

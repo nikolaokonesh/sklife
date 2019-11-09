@@ -8,9 +8,7 @@
         <%= link_to icon("fas", "pen"), '#', class: 'text-gray-200 hover:text-white p-2', id: 'user_prof', data: { action: "click->reply#toggle", target: "reply.userbtn" } if @user_agent == current_user %>
       </h2>
       <div class="text-sm" data-target="reply.userprof">
-        <div class="text-white">
-          <%= sanitize(strip_tags(@user_agent.profile.bio)) %>
-        </div>
+        <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.bio)), class: 'text-white' %>
         <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'inline-block text-gray-200' if @user_agent.profile.email.present? %>
         <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'inline-block text-gray-200' if @user_agent.profile.phone.present? %>
         <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'text-gray-300' %>
