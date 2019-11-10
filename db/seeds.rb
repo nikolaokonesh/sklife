@@ -59,7 +59,8 @@ end
             Содержание статьи под номером #{i}.",
       user_id: 1,
       posttable_id: 1,
-      posttable_type: "Article::Category"
+      posttable_type: "Article::Category",
+      top: true
     }
   ])
 end
@@ -85,7 +86,8 @@ end
             Содержание статьи под номером #{i}.",
       user_id: 1,
       posttable_id: 2,
-      posttable_type: "Article::Category"
+      posttable_type: "Article::Category",
+      top: true
     }
   ])
 end

@@ -29,7 +29,7 @@ module ApplicationHelper
     if user.profile.fon.attached?
       content_tag(:span, '',
         style: "padding: #{padding}; background: url('#{main_app.url_for(user.profile.fon.variant(resize_to_fill: [ size, size ]))}') no-repeat center;",
-        class: 'm-r-1')
+        class: 'mr-1 rounded')
     end
   end
 
