@@ -1,13 +1,13 @@
 <% content_for :header do %>
-  <div class="w-full h-screen-show border-b-8" style="<%= background_helper(@user_agent) %>">
-    <div class="flex flex-wrap">
-      <div class="z-50 container max-w-3xl mx-auto">
-        <%= render 'shared/navbar' %>
-      </div>
+  <div class="lax absolute w-full container lg:pt-10" data-lax-translate-y="0 0, 400 100">
+    <div class="max-w-3xl mx-auto"><%= render 'shared/navbar' %></div>
+    <div class="lax flex flex-wrap" data-lax-translate-y="0 0, 400 50">
       <div class="container max-w-2xl mx-auto lg:ml-48">
         <%= render 'shared/profile' %>
       </div>
     </div>
+  </div>
+  <div class="z-index-minus lax w-full h-screen border-b-8" data-lax-translate-y="0 0, 400 50" style="<%= background_helper(@user_agent) %>">
   </div>
 <% end %>
 
