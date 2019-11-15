@@ -1,8 +1,12 @@
 <% content_for :canonical_link, root_url(subdomain: false) %>
 
-<% if user_signed_in? %>
-  <div class="block">
-    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link float-right', title: 'Добавить категорию' if current_user.admin? %>
+<% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
+  <div class="block" id="btn_hide">
+    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link ', title: 'Добавить категорию', remote: true %>
+  </div>
+<% elsif user_signed_in? && current_user.admin? %>
+  <div class="block" id="btn_hide">
+    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link ', title: 'Добавить категорию', remote: true %>
   </div>
 <% end %>
 

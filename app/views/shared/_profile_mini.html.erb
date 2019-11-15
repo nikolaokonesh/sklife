@@ -4,10 +4,10 @@
   <div class="text-center lg:text-left">
     <h2 class="text-2xl">
       <%= @user_agent.name_full %>
-      <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'text-xs inline-block' if @user_agent.profile.email.present? %>
-      <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'text-xs inline-block' if @user_agent.profile.phone.present? %>
     </h2>
     <div class="text-xs">
+      <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'text-xs inline-block' if @user_agent.profile.email.present? %>
+      <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'text-xs inline-block' if @user_agent.profile.phone.present? %>
       <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.bio)), class: 'block' %>
       <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'block' %>
       <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.prof)), class: 'block' %>

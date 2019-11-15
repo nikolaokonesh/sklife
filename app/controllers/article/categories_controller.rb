@@ -108,6 +108,6 @@ class Article::CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :body, :no_data, :no_comments, youtubes_attributes: [:id, :url, :_destroy])
+      params.require(:category).permit(:title, :body, :no_data, :no_comments, youtubes_attributes: [:id, :url, :user_id, :_destroy])
     end
 end

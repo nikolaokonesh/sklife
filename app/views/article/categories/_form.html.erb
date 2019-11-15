@@ -4,9 +4,9 @@
 
   <%= form_with(model: @category, html: { data: { type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
-    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок (например: Мой блог)', class: 'field' %>
     <div class="sod">
-      <%= form.rich_text_area :body, placeholder: 'Содержание' %>
+      <%= form.rich_text_area :body, placeholder: 'Содержание (необязательно)' %>
 
       <div data-controller="nested-form">
         <template data-target="nested-form.template">
@@ -21,7 +21,7 @@
           <% end %>
         <% end %>
 
-        <div class="mb-3 mt-3" data-target="nested-form.links">
+        <div class="mt-3" data-target="nested-form.links">
           <%= link_to "Добавить видео с YouTube", "#", class: "link", data: { action: "click->nested-form#add_association" } %>
         </div>
       </div>
@@ -29,11 +29,11 @@
     </div>
     <div class="px-2">
       <%= form.check_box :no_data, class: 'my-4' %>
-      <%= form.label :no_data %>
+      <%= form.label :no_data, class: 'mr-2 text-sm' %>
       <%= form.check_box :no_comments %>
-      <%= form.label :no_comments %>
+      <%= form.label :no_comments, class: 'text-sm' %>
     </div>
-    <div class="px-2 mt-4">
+    <div class="px-2 mt-2">
       <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
       <%= link_to 'Отмена', @category, class: 'link ml-3' %>
     </div>

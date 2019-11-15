@@ -6,7 +6,7 @@
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto text-center">
       <div class="text-left">
-        <%= link_to icon('fas', 'chevron-left', title(sanitize(strip_tags(@post.posttable.title)))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600' %>
+        <%= link_to icon('fas', 'chevron-left', sanitize(strip_tags(@post.posttable.title))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600' %>
       </div>
       <h1 class="pt-3 leading-tight">
         <span class="d-inline-block">

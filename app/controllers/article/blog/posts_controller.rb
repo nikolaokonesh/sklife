@@ -80,6 +80,6 @@ class Article::Blog::PostsController < Article::PostsController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body_post, :posttable_id, :no_comments, :top, youtubes_attributes: [:id, :url, :_destroy])
+      params.require(:post).permit(:title, :body_post, :posttable_id, :no_comments, :top, youtubes_attributes: [:id, :url, :user_id, :_destroy])
     end
 end
