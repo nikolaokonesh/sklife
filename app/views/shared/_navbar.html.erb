@@ -1,4 +1,4 @@
-<nav class="lax w-full flex items-center justify-between flex-wrap pt-4 xl:mb-0" data-lax-opacity="0 1, 100 0, 400 0">
+<nav class="lax w-full flex items-center justify-between flex-wrap pt-4 xl:mb-0" data-lax-opacity="0 1, 150 0, 400 0">
   <div class="flex items-center flex-no-shrink text-white">
     <%= link_to main_app.root_url(subdomain: false) do %>
       <div style="background-image: url('<%= image_path('logo.png') %>')" class='ml-2 logotip'></div>
@@ -10,39 +10,39 @@
       <div class="inline-block">
         <% if user_signed_in? %>
           <div class="md:flex">
-            <div>
-              <%= active_link_to main_app.notifications_url(subdomain: false), class: "nav-link inline-block #{unread_notifications(current_user)}", title: 'Уведомления' do %>
+            <div class="flex items-center justify-center">
+              <%= active_link_to main_app.notifications_url(subdomain: false), class: "flex nav-link #{unread_notifications(current_user)}", title: 'Уведомления' do %>
                 <%= icon('fas', 'bell') %>
                 <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
               <% end %>
-              <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'nav-link lg:inline-block' do %>
-                <%= user_avatar_helper(current_user, 38) %>
-                <%= current_user.username %>
+              <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'flex items-center justify-center nav-link', title: current_user.username do %>
+                <%= user_avatar_navbar_helper(current_user, 38) %>
+                <%= content_tag :span, current_user.username, class: 'hidden lg:flex' %>
               <% end %>
 
-            <div class="inline-block relative z-maximum-plus " data-controller="dropdown">
-              <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link">
-                <%= icon('fas', 'chevron-down') %>
-              </div>
-              <div data-target="dropdown.menu" class="z-maximum-plus absolute right-0 text-xs mt-3 hidden">
-                <div class="z-maximum-plus bg-white shadow rounded border overflow-hidden">
-                  <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu' do %>
-                    <%= icon('fas', 'user-circle', 'Моя страница') %>
-                  <% end %>
-                  <%= active_link_to main_app.library_index_url(subdomain: false), class: "dropdown-menu" do %>
-                    <%= icon('fas', 'book-open', 'Онлайн-Библиотека') %>
-                    <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
-                  <% end %>
-                  <% if current_user.subscribed? %>
-                    <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), class: "dropdown-menu" do %>
-                      <%= icon('fas', 'crown', 'Вы подписчик') %>
+              <div class="inline-block relative z-maximum-plus " data-controller="dropdown">
+                <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link">
+                  <%= icon('fas', 'chevron-down') %>
+                </div>
+                <div data-target="dropdown.menu" class="z-maximum-plus absolute right-0 text-xs mt-3 hidden">
+                  <div class="z-maximum-plus bg-white shadow rounded border overflow-hidden">
+                    <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu font-bold' do %>
+                      <%= icon('fas', 'user-circle', current_user.username) %>
                     <% end %>
-                  <% end %>
-                  <%= link_to icon('fas', 'user-cog', 'Настройки'), main_app.edit_user_registration_url(subdomain: false), class: 'dropdown-menu' %>
-                  <%= link_to icon('fas', 'sign-out-alt', 'Выйти'), main_app.destroy_user_session_path, class: 'dropdown-menu', method: :delete %>
+                    <%= active_link_to main_app.library_index_url(subdomain: false), class: "dropdown-menu" do %>
+                      <%= icon('fas', 'book-open', 'Онлайн-Библиотека') %>
+                      <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
+                    <% end %>
+                    <% if current_user.subscribed? %>
+                      <%= link_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), class: "dropdown-menu" do %>
+                        <%= icon('fas', 'crown', 'Вы подписчик') %>
+                      <% end %>
+                    <% end %>
+                    <%= link_to icon('fas', 'user-cog', 'Настройки'), main_app.edit_user_registration_url(subdomain: false), class: 'dropdown-menu' %>
+                    <%= link_to icon('fas', 'sign-out-alt', 'Выйти'), main_app.destroy_user_session_path, class: 'dropdown-menu', method: :delete %>
+                  </div>
                 </div>
               </div>
-            </div>
 
 
             </div>

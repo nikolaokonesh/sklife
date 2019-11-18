@@ -19,6 +19,12 @@ module ApplicationHelper
     end
   end
 
+  def user_avatar_navbar_helper(user, size=40)
+    content_tag(:span, '',
+      style: "background: url('#{user_avatar(user, size)}') no-repeat center;",
+      class: 'h-10 w-10 flex shadow-md rounded-full mr-1 border-2 hover:border-blue-400')
+  end
+
   def user_avatar_helper(user, size=40, padding="9px 19px")
     content_tag(:span, '',
       style: "padding: #{padding}; background: url('#{user_avatar(user, size)}') no-repeat center;",
