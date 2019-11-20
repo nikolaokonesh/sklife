@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
   <div data-controller="form-error">
     <%= form_with model: [commentable, Comment.new], html: { class: local_assigns[:class], data: { target: local_assigns[:target], type: "html", action: "ajax:success->form-error#onPostSuccess ajax:error->form-error#onPostError" } } do |form| %>
-      <div class="block pl-1 pb-1 mb-2 text-red-700">
-        <%= user_avatar_helper(current_user, 37, "8px 18px") %>
+      <div class="flex items-center pl-1 pb-1 mb-2 text-red-700">
+        <%= user_avatar_helper(current_user, 38) %>
         <%= current_user.username %>
       </div>
       <div class="p-1">

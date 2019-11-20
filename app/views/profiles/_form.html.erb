@@ -19,39 +19,38 @@
         </div>
       </div>
 
-      <div class="w-full text-gray-200 mb-2">
-        <div class="inline">
+      <div class="flex w-full text-gray-200 mb-2">
+        <div class="inline mr-2">
           <%= form.label :avatar do %>
-            <span class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Аватар</span>
             <% if @user_agent.profile.avatar.attached? %>
               <!-- <div class="float-left">
                 <%#= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer' %>
                 <%#= form.label :avatar_purge, 'Удалить' %>
               </div> -->
-              <%= user_avatar_helper(@user_agent, 37, "8px 18px") %>
+              <%= user_avatar_helper(@user_agent, 38) %> Фото
+            <% else %>
+              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фото</div>
             <% end %>
             <%= form.file_field :avatar, direct_upload: true, label: false, class: 'hidden_file_field w-1' %>
           <% end %>
         </div>
-        <div class="inline">
+        <div class="inline mr-2">
           <%= form.label :fon do %>
-            <span class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Фон</span>
             <% if @user_agent.profile.fon.attached? %>
-              <%= user_fon_helper(@user_agent, 37, "8px 18px") %>
+              <%= user_fon_helper(@user_agent, 38) %> фон
               <!-- <div class="float-left">
                 <%#= form.check_box :fon_purge, checked: false, class: 'cursor-pointer' %>
                 <%#= form.label :fon_purge, 'Удалить' %>
               </div> -->
+            <% else %>
+              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фон</div>
             <% end %>
             <%= form.file_field :fon, direct_upload: true, label: false, class: 'hidden_file_field w-1' %>
           <% end %>
         </div>
-        <div class="inline">
+        <div class="inline mr-2">
           <%= form.label :bgcolor do %>
-            <div class="px-2 rounded flex items-center bg-green-800 inline-flex hover:bg-green-700">
-              Оттенок
-              <%= form.color_field :bgcolor, class: 'cursor-pointer p-0 ml-2 w-5' %>
-            </div>
+            <%= form.color_field :bgcolor, class: 'h-10 w-10 flex cursor-pointer shadow-md rounded mr-1 border-2 hover:border-blue-400' %> Оттенок
           <% end%>
         </div>
       </div>

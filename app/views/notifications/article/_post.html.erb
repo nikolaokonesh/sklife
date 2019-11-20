@@ -1,25 +1,29 @@
 <div class="media-heading leading-normal">
-  <div class="pb-1">
-    <%= user_avatar_helper(notification.actor, 35, '5px 15px') %>
-    <%= notification.actor.username %>
-    <div class="inline-block">
-      <div class="flex items-center">
-        <div class="inline-block media-content border-left bg-gray-200 text-gray-700 rounded px-2">
-          <% unless notification.target.commentable.nil? %>
-            <%= link_to main_app.category_post_url(notification.target.commentable.posttable, notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "data-turbolinks" => "false" do %>
-              <%= comment_body_notification_helper(notification.target) %>
+  <div class="flex pb-1">
+    <div class="flex">
+      <%= user_avatar_helper(notification.actor, 38) %>
+    </div>
+    <div class="block">
+      <%= notification.actor.name_full %>
+      <div class="block text-sm">
+        <% unless notification.target.commentable.nil? %>
+          <%= notification.target.parent_id.nil? ? "написал(а) комментарий к посту:" : "ответил на ваш комментарий к посту:" %>
+          <%= link_to sanitize(strip_tags(notification.target.commentable.title)), main_app.category_post_url(notification.target.commentable.posttable, notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "data-turbolinks" => "false" %>
+        <% else %>
+          К сожалению, пост был удален...
+        <% end %>
+      </div>
+      <div class="inline-block">
+        <div class="flex items-center">
+          <div class="inline-block media-content border-left bg-gray-200 text-gray-700 rounded px-2">
+            <% unless notification.target.commentable.nil? %>
+              <%= link_to main_app.category_post_url(notification.target.commentable.posttable, notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "data-turbolinks" => "false" do %>
+                <%= comment_body_notification_helper(notification.target) %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="block text-sm">
-      <% unless notification.target.commentable.nil? %>
-        <%= notification.target.parent_id.nil? ? "написал(а) комментарий к посту:" : "ответил на ваш комментарий к посту:" %>
-        <%= link_to sanitize(strip_tags(notification.target.commentable.title)), main_app.category_post_url(notification.target.commentable.posttable, notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "data-turbolinks" => "false" %>
-      <% else %>
-        К сожалению, пост был удален...
-      <% end %>
     </div>
   </div>
 </div>

@@ -19,23 +19,17 @@ module ApplicationHelper
     end
   end
 
-  def user_avatar_navbar_helper(user, size=40)
+  def user_avatar_helper(user, size=40)
     content_tag(:span, '',
       style: "background: url('#{user_avatar(user, size)}') no-repeat center;",
-      class: 'h-10 w-10 flex shadow-md rounded-full mr-1 border-2 hover:border-blue-400')
+      class: 'h-10 w-10 flex cursor-pointer shadow-md rounded-full mr-1 border-2 hover:border-blue-400')
   end
 
-  def user_avatar_helper(user, size=40, padding="9px 19px")
-    content_tag(:span, '',
-      style: "padding: #{padding}; background: url('#{user_avatar(user, size)}') no-repeat center;",
-      class: 'shadow-md rounded-full mr-1')
-  end
-
-  def user_fon_helper(user, size=40, padding="9px 19px")
+  def user_fon_helper(user, size=40)
     if user.profile.fon.attached?
       content_tag(:span, '',
-        style: "padding: #{padding}; background: url('#{main_app.url_for(user.profile.fon.variant(resize_to_fill: [ size, size ]))}') no-repeat center;",
-        class: 'mr-1 rounded')
+        style: "background: url('#{main_app.url_for(user.profile.fon.variant(resize_to_fill: [ size, size ]))}') no-repeat center;",
+        class: 'h-10 w-10 flex cursor-pointer shadow-md rounded mr-1 border-2 hover:border-blue-400')
     end
   end
 
