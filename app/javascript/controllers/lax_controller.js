@@ -3,6 +3,7 @@ import lax from 'lax.js'
 function laxxx(){
   lax.setup() // init
   const updateLax = () => {
+    Turbolinks.clearCache()
     lax.update(window.scrollY)
     window.requestAnimationFrame(updateLax)
   }

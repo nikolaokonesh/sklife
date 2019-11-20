@@ -6,9 +6,9 @@
   <figcaption class="attachment__caption">
     <% if caption = blob.try(:caption) %>
       <%= caption %>
-    <%# else %>
-<!--       <span class="attachment__name"><%#= link_to blob.filename, url_for(blob) %></span>
-      <span class="attachment__size"><%#= number_to_human_size blob.byte_size %></span> -->
+    <% else %>
+      <span class="attachment__name hover:text-red-500"><%= link_to icon('fas', 'download', blob.filename), url_for(blob) %></span>
+      <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
     <% end %>
   </figcaption>
 </figure>

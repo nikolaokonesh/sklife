@@ -4,7 +4,7 @@ module ProfilesHelper
     if user_agent.present? && user_agent.profile.fon.attached?
       "
         background:
-          radial-gradient(at top, #{user_agent.profile.bgcolor}75, #000000c3), url('#{ main_app.url_for(user_agent.profile.fon.variant(resize_to_fill: [ 1100, 800 ])) }') no-repeat center / cover;
+          radial-gradient(at bottom, #{user_agent.profile.bgcolor}75, #000000c3), url('#{ main_app.url_for(user_agent.profile.fon.variant(resize_to_fill: [ 1100, 800 ])) }') no-repeat center / cover;
         border-top:
           8px solid #{user_agent.profile.bgcolor}50;
         border-bottom:
@@ -13,7 +13,7 @@ module ProfilesHelper
     elsif fonadmin.present? && fonadmin.profile.fon.attached?
       "
         background:
-          radial-gradient(at top, #{fonadmin.profile.bgcolor}75, #000000c3), url('#{main_app.url_for(fonadmin.profile.fon.variant(resize_to_fill: [ 1100, 800 ]))}') no-repeat center / cover;
+          radial-gradient(at bottom, #{fonadmin.profile.bgcolor}75, #000000c3), url('#{main_app.url_for(fonadmin.profile.fon.variant(resize_to_fill: [ 1100, 800 ]))}') no-repeat center / cover;
         border-top:
           8px solid #{fonadmin.profile.bgcolor}50;
         border-bottom:

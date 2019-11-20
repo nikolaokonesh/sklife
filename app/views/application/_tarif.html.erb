@@ -1,15 +1,15 @@
-<div class="flex flex-wrap bg-gray-800 rounded-t">
+<div class="flex flex-wrap rounded-t">
   <div class="w-full max-w-md mx-auto text-center">
-    <h1 class="m-2 p-2 font-bold text-yellow-400 mb-2">
+    <h1 class="m-2 p-2 font-bold text-yellow-500 mb-2">
       <%= icon('fas', 'crown', class: 'fa-2x') %>
       Оформите подписку
     </h1>
   </div>
 </div>
 
-<div class="rounded-b mb-4 text-center text-gray-700 bg-blue-100">
+<div class="rounded-b mb-4 text-center">
   <h3 class="leading-normal font-normal">
-    <div class="max-w-md text-lg text-gray-600 w-full mx-auto lg:flex border-b">
+    <div class="max-w-md text-lg w-full mx-auto lg:flex border-b">
       <div class="py-5 pl-2 pr-4 lg:mr-0 lg:border-r">
         Доступ к уникальным материалам
       </div>
@@ -17,12 +17,12 @@
         Полное управление профилем
       </div>
       <div class="py-5 px-2 lg:ml-2 lg:border-l">
-        Поддержка и увеличение контента
+        Поддержка и улучшение контента
       </div>
     </div>
     <div class="py-5 px-2 mb-2">
       <% if user_signed_in? %>
-        <div class="text-gray-600 mb-4">Выберите подходящий для вас тариф</div>
+        <div class="mb-4">Выберите подходящий для вас тариф</div>
         <div class="lg:flex">
           <div class="lg:ml-auto">
             <%= form_for :subscribe, url: main_app.subscribes_url(subdomain: false, amountorub: (summ_large_month+"00").to_i), method: :post do |f| %>
@@ -50,7 +50,7 @@
           </div>
         </div>
       <% else %>
-        <span class="text-gray-600 leading-normal font-normal">
+        <span class="leading-normal font-normal">
           <%= link_to 'Войдите', main_app.new_user_session_path, class: 'link' %>
           или
           <%= link_to 'зарегистрируйтесь', main_app.new_user_registration_path, class: 'link' %>
@@ -64,5 +64,8 @@
   <div class="inline-flex items-center">
     <%= image_tag 'logo_cards_small.png', width: 200, class: 'mx-4' %>
     <%= image_tag 'logo-sberbank-online.png', width: 200, class: 'mx-4' %>
+  </div>
+  <div class="text-sm">
+    Подписка осуществляется быстро и безопасно.
   </div>
 </div>
