@@ -1,14 +1,21 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded') %>
+    <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded-t') %>
+    <div class="-mt-10 mr-2 text-2xl text-right">
+      <span class="text-gray-300 hover:text-red-500"><%= link_to icon('fas', 'search-plus'), url_for(blob), target: "_blank" %></span>
+    </div>
   <% end %>
 
-  <figcaption class="attachment__caption">
+  <figcaption class="attachment__caption mt-1 bg-gray-300">
     <% if caption = blob.try(:caption) %>
       <%= caption %>
     <% else %>
-      <span class="attachment__name hover:text-red-500"><%= link_to icon('fas', 'download', blob.filename), url_for(blob) %></span>
-      <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+      <% unless blob.representable? %>
+        <span class="attachment__name hover:text-red-500">
+          <%= link_to icon('fas', 'download', blob.filename), url_for(blob) %></span>
+        <span class="attachment__size">
+          <%= number_to_human_size blob.byte_size %></span>
+      <% end %>
     <% end %>
   </figcaption>
 </figure>

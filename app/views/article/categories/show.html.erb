@@ -23,7 +23,7 @@
 <div class="py-3 mb-4 flex justify-center">
   <div class="w-full">
     <div id="show-listed">
-      <div class="pb-4">
+      <div class="pb-6">
         <%= @category.body if @category.body.present? %>
 
         <% @category.youtubes.all.each do |tube| %>
@@ -33,14 +33,14 @@
         <% end %>
 
         <% if @category.no_data.blank? %>
-          <div class="text-right text-gray-600 text-sm mb-2">
+          <div class="text-right text-gray-600 text-sm my-4">
             Опубликовано <%= time_tag(@category.created_at, :format=>'%d %B %Y в %H:%M') %>
           </div>
         <% end %>
         <% if @category.user == current_user %>
           <div data-controller="reply" class="my-4">
             <div class="text-center">
-              <%= link_to icon("fas", "plus", "Добавить страницу"), "#", class: 'btn', data: { action: "click->reply#toggle" } %>
+              <%= link_to icon("fas", "plus", "Добавить вложенную страницу"), "#", class: 'btn', data: { action: "click->reply#toggle" } %>
             </div>
             <% if current_user.newsubscribed? %>
               <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
