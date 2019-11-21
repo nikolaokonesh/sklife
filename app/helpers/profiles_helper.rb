@@ -8,7 +8,7 @@ module ProfilesHelper
         border-top:
           8px solid #{user_agent.profile.bgcolor}50;
         border-bottom:
-          8px solid #{user_agent.profile.bgcolor}50;
+          8px solid #{user_agent.profile.bgcolor}96;
       "
     elsif fonadmin.present? && fonadmin.profile.fon.attached?
       "
@@ -17,7 +17,7 @@ module ProfilesHelper
         border-top:
           8px solid #{fonadmin.profile.bgcolor}50;
         border-bottom:
-          8px solid #{fonadmin.profile.bgcolor}50;
+          8px solid #{fonadmin.profile.bgcolor}96;
       "
     else
       "background: radial-gradient(at top, #00036566, #000727), url('#{image_path('sputnik.png')}') no-repeat center top;"

@@ -7,10 +7,10 @@
   <div class="w-full max-w-sm">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mb-4">
-        <%= f.email_field :email, label: false, autofocus: true, placeholder: 'E-mail адрес', required: true, class: 'field' %>
+        <%= f.email_field :email, label: false, autofocus: true, placeholder: 'E-mail', required: true, class: 'field' %>
       </div>
       <div class="mb-6">
-        <%= f.password_field :password, label: false, autocomplete: "off", placeholder: 'Введите пароль', required: true, class: "field" %>
+        <%= f.password_field :password, label: false, autocomplete: "off", placeholder: 'Пароль', required: true, class: "field" %>
       </div>
 
       <% if devise_mapping.rememberable? -%>

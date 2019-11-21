@@ -1,4 +1,4 @@
-<nav class="lax w-full flex items-center justify-between flex-wrap pt-4 xl:mb-0" data-lax-opacity="0 1, 150 0, 400 0">
+<nav class="lax w-full z-index-plus flex items-center justify-between flex-wrap pt-4 xl:mb-0" data-lax-opacity="0 1, 150 0, 400 0">
   <div class="flex items-center flex-no-shrink text-white">
     <%= link_to main_app.root_url(subdomain: false) do %>
       <div style="background-image: url('<%= image_path('logo.png') %>')" class='ml-2 logotip'></div>
@@ -20,12 +20,12 @@
                 <%= content_tag :span, current_user.username, class: 'hidden lg:flex' %>
               <% end %>
 
-              <div class="inline-block relative z-maximum-plus " data-controller="dropdown">
+              <div class="inline-block relative z-index-plus" data-controller="dropdown">
                 <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link">
                   <%= icon('fas', 'chevron-down') %>
                 </div>
-                <div data-target="dropdown.menu" class="z-maximum-plus absolute right-0 text-xs mt-3 hidden">
-                  <div class="z-maximum-plus bg-white shadow rounded border overflow-hidden">
+                <div data-target="dropdown.menu" class="z-index-plus absolute right-0 text-xs mt-3 hidden">
+                  <div class="z-index-plus bg-white shadow rounded border overflow-hidden">
                     <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu font-bold' do %>
                       <%= icon('fas', 'user-circle', current_user.username) %>
                     <% end %>

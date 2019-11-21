@@ -11,7 +11,7 @@
         <%= f.text_field :name, label: false, autofocus: true, placeholder: "Имя и фамилия", required: true, class: 'field' %>
       </div>
       <div class="mb-4">
-        <%= f.email_field :email, label: false, autofocus: true, autocomplete: "email", placeholder: 'Ваша электронная почта', class: 'field' %>
+        <%= f.email_field :email, label: false, autofocus: true, autocomplete: "email", placeholder: 'Электронная почта', class: 'field' %>
       </div>
       <div class="mb-6">
         <%= f.password_field :password, label: false, autocomplete: "off", placeholder: "Пароль, минимум #{@minimum_password_length} символов", class: "field" %>

@@ -148,13 +148,12 @@ h1 {
 
 .hidden_file_field { opacity: 0; }
 
-.z-index-minus {
-  z-index: -100;
-}
-.z-maximum {
-  z-index: 100;
+.z-index {
   &-plus {
     z-index: 200;
+  }
+  &-minus {
+    z-index: -100;
   }
 }
 
