@@ -7,7 +7,7 @@
 <% end %>
 
 <% content_for :menu do %>
-  <%= render partial: 'article/categories/category', collection: Article::Category.where(type: nil) %>
+  <%= render partial: 'article/categories/category', collection: Article::Category.includes(:comments).where(type: nil) %>
 
   <div class="tracking-wide text-center text-sm text-gray-500 font-bold border-b pb-1 pt-6">
     МАРКЕТ

@@ -11,7 +11,7 @@
         <% if user_signed_in? %>
           <div class="md:flex">
             <div class="flex items-center justify-center">
-              <%= active_link_to main_app.notifications_url(subdomain: false), class: "flex nav-link #{unread_notifications(current_user)}", title: 'Уведомления' do %>
+              <%= active_link_to main_app.notifications_url(subdomain: false), class: "flex nav-link mr-2 #{unread_notifications(current_user)}", title: 'Уведомления' do %>
                 <%= icon('fas', 'bell') %>
                 <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
               <% end %>
@@ -21,7 +21,7 @@
               <% end %>
 
               <div class="inline-block relative z-index-plus" data-controller="dropdown">
-                <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link">
+                <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link ml-2">
                   <%= icon('fas', 'chevron-down') %>
                 </div>
                 <div data-target="dropdown.menu" class="z-index-plus absolute right-0 text-xs mt-3 hidden">

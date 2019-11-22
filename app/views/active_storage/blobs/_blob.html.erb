@@ -2,7 +2,8 @@
   <% if blob.representable? %>
     <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded-t') %>
     <div class="-mt-10 mr-2 text-2xl text-right">
-      <span class="text-gray-300 hover:text-red-500"><%= link_to icon('fas', 'search-plus'), url_for(blob), target: "_blank" %></span>
+      <span class="text-gray-300 hover:text-red-500">
+        <%= link_to icon('fas', 'search-plus'), main_app.url_for(blob), target: :_blank %></span>
     </div>
   <% end %>
 
