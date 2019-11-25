@@ -33,12 +33,11 @@ class ApplicationController < ActionController::Base
     end
 
     def sbrf_action
-      # @sbrf_client отправляет запросы на тестовый сервер эквайринга
-      if Rails.env.production?
-        @sbrf_client ||= SBRF::Acquiring::Client.new(username: Rails.application.credentials.dig(:sbrf, :username), password: Rails.application.credentials.dig(:sbrf, :password))
-      else
+      # if Rails.env.production?
+      #   @sbrf_client ||= SBRF::Acquiring::Client.new(username: Rails.application.credentials.dig(:sbrf, :username), password: Rails.application.credentials.dig(:sbrf, :password))
+      # else
         @sbrf_client ||= SBRF::Acquiring::Client.new(token: Rails.application.credentials.dig(:sbrf, :token_test), test: true)
-      end
+      # end
     end
 
     # def searchs

@@ -1,7 +1,21 @@
 Rails.application.configure do
-  config.hosts << ".lvh.me"
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # Email
+  config.app_domain = 'localhost:3000'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.smtp_settings = {
+    tls: true,
+    address: 'smtp.yandex.ru',
+    port: '465',
+    authentication: :plain,
+    enable_starttls_auto: true,
+    user_name: Rails.application.credentials.dig(:yandex, :user),
+    password: Rails.application.credentials.dig(:yandex, :pass),
+    domain: config.app_domain
+  }
+  config.hosts << ".lvh.me"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

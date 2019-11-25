@@ -17,8 +17,8 @@
         <%= f.password_field :password, label: false, autocomplete: "off", placeholder: "Пароль, минимум #{@minimum_password_length} символов", class: "field" %>
       </div>
 
-      <div class="flex items-center justify-between">
-        <%= content_tag(:button, 'Регистрация', type: 'submit', data: {disable_with: disable_helper('Регистрация')}, class: 'btn') %>
+      <div class="block">
+        <%= content_tag(:button, 'Регистрация', type: 'submit', data: {disable_with: disable_helper('Регистрация')}, class: 'btn mb-4') %>
         <%= render "devise/shared/links" %>
       </div>
     <% end %>

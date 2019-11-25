@@ -4,7 +4,7 @@ ru:
       new:
         resend_confirmation_instructions: "Выслать повторно письмо с активацией"
       confirmed: Ваш Email подтвержден
-      send_instructions: "Вам будет отправлено письмо с инструкцией для подтверждения, проверьте Ваш E-mail почту"
+      send_instructions: "Вам отправлено письмо с инструкцией для подтверждения, проверьте свою почту"
       send_paranoid_instructions: Если Ваш Email присутствует в базе, то в течении нескольких минут вы получите инструкцию по подтверждению.
     failure:
       already_authenticated: Вы уже вошли в свой аккаунт.
