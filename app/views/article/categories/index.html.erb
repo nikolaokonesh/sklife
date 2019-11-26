@@ -11,7 +11,7 @@
 <% end %>
 
 <div id="categories-index" data-turbolinks-permanent>
-  <%= render partial: 'article/posts/post', collection: @posts %>
+  <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
 <div class='text-center' id="categories-index-paginate" data-turbolinks-permanent>
   <%= render partial: "next_link", locals: {pagy: @pagy} %>

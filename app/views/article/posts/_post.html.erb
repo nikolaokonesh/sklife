@@ -1,36 +1,38 @@
-<%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600' do %>
+<% cache post do %>
+  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600' do %>
 
-  <%= image_helper(post) %>
+    <%= image_helper(post) %>
 
-  <div class="mt-4 md:mt-0 md:ml-6">
-    <% if post.type.present? && request.subdomain.blank? %>
-      <div class="ml-2 flex items-center">
-        <div class="flex"><%= user_avatar_helper(post.user, 38) %></div>
-        <div>
-          <div class="text-gray-500">
-            <%= post.user.name_full %>
-          </div>
-          <div class="text-lg leading-tight font-semibold">
-            <%= sanitize(strip_tags(post.title)) %>
+    <div class="mt-4 md:mt-0 md:ml-6">
+      <% if post.type.present? && request.subdomain.blank? %>
+        <div class="ml-2 flex items-center">
+          <div class="flex"><%= user_avatar_helper(post.user, 38) %></div>
+          <div>
+            <div class="text-gray-500">
+              <%= post.user.name_full %>
+            </div>
+            <div class="text-lg leading-tight font-semibold">
+              <%= sanitize(strip_tags(post.title)) %>
+            </div>
           </div>
         </div>
-      </div>
-    <% else %>
-      <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %>
-      </div>
-      <div class="block mt-1 text-lg leading-tight font-semibold">
-        <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
-        <%= sanitize(strip_tags(post.title)) %>
-      </div>
-    <% end %>
-    <% if post.body_post.body.present? %>
-      <p class="mt-2"><%= truncate(strip_tags(post.body_post.body.to_s), length: 200, omission: '...') %></p>
-    <% end %>
-    <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
+      <% else %>
+        <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %>
+        </div>
+        <div class="block mt-1 text-lg leading-tight font-semibold">
+          <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
+          <%= sanitize(strip_tags(post.title)) %>
+        </div>
+      <% end %>
+      <% if post.body_post.body.present? %>
+        <p class="mt-2"><%= truncate(strip_tags(post.body_post.body.to_s), length: 200, omission: '...') %></p>
+      <% end %>
+      <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
 
-    <div class="inline-flex items-center text-xs pl-2">
-      <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
+      <div class="inline-flex items-center text-xs pl-2">
+        <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
+      </div>
     </div>
-  </div>
+  <% end %>
+  <div class="border-b my-3"></div>
 <% end %>
-<div class="border-b my-3"></div>

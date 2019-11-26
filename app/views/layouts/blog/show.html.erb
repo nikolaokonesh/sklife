@@ -12,7 +12,7 @@
 <% end %>
 
 <% content_for :menu do %>
-  <%= render partial: 'article/categories/category', collection: @user_agent.categories.includes(:comments).where(type: 'Article::Blog::Category') %>
+  <%= render partial: 'article/categories/category', collection: @user_agent.categories.includes(:comments).where(type: 'Article::Blog::Category'), cached: true %>
 <% end %>
 
 <%= render template: "layouts/application" %>

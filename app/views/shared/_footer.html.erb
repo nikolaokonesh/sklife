@@ -1,6 +1,11 @@
 <div class="mt-32"></div>
-<footer class="absolute bottom-0 text-xs py-8 px-4 lg:px-10">
-  <%= content_tag :span, "© #{Date.today.year} SkLife.Ru", class: 'inline-block font-bold text-gray-700 pr-2' %>
+<footer class="lg:flex bg-none items-center absolute bottom-0 text-xs pb-8 pt-48 px-4 lg:px-10 w-full" style="background: url('<%= image_path('footer.png') %>') no-repeat center center / cover;">
+  <div class="flex items-center text-white">
+    <%= link_to main_app.root_url(subdomain: false) do %>
+      <div style="background-image: url('<%= image_path('logo.png') %>')" class='flex ml-2 logotip'></div>
+    <% end %>
+    <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-white pr-2' %>
+  </div>
   <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
   <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
   <%= active_link_to "Конфиденциальность и соглашение", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
