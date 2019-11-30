@@ -1,4 +1,4 @@
-<div class="lax mt-32 bg-none pb-8 pt-48"  data-lax-translate-y="-400 200, 2000 -50, -200 200" style="background: url('<%= image_path('sun.png') %>') no-repeat center center / cover;"></div>
+<div class="lax bg-none pb-8 pt-48"  data-lax-translate-y="-400 200, 2000 -50, -200 200" style="background: url('<%= image_path('sun.png') %>') no-repeat center center / cover;"></div>
 <footer class="z-50 lg:flex bg-none items-center absolute bottom-0 text-xs pt-48 px-4 lg:px-10 w-full" style="background: url('<%= image_path('footer.png') %>') no-repeat center center / cover;">
   <div class="flex items-center text-white">
     <%= link_to main_app.root_url(subdomain: false) do %>
@@ -13,6 +13,4 @@
   <%= active_link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), class: color %>
   <%= active_link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), class: color %>
 </footer>
-<div class="absolute bg-red-1000 w-full p-24">
-
-</div>
+<div class="absolute bg-red-1000 w-full p-24"></div>
