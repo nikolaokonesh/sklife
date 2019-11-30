@@ -2,9 +2,10 @@
 
   <ul class="post-errors" data-target="form-error.postErrors"></ul>
 
-  <%= form_with(model: @user_agent.profile, html: { class: local_assigns[:class], data: { target: local_assigns[:target] } }) do |form| %>
+  <%= form_with(model: @user_agent.profile, html: { data: { type: "html",
+                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
     <div class="z-10 relative">
-      <%= form.text_field :bio, label: false, maxlength: 150, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
+      <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
       <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
       <%= form.text_field :prof, label: false, maxlength: 150, placeholder: 'О Вашей профессии или образовании', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
 
@@ -31,7 +32,7 @@
             <% else %>
               <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фото</div>
             <% end %>
-            <%= form.file_field :avatar, direct_upload: true, label: false, class: 'hidden_file_field w-1' %>
+            <%= form.file_field :avatar, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
           <% end %>
         </div>
         <div class="inline mr-2">
@@ -45,7 +46,7 @@
             <% else %>
               <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фон</div>
             <% end %>
-            <%= form.file_field :fon, direct_upload: true, label: false, class: 'hidden_file_field w-1' %>
+            <%= form.file_field :fon, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
           <% end %>
         </div>
         <div class="inline mr-2">

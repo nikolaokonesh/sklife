@@ -33,6 +33,15 @@ ru:
       next: 'Следующий'
   activerecord:
     errors:
+      models:
+        profile:
+          attributes:
+            avatar:
+              max_size_error: "больше 5 мегабайт, уменьшите размер"
+              content_type: "не является фотографией или картинкой"
+            fon:
+              max_size_error: "больше 5 мегабайт, уменьшите размер"
+              content_type: "не является фотографией или картинкой"
       messages:
         too_large: "слишком большой"
         download_failed: "не может быть загружена"
@@ -96,8 +105,8 @@ ru:
         location: 'Район, город, село'
         education: 'Образование'
         contacts: 'Контактные данные'
-        avatar: 'Фото профиля (аватар)'
-        fon: 'Фоновая картинка'
+        avatar: 'Аватар'
+        fon: 'Фон'
   views:
     pagination:
       first: "«"

@@ -73,3 +73,4 @@ gem 'validate_url', '~> 1.0', '>= 1.0.8'
 gem 'devise', github: 'plataformatec/devise'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
+gem 'activestorage-validator'
