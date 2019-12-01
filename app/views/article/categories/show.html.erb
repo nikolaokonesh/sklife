@@ -39,9 +39,7 @@
         <% end %>
         <% if @category.user == current_user %>
           <div data-controller="reply" class="my-4">
-            <div class="text-center">
-              <%= link_to icon("fas", "plus", "Добавить вложенную страницу"), "#", class: 'btn', data: { action: "click->reply#toggle" } %>
-            </div>
+            <%= link_to icon("fas", "plus fa-2x"), "#", class: 'link', title: 'Добавить вложенную страницу', data: { action: "click->reply#toggle" } %>
             <% if current_user.newsubscribed? %>
               <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
             <% else %>

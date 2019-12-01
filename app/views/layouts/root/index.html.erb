@@ -1,25 +1,27 @@
 <% content_for :header do %>
-  <div class="z-index-plus lax absolute w-full container lg:pt-10" data-lax-translate-y="0 0, 400 100">
-    <div class="max-w-3xl mx-auto"><%= render 'shared/navbar' %></div>
+  <div class="z-index-plus lax absolute w-full container lg:pt-10"
+    data-lax-translate-y="0 0, 400 100">
+    <div class="max-w-3xl mx-auto">
+      <%= render 'shared/navbar' %>
+    </div>
   </div>
-  <div class="w-full h-40 lg:h-64" style="<%= background_helper(@user_agent) %>">
+  <div class="header-fon w-full h-64">
+    <div class="header-fon-sun lax bg-none pb-8 pt-48" data-lax-translate-y="-600 200, 400 -50, -200 200"></div>
+    <div class="header-fon-les absolute bg-none items-center top-0 mt-24 pt-48 px-4 lg:px-10 w-full"></div>
+    <div class="absolute bg-white w-full mt-12 p-24"></div>
   </div>
 <% end %>
 
 <% content_for :menu do %>
   <%= render partial: 'article/categories/category', collection: Article::Category.includes(:comments).where(type: nil), cached: true %>
-
   <div class="tracking-wide text-center text-sm text-gray-500 font-bold border-b pb-1 pt-6">
     МАРКЕТ
   </div>
-
   <%= active_link_to main_app.books_path, class: 'link' do %>
     <div class="menu">
       Книги
     </div>
   <% end %>
-
-
 <% end %>
 
 <%= render template: "layouts/application" %>
