@@ -5,7 +5,7 @@
     <div class="lax z-50 max-w-3xl mx-auto" data-lax-translate-y="0 0, 500 250">
       <%= render 'shared/navbar' %>
     </div>
-    <div class="z-50 lax flex flex-wrap" data-lax-translate-y="0 0, 400 80">
+    <div class="lax flex flex-wrap" data-lax-translate-y="0 0, 400 80">
       <div class="max-w-4xl lg:ml-10 pt-6">
         <%= render 'shared/profile' %>
       </div>
@@ -19,4 +19,4 @@
   <%= render partial: 'article/categories/category', collection: @user_agent.categories.includes(:comments).where(type: 'Article::Blog::Category'), cached: true %>
 <% end %>
 
-<%= render template: "layouts/application" %>
+<%= render template: "layouts/blog/application" %>

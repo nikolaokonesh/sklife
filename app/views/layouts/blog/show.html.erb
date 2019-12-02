@@ -15,4 +15,4 @@
   <%= render partial: 'article/categories/category', collection: @user_agent.categories.includes(:comments).where(type: 'Article::Blog::Category'), cached: true %>
 <% end %>
 
-<%= render template: "layouts/application" %>
+<%= render template: "layouts/blog/application" %>

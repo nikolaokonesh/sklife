@@ -1,0 +1,25 @@
+<% content_for :content_body do %>
+  <%= yield(:header) %>
+  <div class="lax w-full bg-white mx-auto px-2 lg:px-8 lg:py-6" data-lax-translate-y="0 0, 600 -100">
+    <div class="flex flex-wrap flex-row-reverse">
+      <div class="w-full lg:w-1/2 lg:mr-auto lg:ml-4 p-2">
+        <% if content_for?(:titleise) %>
+          <div class="w-full max-w-lg xl:max-w-2xl">
+            <%= yield :titleise %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <div class="w-full lg:w-1/4 lg:ml-auto px-2">
+        <%= active_link_to main_app.root_path, class: 'link', active: :exclusive do %>
+          <div class="menu">
+            Главное
+          </div>
+        <% end %>
+        <%= yield(:menu) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>
