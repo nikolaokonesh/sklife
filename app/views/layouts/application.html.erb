@@ -9,6 +9,8 @@
 
     <%= yield(:content_body)%>
 
-    <%= render 'shared/footer', color: 'inline-block text-gray-400 hover:text-white pr-2' %>
+    <div class="w-full container">
+      <%= render 'shared/footer', color: 'inline-block text-gray-600 hover:text-gray-800 pr-2' %>
+    </div>
   </body>
 </html>

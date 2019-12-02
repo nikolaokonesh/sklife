@@ -1,19 +1,14 @@
-<div class="lax bg-none pb-8 pt-48"  data-lax-translate-y="-800 800, 2000 -150, -800 800" style="background: url('<%= image_path('sun.png') %>') no-repeat center center / cover;"></div>
-<div class="absolute w-full">
-  <footer class="z-50 lg:flex bg-none items-center bottom-0 text-xs pt-48 px-4 lg:px-10 w-full" style="background: url('<%= image_path('footer.png') %>') no-repeat center center / cover;">
-    <div class="flex items-center text-white">
-      <%= link_to main_app.root_url(subdomain: false) do %>
-        <div style="background-image: url('<%= image_path('logo.png') %>')" class='flex ml-2 logotip'></div>
-      <% end %>
-      <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-white pr-2' %>
-    </div>
-    <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
-    <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
-    <%= active_link_to "Конфиденциальность и соглашение", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
-    <%= active_link_to "Способы оплаты", main_app.url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), class: color %>
-    <%= active_link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), class: color %>
-    <%= active_link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), class: color %>
-  </footer>
-  <div class="bg-green-1000 w-full p-10"></div>
-
-</div>
+<footer class="z-50 max-w-5xl mx-auto lg:flex items-center bottom-0 text-xs pb-24 pt-48 px-4 lg:px-10">
+  <div class="flex items-center">
+    <%= link_to main_app.root_url(subdomain: false) do %>
+      <div style="background-image: url('<%= image_path('logo-dark.png') %>')" class='flex ml-2 logotip'></div>
+    <% end %>
+    <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-700 pr-2' %>
+  </div>
+  <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
+  <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
+  <%= active_link_to "Конфиденциальность и соглашение", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
+  <%= active_link_to "Способы оплаты", main_app.url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), class: color %>
+  <%= active_link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), class: color %>
+  <%= active_link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), class: color %>
+</footer>
