@@ -92,11 +92,8 @@ input {
     @apply .text-white;
   }
 }
-.nav-footer {
-  @apply .pr-3 .text-gray-500 .no-underline;
-  &:hover,
-  &:active,
-  &.active {
+.footer {
+  .active {
     @apply .text-gray-300;
   }
 }
