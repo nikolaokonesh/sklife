@@ -4,16 +4,19 @@ class Article::Blog::CategoriesController < Article::CategoriesController
   layout :determine_layout
 
   def index
-    # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
-    @pagy, @posts = pagy(@user_agent.posts.includes(:posttable, :comments, :rich_text_body_post).where(type: 'Article::Blog::Post').order(created_at: :desc), link_extra: 'data-remote="true"')
+    if @user_agent.present?
+      # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
+      @pagy, @posts = pagy(@user_agent.posts.includes(:posttable, :comments).with_rich_text_body_post_and_embeds.where(type: 'Article::Blog::Post').order(created_at: :desc), link_extra: 'data-remote="true"')
+    else
+      redirect_to root_url(subdomain: false), alert: 'Неправильно ввели ссылку. Попробуйте еще.'
+    end
   end
 
   def show
     if @category.user == @user_agent
       @post = Article::Blog::Post.new
       @posttable = @category
-      @pagy, @posts = pagy(@category.posts.includes(:user, :comments, :rich_text_body_post).order(created_at: :desc), link_extra: 'data-remote="true"')
-
+      @pagy, @posts = pagy(@category.posts.includes(:user, :comments).with_rich_text_body_post_and_embeds.order(created_at: :desc), link_extra: 'data-remote="true"')
       if @category.no_comments.present?
         @comments = if params[:comment]
                       @category.comments.where(id: params[:comment])
@@ -21,14 +24,12 @@ class Article::Blog::CategoriesController < Article::CategoriesController
                       @category.comments.where(parent_id: nil)
                     end
         @pagy_comment, @comments = pagy(@comments.includes(:user, :rich_text_body_comment).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
-
         if @category.comments.present?
           @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
         end
       end
-
     else
-      redirect_to root_url, alert: 'В этом домене такого нет...'
+      redirect_to root_url, alert: 'Такой страницы не существует!'
     end
   end
 

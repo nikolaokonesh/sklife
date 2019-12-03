@@ -5,22 +5,24 @@ class Article::PostsController < ApplicationController
 
   def show
     unless request.subdomain.present?
-      @pagy, @posts = pagy(@post.posttable.posts.includes(:comments).order(created_at: :desc).where.not(id: @post.id), link_extra: 'data-remote="true"')
-
-      if @post.no_comments.present?
-        @comments = if params[:comment]
-                      @post.comments.where(id: params[:comment])
-                    else
-                      @post.comments.where(parent_id: nil)
-                    end
-        @pagy_comment, @comments = pagy(@comments.includes(:user, :rich_text_body_comment).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
-
-        if @post.comments.present?
-          @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
+      if @post.type == nil
+        @pagy, @posts = pagy(@post.posttable.posts.includes(:comments).with_rich_text_body_post.order(created_at: :desc).where.not(id: @post.id), link_extra: 'data-remote="true"')
+        if @post.no_comments.present?
+          @comments = if params[:comment]
+                        @post.comments.where(id: params[:comment])
+                      else
+                        @post.comments.where(parent_id: nil)
+                      end
+          @pagy_comment, @comments = pagy(@comments.includes(:user, :rich_text_body_comment).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
+          if @post.comments.present?
+            @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
+          end
         end
+      else
+        redirect_to root_url, alert: "Такой страницы не существует!"
       end
     else
-      redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
+      redirect_to root_url, alert: "Такой страницы не существует!"
     end
   end
 
