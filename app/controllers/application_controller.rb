@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   include Pagy::Backend
-
+  include RescueFormConcern
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_subscribed?
   helper_method :summ_small_month
@@ -12,14 +11,6 @@ class ApplicationController < ActionController::Base
   before_action :sbrf_action
 
   # before_action :searchs
-
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, alert: 'Вы не авторизованы для просмотра этой страницы.' }
-      format.js   { head :forbidden, content_type: 'text/html' }
-    end
-  end
 
   protected
 

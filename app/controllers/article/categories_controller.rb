@@ -32,7 +32,7 @@ class Article::CategoriesController < ApplicationController
         end
       end
     else
-      redirect_to root_url, alert: "Такой страницы не существует!"
+      redirect_to root_url, alert: "Страница не найдена!"
     end
   end
 

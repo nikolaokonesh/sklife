@@ -17,10 +17,10 @@ class Article::Blog::PostsController < Article::PostsController
           @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
         end
       else
-        redirect_to root_url, alert: "Такой страницы не существует!"
+        redirect_to root_url, alert: "Страница не найдена!"
       end
     else
-      redirect_to root_url, alert: "Такой страницы не существует!"
+      redirect_to root_url, alert: "Страница не найдена!"
     end
   end
 
