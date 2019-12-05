@@ -1,14 +1,16 @@
-<footer class="footer z-50 max-w-5xl mx-auto lg:flex items-center bottom-0 text-xs pb-24 pt-24 px-4 lg:px-10">
-  <div class="flex items-center">
-    <%= link_to main_app.root_url(subdomain: false) do %>
-      <div style="background-image: url('<%= image_path('logo.png') %>')" class='flex logotip'></div>
-    <% end %>
-    <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-700 pr-2' %>
-  </div>
-  <%= active_link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
-  <%= active_link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
-  <%= active_link_to "Конфиденциальность и соглашение", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
-  <%= active_link_to "Способы оплаты", main_app.url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), class: color %>
-  <%= active_link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), class: color %>
-  <%= active_link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), class: color %>
-</footer>
+<div class="w-full bg-blue-900">
+  <footer class="z-50 max-w-5xl mx-auto lg:flex items-center bottom-0 text-xs pb-24 pt-24 px-4 lg:px-10">
+    <div class="flex items-center">
+      <%= link_to root_url(subdomain: false) do %>
+        <div style="background-image: url('<%= image_path('logo.png') %>')" class='flex logotip'></div>
+      <% end %>
+      <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-600 pr-2' %>
+    </div>
+    <%= link_to "Реквизиты", url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), class: color %>
+    <%= link_to "Услуги", url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), class: color %>
+    <%= link_to "Конфиденциальность и соглашение", url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), class: color %>
+    <%= link_to "Способы оплаты", url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), class: color %>
+    <%= link_to 'Тарифы', url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), class: color %>
+    <%= link_to 'Обратная связь', url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), class: color %>
+  </footer>
+</div>

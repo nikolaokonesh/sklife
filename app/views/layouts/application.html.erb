@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render 'shared/html_head' %>
+  <%= display_meta_tags site: "Халыма" %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <% if yield(:canonical_link).present? %>
+    <%= stylesheet_link_tag yield(:canonical_link), rel: "canonical", media: nil %>
+  <% end %>
+  <%= favicon_link_tag 'icon.ico' %>
   </head>
 
   <body>
@@ -9,8 +21,8 @@
 
     <%= yield(:content_body)%>
 
-    <div class="w-full bg-gray-900">
-      <%= render 'shared/footer', color: 'inline-block text-gray-600 hover:text-gray-500 pr-2' %>
-    </div>
+    <% cache "footer_v1" do %>
+      <%= render('shared/footer', color: 'inline-block text-gray-500 hover:text-gray-400 pr-2') %>
+    <% end %>
   </body>
 </html>

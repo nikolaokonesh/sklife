@@ -92,11 +92,6 @@ input {
     @apply .text-white;
   }
 }
-.footer {
-  .active {
-    @apply .text-gray-300;
-  }
-}
 
 .menu {
   @apply .tracking-wide .border-b .px-2 .py-2;
