@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include Pagy::Backend
   include RescueFormConcern
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_subscribed?
   helper_method :summ_small_month
@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   before_action :sbrf_action
 
   # before_action :searchs
-
   protected
 
     def current_user_subscribed?

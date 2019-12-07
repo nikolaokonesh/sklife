@@ -4,7 +4,7 @@ class Market::Knigi::LibraryController < ApplicationController
 
   def index
     unless request.subdomain.present?
-      @pagy, @library_books = pagy(current_user.library_additions, link_extra: 'data-remote="true"')
+      @library_books = current_user.library_additions.page(params[:page])
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
     end

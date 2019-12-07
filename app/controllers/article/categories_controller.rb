@@ -4,7 +4,7 @@ class Article::CategoriesController < ApplicationController
   layout 'root/index'
 
   def index
-    @pagy, @posts = pagy(Article::Post.includes(:posttable, :comments, :user).with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc), link_extra: 'data-remote="true"')
+    @posts = Article::Post.includes(:posttable, :comments, :user).with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc).page(params[:page])
     # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
     # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
     # @projects = Project.order(created_at: :desc).page params[:projects].to_i
@@ -19,14 +19,14 @@ class Article::CategoriesController < ApplicationController
     if @category.type == nil
       @post = Article::Post.new
       @posttable = @category
-      @pagy, @posts = pagy(@category.posts.includes(:comments).with_rich_text_body_post_and_embeds.order(created_at: :desc), link_extra: 'data-remote="true"')
+      @posts = @category.posts.includes(:comments).with_rich_text_body_post_and_embeds.order(created_at: :desc).page(params[:page])
       if @category.no_comments.present?
         @comments = if params[:comment]
                       @category.comments.where(id: params[:comment])
                     else
                       @category.comments.where(parent_id: nil)
                     end
-        @pagy_comment, @comments = pagy(@comments.includes(:user, :rich_text_body_comment).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
+        @comments = @comments.includes(:user, :rich_text_body_comment).order(created_at: :desc).page(params[:pagina])
         if @category.comments.present?
           @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
         end

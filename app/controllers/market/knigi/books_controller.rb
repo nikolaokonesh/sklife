@@ -7,9 +7,9 @@ class Market::Knigi::BooksController < ApplicationController
   def index
     unless request.subdomain.present?
       if user_signed_in? && current_user.admin?
-        @pagy, @books = pagy(book_scope.order(created_at: :desc), link_extra: 'data-remote="true"')
+        @books = book_scope.order(created_at: :desc).page(params[:page])
       else
-        @pagy, @books = pagy(book_scope.order(created_at: :desc).where(public: true), link_extra: 'data-remote="true"')
+        @books = book_scope.order(created_at: :desc).where(public: true).page(params[:page])
       end
     else
       redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"

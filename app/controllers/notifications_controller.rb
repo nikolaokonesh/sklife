@@ -3,7 +3,7 @@ class NotificationsController < Notifications::ApplicationController
   layout 'root/index'
 
   def index
-    @pagy, @notifications = pagy(notifications.includes(:actor, :target).order('id desc'), items: 15)
+    @notifications = notifications.includes(:actor, :target).order('id desc').page(params[:page])
 
     unread_ids = @notifications.reject(&:read?).select(&:id)
     Notification.read!(unread_ids)

@@ -2,5 +2,5 @@
   var colum = document.querySelector("#books_index")
   var pagin = document.querySelector("#books_index_paginate")
   colum.innerHTML += ("<%= j render partial: 'market/knigi/books/book', collection: @books %>")
-  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>")
+  pagin.innerHTML = ("<%= j pag_helper(@books, 'Далее') %>")
 <% end %>

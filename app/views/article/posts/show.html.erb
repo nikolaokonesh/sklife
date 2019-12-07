@@ -52,12 +52,12 @@
 
 <div class="mb-12 block">
   <% if @posts.present? %>
-    <div id="category-post-show-<%= @post.posttable.id %>" <%= data_turbolinks_permanent_helper(@pagy) %>>
+    <div id="category-post-show-<%= @post.posttable.id %>" <%#= data_turbolinks_permanent_helper(@pagy) %>>
       <div class="w-full text-center m-2" id="categories-show-columns">
         <%= render partial: 'post_small', collection: @posts, cached: true %>
       </div>
-      <div class="block text-center mb-4" id="categories-show-paginator">
-        <%= render partial: "next_link", locals: {pagy: @pagy} %>
+      <div class="block pagination mb-4" id="categories-show-paginator">
+        <%= pag_helper(@posts, 'Далее') %>
       </div>
     </div>
   <% end %>
@@ -91,8 +91,8 @@
         </div>
       </div>
       <br />
-      <div class="d-block pagination mb-4" id="comments-show-paginator">
-        <%= render partial: "next_link", locals: {pagy: @pagy_comment} %>
+      <div class="block pagination mb-4" id="comments-show-paginator">
+        <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
       </div>
     </div>
   </div>

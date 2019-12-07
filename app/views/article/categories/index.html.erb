@@ -13,6 +13,6 @@
 <div id="categories-index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
-<div class='text-center' id="categories-index-paginate" data-turbolinks-permanent>
-  <%= render partial: "next_link", locals: {pagy: @pagy} %>
+<div class='pagination' id="categories-index-paginate" data-turbolinks-permanent>
+  <%= pag_helper(@posts, 'Далее') %>
 </div>

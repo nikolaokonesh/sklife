@@ -3,5 +3,5 @@
   var pagin = document.querySelector("#categories-index-paginate")
 
   colum.innerHTML += ("<%= j render partial: 'article/posts/post', collection: @posts, cached: true %>")
-  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>")
+  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>");
 <% end %>

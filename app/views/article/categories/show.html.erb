@@ -55,8 +55,8 @@
         <div class="block" id="categories-show-columns">
           <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
         </div>
-        <div class="block text-center mb-4" id="categories-show-paginator">
-          <%= render partial: "next_link", locals: {pagy: @pagy} %>
+        <div class="block pagination mb-4" id="categories-show-paginator">
+          <%= pag_helper(@posts, 'Далее') %>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
           </div>
           <br />
           <div class="block pagination mb-4" id="comments-show-paginator">
-            <%= render partial: "next_link", locals: {pagy: @pagy_comment} %>
+            <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
           </div>
         </div>
       </div>

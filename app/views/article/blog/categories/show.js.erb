@@ -3,7 +3,7 @@
   var pagin = document.querySelector("#categories-show-paginator")
 
   colum.innerHTML += ('<%= j render(partial: "article/posts/post", collection: @posts, cached: true) %>')
-  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy} %>")
+  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
 <% end %>
 
 <% if params[:pagina] %>
@@ -11,5 +11,5 @@
   var pagin = document.querySelector("#comments-show-paginator")
 
   colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: false}, continue_thread: 10) %>')
-  pagin.innerHTML = ("<%= j render partial: 'next_link', locals: {pagy: @pagy_comment} %>")
+  pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
 <% end %>

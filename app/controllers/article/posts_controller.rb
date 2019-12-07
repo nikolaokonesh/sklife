@@ -6,17 +6,14 @@ class Article::PostsController < ApplicationController
   def show
     unless request.subdomain.present?
       if @post.type == nil
-        @pagy, @posts = pagy(@post.posttable.posts.includes(:comments).with_rich_text_body_post.order(created_at: :desc).where.not(id: @post.id), link_extra: 'data-remote="true"')
+        @posts = @post.posttable.posts.includes(:comments).with_rich_text_body_post.order(created_at: :desc).where.not(id: @post.id).page(params[:page])
         if @post.no_comments.present?
           @comments = if params[:comment]
                         @post.comments.where(id: params[:comment])
                       else
                         @post.comments.where(parent_id: nil)
                       end
-          @pagy_comment, @comments = pagy(@comments.includes(:user, :rich_text_body_comment).order(created_at: :desc), page_param: :pagina, link_extra: 'data-remote="true"')
-          if @post.comments.present?
-            @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
-          end
+          @comments = @comments.includes(:user, :rich_text_body_comment).order(created_at: :desc).page(params[:pagina]).per(5)
         end
       else
         redirect_to root_url, alert: "Страница не найдена!"
