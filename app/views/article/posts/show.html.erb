@@ -4,43 +4,39 @@
 
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
-    <div class="w-full max-w-3xl mx-auto text-center">
-      <div class="text-left">
-        <%= link_to icon('fas', 'chevron-left', sanitize(strip_tags(@post.posttable.title))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600' %>
+    <div class="w-full max-w-3xl mx-auto">
+      <%= link_to icon('fas', 'chevron-left', sanitize(strip_tags(@post.posttable.title))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600' %>
+      <div class="block text-2xl"><%= title sanitize(strip_tags(@post.title)) %></div>
+      <div class="block text-sm">
+        <%= link_to icon('fas', 'pen'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
+        <%= link_to icon('fas', 'trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>
       </div>
-      <h1 class="pt-3 leading-tight">
-        <span class="d-inline-block">
-          <%= title sanitize(strip_tags(@post.title)) %>
-          <small class="h6">
-            <%= link_to icon('fas', 'pen'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-4' if @post.user == current_user %>
-            <%= link_to icon('fas', 'trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>
-          </small>
-        </span>
-      </h1>
     </div>
   </div>
 <% end %>
 
-<div class="w-full px-0 lg:px-1">
-  <div class="py-5 block justify-center">
-    <% if @post.subscribe.present? %>
-      <% if current_user_subscribed? %>
-        <%= @post.body_post if @post.body_post.present? %>
+<div class="w-full">
+  <div class="block justify-center">
+    <div class="p-2">
+      <% if @post.subscribe.present? %>
+        <% if current_user_subscribed? %>
+          <%= @post.body_post if @post.body_post.present? %>
+        <% else %>
+          <%= render 'tarif', full: true %>
+        <% end %>
       <% else %>
-        <%= render 'tarif', full: true %>
+        <%= @post.body_post if @post.body_post.present? %>
       <% end %>
-    <% else %>
-      <%= @post.body_post if @post.body_post.present? %>
-    <% end %>
+    </div>
 
     <% @post.youtubes.all.each do |tube| %>
       <div class="py-2">
-        <iframe id="ytplayer" type="text/html" width="100%" height="280" class="rounded border-2" src="https://www.youtube.com/embed/<%= tube.uid %>" frameborder="0" allowfullscreen></iframe>
+        <iframe id="ytplayer" type="text/html" width="100%" height="280" class="bg-gray-200" src="https://www.youtube.com/embed/<%= tube.uid %>" frameborder="0" allowfullscreen></iframe>
       </div>
     <% end %>
 
-    <div class="block mt-6">
-      <div class="float-right inline-block mb-2 text-sm text-gray-600">
+    <div class="block my-4 px-2">
+      <div class="float-right inline-block text-sm text-gray-600">
         Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
       </div>
       <div class="inline-block">
@@ -53,7 +49,7 @@
 <div class="mb-12 block">
   <% if @posts.present? %>
     <div id="category-post-show-<%= @post.posttable.id %>" <%#= data_turbolinks_permanent_helper(@pagy) %>>
-      <div class="w-full text-center m-2" id="categories-show-columns">
+      <div class="w-full" id="categories-show-columns">
         <%= render partial: 'post_small', collection: @posts, cached: true %>
       </div>
       <div class="block pagination mb-4" id="categories-show-paginator">

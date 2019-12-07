@@ -1,40 +1,41 @@
-<div class="block w-full justify-center text-center pt-4 pb-4 px-2 ">
-  <%= link_to book_url(book, subdomain: false), class: 'card--book w-full lg:flex' do %>
+<div class="block w-full justify-center pt-4 pb-4">
+  <%= link_to book_url(book, subdomain: false), class: 'w-full lg:flex' do %>
     <% if book.pages.any? %>
-      <% ActiveStorage::Attachment.where(record: book.pages.first.body_page.id).limit(1).each do |img| %>
-        <% if img.blob.representable? %>
-          <div class="shadow-lg h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l bg-center text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(img.blob.representation(resize_to_fill: [ 300, 300 ])) %>')"></div>
-        <% end %>
+      <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
+      <% if image.present? %>
+        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 300 ])) %>');"></div>
+      <% else %>
       <% end %>
     <% end %>
-    <div class="shadow-lg bg-white rounded-b lg:rounded-b-none lg:rounded-r p-3 flex flex-col justify-between leading-normal">
+    <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-3 flex flex-col justify-between leading-normal">
       <div class="mb-1">
-        <p class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
+        <div class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
           <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
-        </p>
-        <div class="text-xl mb-2"><%= sanitize(strip_tags(book.title)) %></div>
-        <p class="text-base"><%= truncate(strip_tags(book.pages.first.body_page.body.to_s), length: 200, omission: '...') if book.pages.any? %></p>
+        </div>
+        <div class="text-xl"><%= sanitize(strip_tags(book.title)) %></div>
+        <div class="text-base text-gray-600"><%= truncate(strip_tags(book.pages.first.body_page.body.to_s), length: 200, omission: '...') if book.pages.any? %></div>
       </div>
       <div class="block lg:flex items-center">
-        <p class="block lg:inline-block lg:p-3 no-underline text-sm">
+        <div class="block lg:inline-block no-underline text-sm">
           Автор: <%= sanitize(strip_tags(book.author)) %>
-        </p>
-        <small class="block lg:inline-block lg:p-3 pb-2 text-sm">
+        </div>
+        <div class="block lg:inline-block lg:ml-3 text-sm">
           Книга <%= time_tag(book.data, :format=>'%Y года') %>
-        </small>
+        </div>
         <% if user_signed_in? %>
           <% if current_user.libraries.where(book: book).any? %>
-            <small class="block lg:inline-block lg:p-3 pb-2 text-sm">
+            <div class="block lg:inline-block lg:p-3 pb-2 text-sm">
               <% if views_pages_helper(book, current_user) == book.pages.count %>
                 <%= icon('fas', 'check', class: 'text-green-500') %>
               <% else %>
                 Прочтено
               <% end %>
               <%= views_pages_helper(book, current_user) %>/<%= book.pages.count %>
-            </small>
+            </div>
           <% end %>
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
+<div class="border-b"></div>

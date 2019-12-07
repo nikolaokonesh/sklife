@@ -1,10 +1,12 @@
 <% content_for :canonical_link, books_url(subdomain: false) %>
 
 <% if user_signed_in? %>
-  <%= link_to icon('fas', 'plus fa-2x'), main_app.new_book_path, class: 'link float-right', title: 'Добавить книгу' if current_user.admin? %>
+  <div class="block">
+    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_book_path, class: 'link pl-2', title: 'Добавить книгу' if current_user.admin? %>
+  </div>
 <% end %>
 
-<div id="books_index" data-turbolinks-permanent>
+<div class="block" id="books_index" data-turbolinks-permanent>
   <%= render partial: 'market/knigi/books/book', collection: @books %>
 </div>
 <div class='text-center pagination' id="books_index_paginate" data-turbolinks-permanent>
