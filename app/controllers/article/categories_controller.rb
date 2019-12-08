@@ -4,7 +4,7 @@ class Article::CategoriesController < ApplicationController
   layout 'root/index'
 
   def index
-    @posts = Article::Post.includes(:posttable, :comments, :user).with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc).page(params[:page])
+    @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post).with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc).page(params[:page])
     # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
     # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
     # @projects = Project.order(created_at: :desc).page params[:projects].to_i
@@ -26,7 +26,7 @@ class Article::CategoriesController < ApplicationController
                     else
                       @category.comments.where(parent_id: nil)
                     end
-        @comments = @comments.includes(:user, :rich_text_body_comment).order(created_at: :desc).page(params[:pagina])
+        @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina])
         if @category.comments.present?
           @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
         end

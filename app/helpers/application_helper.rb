@@ -21,12 +21,6 @@ module ApplicationHelper
     end
   end
 
-  # def data_turbolinks_permanent_helper(pagy)
-  #   unless pagy.last == pagy.page
-  #     "data-turbolinks-permanent"
-  #   end
-  # end
-
   def pag_helper(posts, text, page = :page)
     link_to_next_page(posts, icon('fas', 'chevron-down', text), class: 'pg-link', param_name: page, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')})
   end

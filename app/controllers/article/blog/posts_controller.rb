@@ -12,7 +12,7 @@ class Article::Blog::PostsController < Article::PostsController
                     else
                       @post.comments.where(parent_id: nil)
                     end
-        @comments = @comments.includes(:user, :rich_text_body_comment).order(created_at: :desc).page(params[:pagina])
+        @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina])
         if @post.comments.present?
           @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
         end

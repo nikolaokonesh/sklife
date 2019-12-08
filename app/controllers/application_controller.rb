@@ -35,7 +35,9 @@ class ApplicationController < ActionController::Base
     # end
 
     def user_show
-      @user_agent = User.where(:slug => request.subdomain).first
+      if request.subdomain.present?
+        @user_agent = User.where(:slug => request.subdomain).first
+      end
     end
 
     def summ_small_month
