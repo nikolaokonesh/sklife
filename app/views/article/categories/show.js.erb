@@ -13,3 +13,11 @@
   colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
   pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
 <% end %>
+
+<% if params[:open] %>
+  var opening = document.querySelector("#open_comments")
+  var pagin = document.querySelector("#comments-show-paginator")
+
+  pagin.classList.toggle("hidden")
+  opening.innerHTML = ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
+<% end %>
