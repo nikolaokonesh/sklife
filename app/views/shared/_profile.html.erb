@@ -1,7 +1,7 @@
-<div class="lax lg:flex items-center p-4 m-2 lg:m-8" data-lax-opacity="0 1, 240 0.2, 400 0">
-  <div class="h-48 w-48 table rounded-full border-2 shadow-2xl mb-2 lg:mr-6 mx-auto bg-cover" style="background-image: url('<%= user_avatar(@user_agent, 180) %>')">
+<div class="lax items-center p-4 m-2 lg:m-8" data-lax-opacity="0 1, 240 0.2, 400 0">
+  <div class="h-48 w-48 table rounded-full border-2 shadow-2xl mb-2 mx-auto bg-cover" style="background-image: url('<%= user_avatar(@user_agent, 180) %>')">
   </div>
-  <div class="text-center lg:text-left">
+  <div class="text-center">
     <h2 class="text-2xl text-shadow text-white font-bold leading-tight">
       <%= @user_agent.name_full %>
     </h2>
