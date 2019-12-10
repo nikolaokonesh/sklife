@@ -8,7 +8,6 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^4.0.7",
-    "lax.js": "^1.2.5",
     "stimulus": "^1.1.1",
     "tailwindcss": "^1.1.2",
     "trix": "^1.0.0",

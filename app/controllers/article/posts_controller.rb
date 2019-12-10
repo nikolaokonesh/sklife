@@ -13,7 +13,10 @@ class Article::PostsController < ApplicationController
                       else
                         @post.comments.where(parent_id: nil)
                       end
-          @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina]).per(5)
+          @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina])
+          if @post.comments.present?
+            @comments_parent = @post.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
+          end
         end
       else
         redirect_to root_url, alert: "Страница не найдена!"

@@ -71,16 +71,18 @@
             <% if params[:comment] %>
               <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
               <%= render partial: 'comments/comment', collection: @comments_parent, locals: {full: false}, continue_thread: 10  %>
-            <% end %>
-            <div class="block" id="comments-show-columns">
-              <div id="open_comments" class="mt-4">
-                <div data-controller="comments">
-                  <%= icon('fas', 'spinner fa-pulse', 'Загрузка комментариев') %>
-                  <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "comments.opencomment"} do %>
-                  <% end %>
+              <%= render partial: 'comments/comment', collection: @comments, locals: {full: false}, continue_thread: 10  %>
+            <% else %>
+              <div class="block" id="comments-show-columns">
+                <div id="open_comments" class="mt-4">
+                  <div data-controller="comments">
+                    <%= icon('fas', 'spinner fa-pulse', 'Загрузка комментариев') %>
+                    <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "comments.opencomment"} do %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
           <br />
           <div class="block pagination mb-4 hidden" id="comments-show-paginator">

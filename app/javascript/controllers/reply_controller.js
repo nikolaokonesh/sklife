@@ -10,7 +10,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "form", "userprof", "userbtn", "message" ]
+  static targets = [ "form", "message" ]
 
   //connect() {
     //this.outputTarget.textContent = 'Hello, Stimulus!'
@@ -19,8 +19,6 @@ export default class extends Controller {
   toggle(event) {
     event.preventDefault()
     this.formTarget.classList.toggle("hidden")
-    this.userprofTarget.classList.toggle("hidden")
-    this.userbtnTarget.classList.toggle("hidden")
   }
 
   mess(event) {

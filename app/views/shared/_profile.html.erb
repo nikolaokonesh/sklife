@@ -1,4 +1,4 @@
-<div class="lax items-center p-4 m-2 lg:m-8" data-lax-opacity="0 1, 240 0.2, 400 0">
+<div class="items-center p-4 m-2 lg:m-8">
   <div class="h-48 w-48 table rounded-full border-2 shadow-2xl mb-2 mx-auto bg-cover" style="background-image: url('<%= user_avatar(@user_agent, 180) %>')">
   </div>
   <div class="text-center">
@@ -11,11 +11,11 @@
       <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.prof)), class: 'text-gray-300 mb-1 text-shadow' %>
       <%= content_tag :div, icon('fas', 'envelope', sanitize(strip_tags(@user_agent.profile.email))), class: 'inline-block text-gray-200 text-shadow' if @user_agent.profile.email.present? %>
       <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'inline-block text-gray-200 text-shadow' if @user_agent.profile.phone.present? %>
-    <% if @user_agent == current_user %>
-      <div class="block mb-5">
-        <%= link_to icon("fas", "pen", "Изменить профиль"), main_app.edit_profile_path(@user_agent.profile), class: 'block text-sm text-gray-200 hover:text-white p-2', remote: true %>
-      </div>
-    <% end %>
+      <% if @user_agent == current_user %>
+        <div class="block mb-5">
+          <%= link_to icon("fas", "pen", "Изменить профиль"), main_app.edit_profile_path(@user_agent.profile), class: 'block text-sm text-gray-200 hover:text-white p-2', remote: true %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
