@@ -1,7 +1,11 @@
 <% if params[:page] %>
+  <% postak = SecureRandom.random_number(10000000000) %>
   var colum = document.querySelector("#categories-index")
   var pagin = document.querySelector("#categories-index-paginate")
 
-  colum.innerHTML += ("<%= j render partial: 'article/posts/post', collection: @posts, cached: true %>")
-  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>");
+  colum.innerHTML += ("<%= j render partial: 'article/categories/index', locals: {posts: @posts, postak: postak} %>")
+  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
+
+  var colore = document.querySelector(".open-posts-color-<%= postak %>")
+  setTimeout(() => colore.classList.toggle("bg-green-100"), 1000)
 <% end %>

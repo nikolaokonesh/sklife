@@ -1,5 +1,5 @@
 <% cache post do %>
-  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600', id: "post_#{post.id}" do %>
+  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600 pt-3', id: "post_#{post.id}" do %>
 
     <% image = post.body_post.embeds.includes(:blob).find{|embeds| embeds.image?} %>
     <% if image.present? %>
@@ -37,5 +37,5 @@
       </div>
     </div>
   <% end %>
-  <div class="border-b my-3"></div>
+  <div class="border-b mt-3"></div>
 <% end %>

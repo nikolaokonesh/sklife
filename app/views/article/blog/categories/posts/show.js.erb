@@ -7,11 +7,16 @@
 <% end %>
 
 <% if params[:pagina] %>
+  <% postakcomm = SecureRandom.random_number(10000000000) %>
+
   var colum = document.querySelector("#comments-show-columns")
   var pagin = document.querySelector("#comments-show-paginator")
 
-  colum.innerHTML += ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
+  colum.innerHTML += ("<%= j render partial: 'article/categories/comment', locals: {comments: @comments, postak: postakcomm} %>")
   pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
+
+  var colorecomments = document.querySelector(".open-comments-color-<%= postakcomm %>")
+  setTimeout(() => colorecomments.classList.toggle('bg-green-100'), 1000)
 <% end %>
 
 <% if params[:open] %>

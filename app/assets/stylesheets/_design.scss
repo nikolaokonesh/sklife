@@ -1,12 +1,40 @@
+.logotip {
+  padding: 20px 90px;
+  &--header {
+    padding: 35px;
+  }
+}
+
 .header-fon {
   background: radial-gradient(at left bottom, #FFFFFF, #000122);
 }
+
 .header-fon-sun {
   background: asset_url('header-sun.png') no-repeat center center / cover;
 }
+
 .header-fon-les {
   background: asset_url('header.png') no-repeat center center / cover;
 }
+
 .body-border-top {
   border-top: 8px solid #0001223d;
+}
+
+.z-index {
+  &-plus {
+    z-index: 200;
+  }
+  &-minus {
+    z-index: -100;
+  }
+}
+
+.text-shadow {
+  text-shadow: 1px 2px 1px #333;
+}
+
+.posts-color {
+  transition-property: #FFF;
+  transition-duration: 3s;
 }

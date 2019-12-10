@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2.rc1'
+gem 'rails', '~> 6.0.2.rc2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -62,7 +62,7 @@ gem 'kaminari'
 gem 'active_link_to', '~> 1.0', '>= 1.0.5'
 gem 'meta-tags', '~> 2.11', '>= 2.11.1'
 gem 'name_of_person', '~> 1.1', '>= 1.1.1'
-gem 'sberbank-acquiring', '~> 0.2.1'
+gem 'sberbank-acquiring', '~> 0.2'
 gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
 gem 'validate_url', '~> 1.0', '>= 1.0.8'
 # gem 'phonelib'

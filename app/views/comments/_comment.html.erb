@@ -2,7 +2,7 @@
 <% max_nesting = local_assigns[:max_nesting] %>
 <% continue_thread = local_assigns[:continue_thread] %>
 
-<%= tag.div id: dom_id(comment), class: "comment" do %>
+<%= tag.div id: dom_id(comment), class: "comment posts-color" do %>
   <div class="block">
     <% if comment.deleted? %>
       <span class="text-gray-700">[Комментарий удален]</span>
