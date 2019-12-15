@@ -9,8 +9,8 @@ module ApplicationHelper
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
-  def disable_helper(text)
-    icon('fas', 'spinner fa-pulse', text)
+  def disable_helper(texting)
+    icon('fas', 'spinner fa-pulse', texting)
   end
 
   def notification_target_helper(notification)
@@ -21,8 +21,8 @@ module ApplicationHelper
     end
   end
 
-  def pag_helper(posts, text, page = :page)
-    link_to_next_page(posts, icon('fas', 'chevron-down', text), class: 'pg-link', param_name: page, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')})
+  def pag_helper(posts, texting, page = :page)
+    link_to_next_page(posts, icon('fas', 'chevron-down', texting), class: 'pg-link', param_name: page, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')})
   end
 
   def footer_class_link_helper

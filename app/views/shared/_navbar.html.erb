@@ -1,4 +1,4 @@
-<nav class="w-full z-index-plus flex items-center justify-between flex-wrap pt-4 xl:mb-0">
+<nav class="w-full flex items-center justify-between flex-wrap pt-4 xl:mb-0">
   <div class="flex items-center flex-no-shrink text-white">
     <%= link_to main_app.root_url(subdomain: false) do %>
       <div style="background-image: url('<%= image_path('logo.png') %>')" class='ml-2 logotip'></div>
@@ -20,12 +20,12 @@
                 <!-- <div class="inline-block lg:hidden">Уведомления</div> -->
               <% end %>
 
-              <div class="inline-block relative z-index-plus" data-controller="dropdown">
+              <div class="inline-block relative" data-controller="dropdown">
                 <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" class="select-none nav-link ml-2">
                   <%= icon('fas', 'bars') %>
                 </div>
-                <div data-target="dropdown.menu" class="z-index-plus absolute right-0 text-xs mt-3 hidden">
-                  <div class="z-index-plus bg-white shadow rounded border overflow-hidden">
+                <div data-target="dropdown.menu" class="absolute right-0 text-xs mt-3 hidden">
+                  <div class="bg-white shadow rounded border overflow-hidden">
                     <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu font-bold' do %>
                       <%= icon('fas', 'user-circle', current_user.username) %>
                     <% end %>
