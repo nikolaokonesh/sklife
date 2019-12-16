@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include RescueFormConcern
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_subscribed?
@@ -10,7 +9,8 @@ class ApplicationController < ActionController::Base
   before_action :user_show
   before_action :sbrf_action
 
-  # before_action :searchs
+  include RescueFormConcern
+
   protected
 
     def current_user_subscribed?
@@ -29,10 +29,6 @@ class ApplicationController < ActionController::Base
         @sbrf_client ||= SBRF::Acquiring::Client.new(token: Rails.application.credentials.dig(:sbrf, :token_test), test: true)
       # end
     end
-
-    # def searchs
-    #   @q = Article::Post.ransack(params[:q])
-    # end
 
     def user_show
       if request.subdomain.present?
