@@ -18,6 +18,12 @@
   }
 }
 
+.flash-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+
 .text-shadow {
   text-shadow: 1px 2px 1px #333;
 }
