@@ -5,9 +5,9 @@
   <%= form_with(model: @profile, html: { data: { type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
     <div class="z-10 relative">
-      <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
       <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
-      <%= form.text_field :prof, label: false, maxlength: 150, placeholder: 'О Вашей профессии или образовании', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
+
+      <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
 
       <div class="w-full max-w-md">
         <div class="flex flex-wrap mb-6">
