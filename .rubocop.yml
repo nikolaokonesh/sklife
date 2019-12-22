@@ -1,10 +1,12 @@
 AllCops:
   DisplayCopNames: true
   Exclude:
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
-    - 'test/**/*'
+    - 'config/**/*'
     - 'db/**/*'
+    - 'lib/**/*'
+    - 'node_modules/**/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
 
 Style/Documentation:
   Enabled: false
