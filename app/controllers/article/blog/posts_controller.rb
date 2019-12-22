@@ -32,8 +32,6 @@ class Article::Blog::PostsController < Article::PostsController
       else
         redirect_to root_url, alert: 'Это не ваш домен...'
       end
-    else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
     end
   end
 

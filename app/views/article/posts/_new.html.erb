@@ -1,0 +1,7 @@
+<% if current_user.newsubscribed? %>
+  <%= render partial: "article/posts/form" %>
+<% else %>
+  <div class="mt-4">
+    <%= render 'tarif' %>
+  </div>
+<% end %>

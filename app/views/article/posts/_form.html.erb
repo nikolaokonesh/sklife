@@ -2,9 +2,8 @@
 
   <ul class="post-errors" data-target="form-error.postErrors"></ul>
 
-  <%= form_with(model: [@posttable, @post], html: { class: local_assigns[:class], data: { target: local_assigns[:target],
-                     type: "html",
-                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
+  <%= form_with(model: [@posttable, @post], html: { data: { type: "html",
+                       action: "ajax:error->form-error#onPostError" } } ) do |form| %>
     <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
     <div class="sod">
       <%= form.rich_text_area :body_post, placeholder: 'Содержание' %>
@@ -16,7 +15,7 @@
           <% end %>
         </template>
 
-        <% unless current_page?([@posttable, @post]) %>
+        <% unless current_page?(new_category_post_path(@posttable)) %>
           <%= form.fields_for :youtubes do |task| %>
             <%= render "youtube_fields", form: task %>
           <% end %>

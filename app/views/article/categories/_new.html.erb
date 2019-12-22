@@ -1,12 +1,18 @@
-<div class="my-4">
+<% if current_user.newsubscribed? %>
+  <div class="mb-4">
 
-  <% if request.subdomain.present? && @user_agent.categories.blank? %>
-    <div class="text-gray-600">
-      Категория - это ваше меню навигации, создавайте "Новости", "Контакты" и то, что вам необходимо. Наполняйте категорию вложенными страницами, они будут отображены на главной странице.
-    </div>
-    <h1>Создайте свою первую категорию</h1>
-  <% else %>
-    <h1>Новая категория</h1>
-  <% end %>
-  <%= render 'form', category: @category %>
-</div>
+    <% if request.subdomain.present? && @user_agent.categories.blank? %>
+      <div class="text-gray-600">
+        Категория - это ваше меню навигации, создавайте "Новости", "Контакты" и то, что вам необходимо. Наполняйте категорию вложенными страницами, они будут отображены на главной странице.
+      </div>
+      <div class="text-3xl pb-2">Создайте свою первую категорию</div>
+    <% else %>
+      <div class="text-3xl pb-2">Новая категория</div>
+    <% end %>
+    <%= render 'form', category: @category %>
+  </div>
+<% else %>
+  <div class="mt-4">
+    <%= render 'tarif' %>
+  </div>
+<% end %>

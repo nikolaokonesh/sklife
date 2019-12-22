@@ -6,9 +6,9 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
-      <%= link_to icon('fas', 'chevron-left', 'Главное'), root_path, class: 'text-gray-500 hover:text-gray-600' %>
-      <div class="block text-2xl"><%= title sanitize(strip_tags(@category.title)) %></div>
-      <div class="block text-sm">
+      <%= link_to icon('fas', 'chevron-left', 'Главное'), root_path, class: 'text-gray-500 hover:text-gray-600 block' %>
+      <div class="inline-block text-3xl"><%= title sanitize(strip_tags(@category.title)) %></div>
+      <div class="inline-block text-sm">
         <%= link_to icon('fas', 'pen'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-2' if @category.user == current_user %>
         <%= link_to icon('fas', 'trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @category.user == current_user %>
       </div>
@@ -36,15 +36,8 @@
           </div>
         <% end %>
         <% if @category.user == current_user %>
-          <div data-controller="reply" class="my-4">
-            <%= link_to icon("fas", "plus fa-2x"), "#", class: 'link pl-2', title: 'Добавить вложенную страницу', data: { action: "click->reply#toggle" } %>
-            <% if current_user.newsubscribed? %>
-              <%= render partial: "article/posts/form", locals: { class: "mt-4 hidden", target: "reply.form" } %>
-            <% else %>
-              <div class="mt-4 hidden" data-target="reply.form">
-                <%= render 'tarif' %>
-              </div>
-            <% end %>
+          <div class="mb-4" id="btn_hide">
+            <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_post_path(@category), class: 'link ', title: 'Добавить категорию', remote: true %>
           </div>
         <% end %>
       </div>
