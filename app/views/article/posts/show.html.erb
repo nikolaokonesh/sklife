@@ -6,7 +6,7 @@
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
       <%= link_to icon('fas', 'chevron-left', sanitize(strip_tags(@post.posttable.title))), url_for(@post.posttable), class: 'text-gray-500 hover:text-gray-600 block' %>
-      <div class="inline text-3xl"><%= title sanitize(strip_tags(@post.title)) %></div>
+      <div class="inline text-3xl leading-tight"><%= title sanitize(strip_tags(@post.title)) %></div>
       <div class="inline-block text-sm">
         <%= link_to icon('fas', 'pen'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
         <%= link_to icon('fas', 'trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>

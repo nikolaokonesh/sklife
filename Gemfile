@@ -74,3 +74,5 @@ gem 'devise', github: 'plataformatec/devise'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
 gem 'activestorage-validator'
+
+gem 'rubocop', require: false

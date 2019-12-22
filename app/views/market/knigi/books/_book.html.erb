@@ -3,11 +3,11 @@
     <% if book.pages.any? %>
       <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
       <% if image.present? %>
-        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 300 ])) %>');"></div>
+        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 300 ])) %>');"></div>
       <% else %>
       <% end %>
     <% end %>
-    <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-3 flex flex-col justify-between leading-normal">
+    <div class="p-3 flex flex-col justify-between leading-normal">
       <div class="mb-1">
         <div class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
           <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
