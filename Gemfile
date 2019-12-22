@@ -41,6 +41,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', require: false
 end
 
 group :test do
@@ -74,5 +75,3 @@ gem 'devise', github: 'plataformatec/devise'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
 gem 'activestorage-validator'
-
-gem 'rubocop', require: false
