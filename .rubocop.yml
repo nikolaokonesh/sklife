@@ -1,6 +1,7 @@
 AllCops:
   DisplayCopNames: true
   Exclude:
+    - 'bin/**/*'
     - 'config/**/*'
     - 'db/**/*'
     - 'lib/**/*'
