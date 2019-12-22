@@ -6,12 +6,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable #, :confirmable
 
-  #Статьи
+  # posts
   has_many :categories, dependent: :destroy, class_name: "Article::Category"
   has_many :posts, dependent: :destroy, class_name: "Article::Post"
   has_many :subscribes, dependent: :destroy, class_name: "Article::Subscribe"
 
-  #Книги
+  # books
   has_many :books, dependent: :destroy, class_name: "Market::Knigi::Book"
   has_many :book_orders, dependent: :destroy, class_name: "Market::Knigi::Order"
   has_many :libraries, class_name: "Market::Knigi::Library"
@@ -24,11 +24,6 @@ class User < ApplicationRecord
   has_many :youtubes, dependent: :destroy
 
   has_many :feedbacks, dependent: :destroy
-
-  noname = %w(Админ Менеджер Автор Агент www
-             Admin Administrator Adminka Halyma Sklife
-             Manager Managers User Users Book mail Mail майл Майл info Info Инфо инфо
-             Books Shop Shops Shopping Oriflame Иванчиненков)
 
   noname = %w(Админ Менеджер Автор Агент www
              Admin Administrator Adminka Halyma Sklife
@@ -57,7 +52,7 @@ class User < ApplicationRecord
                       :minimum => 1,
                       :maximum => 50
 
-  # Логин малеьники буквами
+  # text-sm
   # before_save :capitalize_subdomain
   #def capitalize_subdomain
   #  self.name.titleize

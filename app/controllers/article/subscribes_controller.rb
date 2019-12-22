@@ -61,7 +61,7 @@ class Article::SubscribesController < ApplicationController
       end
     end
 
-    def amount_prog(status) # сумма перевода
+    def amount_prog(status) # summa perevoda
       if status.amount == (summ_small_month+"00").to_i
         summ_small_month
       elsif status.amount == (summ_large_month+"00").to_i

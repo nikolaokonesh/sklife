@@ -3,14 +3,14 @@ class Notifications::CommentJob < ApplicationJob
 
   def perform(postst, current_user, commentst, posted)
 
-    # Ответ на комментарий
+    # retry with comment
     if commentst.parent_id.present?
       Comment.where(id: "#{commentst.parent_id}").each do |comment|
         if comment.user != current_user
           Notification.create(user: comment.user, actor: current_user, target: commentst, notify_type: "#{posted}")
         end
       end
-    # Только дл создателя поста.
+    # only user the post comment
     elsif postst.user != current_user
       Notification.create(user: postst.user, actor: current_user, target: commentst, notify_type: "#{posted}")
     end
