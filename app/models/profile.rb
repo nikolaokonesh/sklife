@@ -2,8 +2,9 @@ class Profile < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :fon
 
-  validates :avatar, blob: { content_type: :image, size_range: 1..5.megabytes } # supported options: :image, :audio, :video, :text
-  validates :fon, blob: { content_type: :image, size_range: 1..5.megabytes } # supported options: :image, :audio, :video, :text
+  # supported options: :image, :audio, :video, :text
+  validates :avatar, blob: { content_type: :image, size_range: 1..5.megabytes }
+  validates :fon, blob: { content_type: :image, size_range: 1..5.megabytes }
 
   belongs_to :user
 

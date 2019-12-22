@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
       @comment.user_agent = @user_agent.id
     end
     if @comment.save
-      Notifications::CommentJob.perform_later(@commentable, current_user, @comment, @comment.commentable_type.underscore)
+      Notifications::CommentJob.perform_later(@commentable, current_user, @comment,
+                                              @comment.commentable_type.underscore)
     else
       render partial: 'error', comment: @comment, status: :bad_request
     end

@@ -4,33 +4,15 @@ class Article::CategoriesController < ApplicationController
   layout 'root/index'
 
   def index
-    @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post).with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc).page(params[:page])
-    # @articles_people = Blog::Post.includes(:user, :comments).order(created_at: :desc).page params[:peop].to_i
-    # @comments = Comment.order(created_at: :desc).where.not(user: nil).where(user_agent: nil).page params[:comments].to_i
-    # @projects = Project.order(created_at: :desc).page params[:projects].to_i
-    # if user_signed_in? && current_user.admin?
-    #   @books = Book.order(created_at: :desc).page params[:books].to_i
-    # else
-    #   @books = Book.order(created_at: :desc).where(public: true).page params[:books].to_i
-    # end
+    @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post)
+                          .with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc)
+                          .page(params[:page])
   end
 
   def show
     if @category.type == nil
       @post = Article::Post.new
-      @posttable = @category
-      @posts = @category.posts.includes(:comments).with_rich_text_body_post_and_embeds.order(created_at: :desc).page(params[:page])
-      if @category.no_comments.present?
-        @comments = if params[:comment]
-                      @category.comments.where(id: params[:comment])
-                    else
-                      @category.comments.where(parent_id: nil)
-                    end
-        @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina])
-        if @category.comments.present?
-          @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
-        end
-      end
+      include CategoryShowConcern
     else
       redirect_to root_url, alert: "Страница не найдена!"
     end
@@ -106,6 +88,7 @@ class Article::CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :body, :no_data, :no_comments, youtubes_attributes: [:id, :url, :user_id, :_destroy])
+      params.require(:category).permit(:title, :body, :no_data, :no_comments,
+                                       youtubes_attributes: [:id, :url, :user_id, :_destroy])
     end
 end

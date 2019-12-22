@@ -14,10 +14,12 @@ class Market::Knigi::Page < ApplicationRecord
 
 
   def next(post)
-    Market::Knigi::Page.where("id > ?", id).where(commentable: post.commentable).order(id: :asc).limit(1).first
+    Market::Knigi::Page.where("id > ?", id).where(commentable: post.commentable).
+                                            order(id: :asc).limit(1).first
   end
   def prev(post)
-    Market::Knigi::Page.where("id < ?", id).where(commentable: post.commentable).order(id: :desc).limit(1).first
+    Market::Knigi::Page.where("id < ?", id).where(commentable: post.commentable).
+                                            order(id: :desc).limit(1).first
   end
 
 end

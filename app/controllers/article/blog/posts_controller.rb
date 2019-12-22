@@ -41,7 +41,8 @@ class Article::Blog::PostsController < Article::PostsController
         raise ActionController::RoutingError.new('User Not Found')
       end
     else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false),
+                                   alert: 'Доступно только для подписчиков!'
     end
   end
 
@@ -52,7 +53,8 @@ class Article::Blog::PostsController < Article::PostsController
         redirect_to root_url, alert: 'Не ваша Категория!'
       end
     else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false),
+                                   alert: 'Доступно только для подписчиков!'
     end
   end
 
@@ -71,6 +73,7 @@ class Article::Blog::PostsController < Article::PostsController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body_post, :posttable_id, :no_comments, :top, youtubes_attributes: [:id, :url, :user_id, :_destroy])
+      params.require(:post).permit(:title, :body_post, :posttable_id, :no_comments, :top,
+                                   youtubes_attributes: [:id, :url, :user_id, :_destroy])
     end
 end

@@ -12,18 +12,18 @@ module BooksHelper
 
   private
 
-    def views_pages_helper(book, user)
-      @bp = book.pages
-      uv = user.views.where(page: [@bp]).each do |view|
-        view.id
-      end
-      uv.to_a.size
+  def views_pages_helper(book, user)
+    @bp = book.pages
+    uv = user.views.where(page: [@bp]).each do |view|
+      view.id
     end
+    uv.to_a.size
+  end
 
-    def user_view_page(user, page)
-      if user.views.where(page: page).any?
-        icon('fas', 'check', title: 'Прочтено', class: 'text-xs')
-      end
+  def user_view_page(user, page)
+    if user.views.where(page: page).any?
+      icon('fas', 'check', title: 'Прочтено', class: 'text-xs')
     end
+  end
 
 end

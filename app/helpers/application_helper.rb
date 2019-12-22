@@ -22,7 +22,8 @@ module ApplicationHelper
   end
 
   def pag_helper(posts, texting, page = :page)
-    link_to_next_page(posts, icon('fas', 'chevron-down', texting), class: 'pg-link', param_name: page, remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')})
+    link_to_next_page(posts, icon('fas', 'chevron-down', texting), class: 'pg-link', param_name: page,
+                      remote: true, data: {disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка')})
   end
 
   def footer_class_link_helper

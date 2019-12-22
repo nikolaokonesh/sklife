@@ -24,9 +24,11 @@ class ApplicationController < ActionController::Base
 
     def sbrf_action
       # if Rails.env.production?
-      #   @sbrf_client ||= SBRF::Acquiring::Client.new(username: Rails.application.credentials.dig(:sbrf, :username), password: Rails.application.credentials.dig(:sbrf, :password))
+      #   @sbrf_client ||= SBRF::Acquiring::Client.new(username: Rails.application.credentials.dig(:sbrf, :username),
+                                                     # password: Rails.application.credentials.dig(:sbrf, :password))
       # else
-        @sbrf_client ||= SBRF::Acquiring::Client.new(token: Rails.application.credentials.dig(:sbrf, :token_test), test: true)
+        @sbrf_client ||= SBRF::Acquiring::Client.new(token: Rails.application.credentials.dig(:sbrf, :token_test),
+                                                     test: true)
       # end
     end
 

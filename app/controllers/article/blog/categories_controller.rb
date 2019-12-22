@@ -5,8 +5,8 @@ class Article::Blog::CategoriesController < Article::CategoriesController
 
   def index
     if @user_agent.present?
-      # @comments = Comment.order(created_at: :desc).where.not(user: nil, user_agent: nil).where(user_agent: @user_agent.id).page params[:comments].to_i
-      @posts = @user_agent.posts.includes(:posttable, :comments).with_rich_text_body_post_and_embeds.where(type: 'Article::Blog::Post').order(created_at: :desc).page(params[:page])
+      @posts = @user_agent.posts.includes(:posttable, :comments).with_rich_text_body_post_and_embeds
+                          .where(type: 'Article::Blog::Post').order(created_at: :desc).page(params[:page])
     else
       redirect_to root_url(subdomain: false), alert: 'Неправильно ввели ссылку. Попробуйте еще.'
     end
@@ -15,19 +15,7 @@ class Article::Blog::CategoriesController < Article::CategoriesController
   def show
     if @category.user == @user_agent
       @post = Article::Blog::Post.new
-      @posttable = @category
-      @posts = @category.posts.includes(:user, :comments).with_rich_text_body_post_and_embeds.order(created_at: :desc).page(params[:page])
-      if @category.no_comments.present?
-        @comments = if params[:comment]
-                      @category.comments.where(id: params[:comment])
-                    else
-                      @category.comments.where(parent_id: nil)
-                    end
-        @comments = @comments.includes(:user).with_rich_text_body_comment.order(created_at: :desc).page(params[:pagina])
-        if @category.comments.present?
-          @comments_parent = @category.comments.order(created_at: :desc).where(id: @comments.first.parent_id)
-        end
-      end
+      include CategoryShowConcern
     else
       redirect_to root_url, alert: 'Страница не найдена!'
     end
@@ -51,7 +39,8 @@ class Article::Blog::CategoriesController < Article::CategoriesController
         redirect_to root_url, alert: 'Не ваша Категория!'
       end
     else
-      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false), alert: 'Доступно только для подписчиков!'
+      redirect_to main_app.url_for(controller: '/static', action: :show, page: :subscribes, subdomain: false),
+                                   alert: 'Доступно только для подписчиков!'
     end
   end
 

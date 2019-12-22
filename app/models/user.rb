@@ -106,9 +106,9 @@ class User < ApplicationRecord
     self.save!
   end
 
-  def should_generate_new_friendly_id? #You don't necessarily need this bit, but I have it in there anyways
-    new_record? || self.slug.nil?
-  end
+  # def should_generate_new_friendly_id?
+  #   new_record? || self.slug.nil?
+  # end
 
   private
 

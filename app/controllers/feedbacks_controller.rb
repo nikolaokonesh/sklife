@@ -5,7 +5,8 @@ class FeedbacksController < ApplicationController
     @admin = User.where(admin: true).first
     @feedback = current_user.feedbacks.new(feedback_params)
     if @feedback.save
-      Notification.create(user: @admin, actor: current_user, target: @feedback, notify_type: "feedback/feedback")
+      Notification.create(user: @admin, actor: current_user,
+                          target: @feedback, notify_type: "feedback/feedback")
 
       # Notifications::FeedbackJob.perform_later(@admin, current_user, @feedback)
     else

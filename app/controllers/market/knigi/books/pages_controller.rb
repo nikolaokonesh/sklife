@@ -2,7 +2,6 @@ class Market::Knigi::Books::PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
   before_action :set_commentable
-  # load_and_authorize_resource except: [:index, :show]
   layout 'book/show'
 
   def show
