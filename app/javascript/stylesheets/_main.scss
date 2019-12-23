@@ -34,7 +34,7 @@ input {
 }
 
 .field {
-  @apply .appearance-none .border-b-2 .w-full .px-3 .py-1 .mb-1 .text-gray-700 .leading-tight;
+  @apply .appearance-none .border-b-2 .w-full .px-3 .py-1 .mb-2 .text-gray-700 .leading-tight;
   &:focus {
     @apply .outline-none .border-blue-200;
   }

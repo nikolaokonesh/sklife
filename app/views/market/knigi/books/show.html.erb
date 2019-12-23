@@ -4,28 +4,25 @@
 <% end %>
 <% content_for :canonical_link, book_url(@book, subdomain: false) %>
 
-<% content_for :titleise do %>
-  <h1 class="text-center mb-2">
-    <span class="d-inline-block"><%= title sanitize(strip_tags(@book.title)) %></span>
+<div class="text-center mb-4">
+  <h1>
+    <span class="inline-block"><%= title sanitize(strip_tags(@book.title)) %></span>
     <small class="h6">
       <%= link_to icon('fas', 'pen'), edit_book_path(@book), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'link mx-4' if @book.user == current_user %>
       <%= link_to icon('fas', 'trash'), @book, method: :delete, class: 'link--destroy', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @book.user == current_user %>
     </small>
   </h1>
-<% end %>
-
-<div class="flex md:flex-row flex-wrap">
-  <div class="w-full max-w-md mx-auto">
-    <%= @book.pages.first.body_page if @book.pages.any? %>
-    <div class="flex items-center">
-      <div class="block w-full lg:inline-block lg:p-3 text-gray-600 no-underline text-sm">
-        Автор: <%= sanitize(strip_tags(@book.author)) %>
-        <br/>
-        Книга <%= time_tag(@book.data, :format=>'%Y года выпуска') %>
-      </div>
-    </div>
+  <div class="block text-sm text-gray-600">
+    <span class="mx-2 inline-block">Автор: <%= sanitize(strip_tags(@book.author)) %></span>
+    <span class="mx-2 inline-block">Книга <%= time_tag(@book.data, :format=>'%Y года выпуска') %></span>
   </div>
-  <div class="w-full justify-center mx-auto max-w-md">
+</div>
+
+<div class="inline-flex md:flex-row flex-wrap">
+  <div class="block px-2 max-w-md mx-auto lg:flex-1">
+    <%= @book.pages.first.body_page if @book.pages.any? %>
+  </div>
+  <div class="block lg:flex-1">
     <% if user_signed_in? %>
       <% unless user_added_to_library?(current_user, @book) %>
         <%= render 'book-controls', book: @book %>

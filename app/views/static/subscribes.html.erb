@@ -2,11 +2,9 @@
   <div class="w-full">
     <div>
       <% if current_user_subscribed? %>
-        <% content_for :titleise do %>
-          <h1 class="text-center">
-            Уважаемый подписчик
-          </h1>
-        <% end %>
+        <div class="text-3xl text-gray-600 mb-2">
+          Уважаемый подписчик
+        </div>
         <div class="leading-normal">
           Вы подписаны до <b><%= time_tag(current_user.subscribe_at, :format=>'%d %B %Y') %></b> года.
           <br/>
@@ -18,7 +16,7 @@
             <br/>
             Полученные средства будут полностью направлены на развитие и улучшение данного сайта, а также на разработку мобильного приложения под Android и iOS.
             <br/>
-            Сайт является зависимым только от вас. Спасибо за пользование
+            Сайт является зависимым только от вас. Спасибо за пользование!
           </div>
         </div>
       <% else %>
