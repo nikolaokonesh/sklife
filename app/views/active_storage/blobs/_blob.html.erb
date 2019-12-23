@@ -1,7 +1,7 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
     <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded') %>
-    <div class="-mt-10 mr-2 text-2xl text-right">
+    <div class="-mt-10 mr-2 text-xl text-right">
       <span class="text-gray-300 hover:text-red-500">
         <%= link_to icon('fas', 'search-plus'), url_for(blob), target: :_blank %></span>
     </div>

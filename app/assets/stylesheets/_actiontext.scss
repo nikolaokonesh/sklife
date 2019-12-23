@@ -4,6 +4,7 @@
     > .attachment {
       flex: 1 0 33%;
       padding: 0 0.5em;
+      margin: 6px 0;
       max-width: 33%;
     }
 
@@ -20,6 +21,7 @@
   action-text-attachment {
     .attachment {
       padding: 0 !important;
+      margin: 8px 0 !important;
       max-width: 100% !important;
     }
   }
