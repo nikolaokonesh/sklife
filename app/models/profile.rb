@@ -8,7 +8,7 @@ class Profile < ApplicationRecord
 
   belongs_to :user
 
-  validates_length_of :bio, :maximum => 220
-  validates_length_of :prof, :org, :maximum => 150
-  validates_length_of :email, :phone, :maximum => 50
+  validates_length_of :bio, maximum: 220
+  validates_length_of :prof, :org, maximum: 150
+  validates_length_of :email, :phone, maximum: 50
 end

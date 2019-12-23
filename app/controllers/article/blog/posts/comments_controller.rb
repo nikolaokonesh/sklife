@@ -1,9 +1,15 @@
-class Article::Blog::Posts::CommentsController < CommentsController
-  before_action :set_commentable
+module Article
+  module Blog
+    module Posts
+      class CommentsController < CommentsController
+        before_action :set_commentable
 
-  private
+        private
 
-    def set_commentable
-      @commentable = Article::Blog::Post.friendly.find(params[:post_id])
+        def set_commentable
+          @commentable = Article::Blog::Post.friendly.find(params[:post_id])
+        end
+      end
     end
+  end
 end

@@ -1,86 +1,88 @@
-class Article::CategoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :people]
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  layout 'root/index'
+module Article
+  class CategoriesController < ApplicationController
+    before_action :authenticate_user!, except: %i[index show people]
+    before_action :set_category, only: %i[show edit update destroy]
+    layout 'root/index'
 
-  def index
-    @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post)
-                          .with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc)
-                          .page(params[:page])
-  end
+    include CategoryShowConcern
 
-  def show
-    if @category.type == nil
-      @post = Article::Post.new
-      include CategoryShowConcern
-    else
-      redirect_to root_url, alert: "Страница не найдена!"
+    def index
+      @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post)
+                            .with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc)
+                            .page(params[:page])
     end
-  end
 
-  def new
-    unless request.subdomain.present?
-      @category = category_scope.new
-      @category.youtubes.new
-    else
-      redirect_to root_url, alert: 'Это не ваш домен!'
+    def show
+      if @category.type.nil?
+        @post = Article::Post.new
+        category_show_conc
+      else
+        redirect_to root_url, alert: 'Страница не найдена!'
+      end
     end
-    authorize! :manage, @category
-  end
 
-  def create
-    @category = category_scope.new(category_params)
-    @category.user = current_user
-    if @category.save
-      flash[:notice] = 'Категория успешно добавлена!'
-    else
-      render partial: 'error', category: @category, status: :bad_request
+    def new
+      if request.subdomain.present?
+        redirect_to root_url, alert: 'Это не ваш домен!'
+      else
+        @category = category_scope.new
+        @category.youtubes.new
+      end
+      authorize! :manage, @category
     end
-    authorize! :manage, @category
-  end
 
-  def edit
-    if @category.user == current_user
-    else
-      redirect_to root_url, alert: 'Не ваша Категория!'
-    end
-    authorize! :manage, @category
-  end
-
-  def update
-    if @category.user == current_user
-      @category_slug = @category.slug
-      if @category.update(category_params)
-        @category.update(upgrade: @category.updated_at)
-        unless @category.slug == @category_slug
-          if @category.posts.present?
-            @category.posts.update_all(updated_at: @category.updated_at)
-          end
-        end
-        flash[:notice] = 'Пост успешно обновлен!'
+    def create
+      @category = category_scope.new(category_params)
+      @category.user = current_user
+      if @category.save
+        flash[:notice] = 'Категория успешно добавлена!'
       else
         render partial: 'error', category: @category, status: :bad_request
       end
-    else
-      redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
+      authorize! :manage, @category
     end
-    authorize! :manage, @category
-  end
 
-  def destroy
-    if @category.user == current_user
-      flash[:notice] = 'Страница успешно удалена!'
-      DestroyJob.perform_later(@category)
-    else
-      redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
+    def edit
+      if @category.user == current_user
+      else
+        redirect_to root_url, alert: 'Не ваша Категория!'
+      end
+      authorize! :manage, @category
     end
-    authorize! :manage, @category
-  end
 
-  private
+    def update
+      if @category.user == current_user
+        if @category.update(category_params)
+          category_upgrade
+        else
+          render partial: 'error', category: @category, status: :bad_request
+        end
+      else
+        redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
+      end
+      authorize! :manage, @category
+    end
+
+    def destroy
+      if @category.user == current_user
+        flash[:notice] = 'Страница успешно удалена!'
+        DestroyJob.perform_later(@category)
+      else
+        redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'
+      end
+      authorize! :manage, @category
+    end
+
+    private
 
     def set_category
       @category = category_scope.friendly.find(params[:id])
+    end
+
+    def category_upgrade
+      @category.update(upgrade: @category.updated_at)
+      @category.posts.update_all(updated_at: @category.updated_at) if @category.posts.present?
+      flash[:notice] = 'Пост успешно обновлен!'
     end
 
     def category_scope
@@ -89,6 +91,7 @@ class Article::CategoriesController < ApplicationController
 
     def category_params
       params.require(:category).permit(:title, :body, :no_data, :no_comments,
-                                       youtubes_attributes: [:id, :url, :user_id, :_destroy])
+                                       youtubes_attributes: %i[id url user_id _destroy])
     end
+  end
 end

@@ -9,14 +9,14 @@ module SlugConcern
     def slug_candidates
       [
         :title,
-        [:title, :id]
+        %i[title id]
       ]
     end
 
     # FRIENDLY_ID UNIQUE
     def remake_slug
-      self.update_attribute(:slug, nil)
-      self.save!
+      update_attribute(:slug, nil)
+      save!
     end
 
     # def should_generate_new_friendly_id?
@@ -24,9 +24,10 @@ module SlugConcern
     # end
 
     private
-      # FRIENDLY_ID UPDATE
-      def should_generate_new_friendly_id?
-        slug.blank? || title_changed?
-      end
+
+    # FRIENDLY_ID UPDATE
+    def should_generate_new_friendly_id?
+      slug.blank? || title_changed?
+    end
   end
 end

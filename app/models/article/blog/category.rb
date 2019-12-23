@@ -1,18 +1,21 @@
-class Article::Blog::Category < Article::Category
-  include InputConcern
-  include SlugConcern
-  include UpgradeConcern
-  include YoutubeConcern
+module Article
+  module Blog
+    class Category < Article::Category
+      include InputConcern
+      include SlugConcern
+      include UpgradeConcern
+      include YoutubeConcern
 
-  has_rich_text :body
-  validates :body, length: { maximum: 32000 }
+      has_rich_text :body
+      validates :body, length: { maximum: 32_000 }
 
-  belongs_to :user, touch: true
-  has_many :posts, as: :posttable, dependent: :destroy
-  has_many :comments, as: :commentable, dependent: :destroy
+      belongs_to :user, touch: true
+      has_many :posts, as: :posttable, dependent: :destroy
+      has_many :comments, as: :commentable, dependent: :destroy
 
-  def subscribe?
-    false
+      def subscribe?
+        false
+      end
+    end
   end
-
 end

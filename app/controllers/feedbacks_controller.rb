@@ -6,7 +6,7 @@ class FeedbacksController < ApplicationController
     @feedback = current_user.feedbacks.new(feedback_params)
     if @feedback.save
       Notification.create(user: @admin, actor: current_user,
-                          target: @feedback, notify_type: "feedback/feedback")
+                          target: @feedback, notify_type: 'feedback/feedback')
 
       # Notifications::FeedbackJob.perform_later(@admin, current_user, @feedback)
     else
@@ -16,9 +16,7 @@ class FeedbacksController < ApplicationController
 
   private
 
-    def feedback_params
-      params.require(:feedback).permit(:email, :phone, :message)
-    end
-
+  def feedback_params
+    params.require(:feedback).permit(:email, :phone, :message)
+  end
 end
-

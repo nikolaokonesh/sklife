@@ -14,7 +14,22 @@ AllCops:
 Metrics/LineLength:
   Max: 120
 
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
 Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
   Enabled: false
 
 Style/FrozenStringLiteralComment:

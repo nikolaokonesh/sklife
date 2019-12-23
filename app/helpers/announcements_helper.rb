@@ -1,9 +1,5 @@
 module AnnouncementsHelper
-
   def unread_notifications(user)
-    if user.notifications.unread.present?
-      "unread-notifications text-white"
-    end
+    'unread-notifications text-white' if user.notifications.unread.present?
   end
-
 end

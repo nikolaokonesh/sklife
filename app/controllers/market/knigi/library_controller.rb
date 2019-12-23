@@ -1,12 +1,16 @@
-class Market::Knigi::LibraryController < ApplicationController
-  before_action :authenticate_user!
-  layout 'root/index'
+module Market
+  module Knigi
+    class LibraryController < ApplicationController
+      before_action :authenticate_user!
+      layout 'root/index'
 
-  def index
-    unless request.subdomain.present?
-      @library_books = current_user.library_additions.page(params[:page])
-    else
-      redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
+      def index
+        if request.subdomain.present?
+          redirect_to root_url, alert: "Введите ссылку без поддомена: #{request.subdomain}"
+        else
+          @library_books = current_user.library_additions.page(params[:page])
+        end
+      end
     end
   end
 end

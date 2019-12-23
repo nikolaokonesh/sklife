@@ -4,9 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    if @user_agent.present?
-      @comment.user_agent = @user_agent.id
-    end
+    @comment.user_agent = @user_agent.id if @user_agent.present?
     if @comment.save
       Notifications::CommentJob.perform_later(@commentable, current_user, @comment,
                                               @comment.commentable_type.underscore)
@@ -18,12 +16,12 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @commentable.comments.find(params[:id])
     @comment.destroy
-    redirect_back(fallback_location: @commentable, notice: "Комментарий успешно удален!")
+    redirect_back(fallback_location: @commentable, notice: 'Комментарий успешно удален!')
   end
 
   private
 
-    def comment_params
-      params.require(:comment).permit(:body_comment, :parent_id, :user_agent)
-    end
+  def comment_params
+    params.require(:comment).permit(:body_comment, :parent_id, :user_agent)
+  end
 end
