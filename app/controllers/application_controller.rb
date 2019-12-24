@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_subscribed?
-  helper_method :summ_small_month
-  helper_method :summ_large_month
-  helper_method :summ_largest_month
+  helper_method :summ_short_month
+  helper_method :summ_long_month
   before_action :user_show
   before_action :sbrf_action
 
@@ -36,15 +35,11 @@ class ApplicationController < ActionController::Base
     @user_agent = User.where(slug: request.subdomain).first if request.subdomain.present?
   end
 
-  def summ_small_month
+  def summ_short_month
     '320'
   end
 
-  def summ_large_month
-    '590'
-  end
-
-  def summ_largest_month
+  def summ_long_month
     '1250'
   end
 end

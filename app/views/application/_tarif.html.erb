@@ -1,4 +1,4 @@
-<div class="flex flex-wrap rounded-t">
+<div class="flex flex-wrap rounded-t mb-10">
   <div class="w-full max-w-md mx-auto text-center">
     <h1 class="font-bold text-yellow-500">
       <%= icon('fas', 'crown', class: 'fa-2x') %>
@@ -12,68 +12,50 @@
     <div class="">
       <div class="container mx-auto pb-4 text-gray-800">
         <div class="flex flex-col sm:flex-row justify-center pt-6 my-6 sm:my-4">
-          <div class="shadow-xl flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
-            <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="p-8 text-3xl font-bold text-center border-b-4">Lite</div>
-              <ul class="px-1 w-full text-center text-sm">
-                <li class="border-b py-4">6 месяцев</li>
-                <li class="border-b py-4">доступ к просмотру аккаунта без ограничений</li>
-                <li class="border-b py-4">Тех.поддержка 24 часа</li>
-                <li class="border-b py-4">Выгоднее чем тариф "Основной"</li>
-              </ul>
-            </div>
-            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div class="flex items-center justify-center">
-                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_large_month+"00").to_i), method: :post do |f| %>
-                  <%= content_tag(:button, class: 'bg-blue-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-blue-200 hover:border-blue-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
-                    <div class="w-full text-3xl font-bold text-center">
-                      <%= summ_large_month %><span class="text-base"> <%= icon('fas', 'ruble-sign') %></span>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-2xl z-10">
+
+          <div class="flex flex-col w-5/6 lg:w-1/2 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-2xl z-10">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="w-full p-8 text-3xl font-bold text-center border-b-4">Основной</div>
+              <div class="w-full p-8 text-5xl font-bold text-center border-b-4">
+                <%= summ_short_month %><span class="text-3xl"><%= icon('fas', 'ruble-sign') %></span>
+                <span class="text-green-700 text-base block">1 месяц</span>
+              </div>
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="px-1 w-full text-center text-sm">
-                <li class="border-b py-4">3 месяца</li>
-                <li class="border-b py-4">доступ к просмотру аккаунта без ограничений</li>
+                <li class="border-b py-4">Просмотр аккаунта без ограничений</li>
                 <li class="border-b py-4">Тех.поддержка 24 часа</li>
                 <li class="border-b py-4">Отлично подойдет для аттестации</li>
-                <li class="border-b py-4">Для публикаций раз в год</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="flex items-center justify-center">
-                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_small_month+"00").to_i), method: :post do |f| %>
-                  <%= content_tag(:button, class: 'bg-red-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-red-200 hover:border-red-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
-                      <div class="w-full text-4xl font-bold text-center">
-                        <%= summ_small_month %><span class="text-base"> <%= icon('fas', 'ruble-sign') %></span>
+                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_short_month+"00").to_i), method: :post do |f| %>
+                  <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+                      <div class="w-full text-xl font-bold text-center">
+                        Оформить
                       </div>
                   <% end %>
                 <% end %>
               </div>
             </div>
           </div>
-          <div class="shadow-xl flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
+          <div class="shadow-xl flex flex-col w-5/6 lg:w-1/2 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
             <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="p-8 text-3xl font-bold text-center border-b-4">Pro</div>
+              <div class="p-8 text-3xl font-bold text-center border-b-4">
+                <%= summ_long_month %><span class="text-base"> <%= icon('fas', 'ruble-sign') %></span>
+                <span class="text-green-500 text-base block">12 месяцев</span>
+              </div>
               <ul class="px-1 w-full text-center text-sm">
-                <li class="border-b py-4">12 месяцев</li>
-                <li class="border-b py-4">Без ограничений на публикации и на просмотры закрытого материала</li>
+                <li class="border-b py-4">Просмотр аккаунта без ограничений</li>
                 <li class="border-b py-4">Самое выгодное предложение</li>
                 <li class="border-b py-4">Тех.поддержа 24 часа</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="flex items-center justify-center">
-                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_largest_month+"00").to_i), method: :post do |f| %>
-                  <%= content_tag(:button, class: 'bg-green-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
-                      <div class="w-full text-3xl font-bold text-center">
-                        <%= summ_largest_month %><span class="text-base"> <%= icon('fas', 'ruble-sign') %></span>
+                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_long_month+"00").to_i), method: :post do |f| %>
+                  <%= content_tag(:button, class: 'bg-green-500 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+                      <div class="w-full text-lg font-bold text-center">
+                        Оформить
                       </div>
                   <% end %>
                 <% end %>

@@ -53,23 +53,19 @@ module Article
     private
 
     def monthing_prog(status)
-      if status.amount == (summ_small_month + '00').to_i
-        3.month
-      elsif status.amount == (summ_large_month + '00').to_i
-        6.month
-      elsif status.amount == (summ_largest_month + '00').to_i
+      if status.amount == (summ_short_month + '00').to_i
+        1.month
+      elsif status.amount == (summ_long_month + '00').to_i
         12.month
       end
     end
 
     # summa perevoda
     def amount_prog(status)
-      if status.amount == (summ_small_month + '00').to_i
-        summ_small_month
-      elsif status.amount == (summ_large_month + '00').to_i
-        summ_large_month
-      elsif status.amount == (summ_largest_month + '00').to_i
-        summ_largest_month
+      if status.amount == (summ_short_month + '00').to_i
+        summ_short_month
+      elsif status.amount == (summ_long_month + '00').to_i
+        summ_long_month
       end
     end
   end

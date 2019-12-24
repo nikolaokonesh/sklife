@@ -14,9 +14,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @commentable.comments.find(params[:id])
-    @comment.destroy
-    redirect_back(fallback_location: @commentable, notice: 'Комментарий успешно удален!')
+    if current_user_subscribed?
+      @comment = @commentable.comments.find(params[:id])
+      @comment.destroy
+      redirect_back(fallback_location: @commentable, notice: 'Комментарий успешно удален!')
+    else
+      redirect_back(fallback_location: @commentable, alert: 'Доступно только для подписчиков!')
+    end
   end
 
   private
