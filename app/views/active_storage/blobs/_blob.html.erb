@@ -1,10 +1,9 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded') %>
-    <div class="-mt-10 mr-2 text-xl text-right">
-      <span class="text-gray-300 hover:text-red-500">
-        <%= link_to icon('fas', 'search-plus'), url_for(blob), target: :_blank %></span>
-    </div>
+    <%= link_to url_for(blob), title: blob_file_name_helper(blob), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
+      <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded') %>
+    <% end %>
+
   <% end %>
 
   <figcaption class="attachment__caption mt-1 bg-gray-300">

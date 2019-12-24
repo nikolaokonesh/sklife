@@ -19,7 +19,7 @@
 </div>
 
 <div class="inline-flex md:flex-row flex-wrap">
-  <div class="block px-2 max-w-md mx-auto text-sm lg:flex-1">
+  <div class="block px-2 max-w-md mx-auto text-sm lg:flex-1" data-controller="gallery">
     <%= @book.pages.first.body_page if @book.pages.any? %>
   </div>
   <div class="block lg:flex-1">

@@ -15,4 +15,12 @@ module PostsHelper
 
     html.html_safe
   end
+
+  def blob_file_name_helper(blob)
+    if caption = blob.try(:caption)
+      caption
+    else
+      caption = blob.filename
+    end
+  end
 end

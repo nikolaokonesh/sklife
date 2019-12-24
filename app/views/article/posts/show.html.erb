@@ -17,7 +17,7 @@
 
 <div class="w-full">
   <div class="block justify-center">
-    <div class="p-2">
+    <div class="p-2" data-controller="gallery">
       <% if @post.subscribe.present? %>
         <% if current_user_subscribed? %>
           <%= @post.body_post if @post.body_post.present? %>
