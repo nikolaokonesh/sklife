@@ -3,7 +3,7 @@
   <ul class="post-errors" data-target="form-error.postErrors"></ul>
   <div class="mt-2">
     <%= form_with(model: @book, html: { data: { type: "html", action: "ajax:error->form-error#onPostError" } }) do |form| %>
-      <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Название книги', class: 'field' %>
+      <%= form.text_field :title, label: false, required: true, maxlength: 400, placeholder: 'Название книги', class: 'field' %>
       <div class="w-full">
         <div class="flex flex-wrap mb-2">
           <div class="w-full md:w-1/3 pr-2 md:mb-0">

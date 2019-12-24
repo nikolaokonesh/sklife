@@ -4,7 +4,7 @@
 
   <%= form_with(model: [@posttable, @post], html: { data: { type: "html",
                        action: "ajax:error->form-error#onPostError" } } ) do |form| %>
-    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 400, placeholder: 'Заголовок', class: 'field' %>
     <div class="sod">
       <%= form.rich_text_area :body_post, placeholder: 'Содержание' %>
 

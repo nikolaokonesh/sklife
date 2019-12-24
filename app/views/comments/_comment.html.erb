@@ -23,7 +23,9 @@
       </div>
     <% end %>
   </div>
-  <%= comment_body_helper(comment) %>
+  <div data-controller="gallery">
+    <%= comment_body_helper(comment) %>
+  </div>
 
   <div data-controller="reply">
     <small>

@@ -17,7 +17,7 @@ class Comment < ApplicationRecord
 
   has_rich_text :body_comment
   validates_presence_of :body_comment
-  validates :body_comment, length: { maximum: 3500 }
+  validates :body_comment, length: { maximum: 32_000 }
 
   # Alternatively, we could move all the children to point to our parent instead
 

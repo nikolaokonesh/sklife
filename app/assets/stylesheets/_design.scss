@@ -32,3 +32,8 @@
   transition-property: #FFF;
   transition-duration: 3s;
 }
+
+.pswp__top-bar, .pswp__caption {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+

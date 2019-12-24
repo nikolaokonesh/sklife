@@ -4,7 +4,7 @@ module InputConcern
   included do
     validates :title,
               presence: true,
-              length: { minimum: 3, maximum: 350 }
+              length: { minimum: 3, maximum: 400 }
 
     validates_presence_of :user_id
   end

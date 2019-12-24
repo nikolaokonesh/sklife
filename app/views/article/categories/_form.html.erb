@@ -4,7 +4,7 @@
 
   <%= form_with(model: @category, html: { data: { type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
-    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Название категории', class: 'field' %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 400, placeholder: 'Название категории', class: 'field' %>
     <div class="sod">
       <%= form.rich_text_area :body, placeholder: 'Содержание/описание (необязательно)' %>
 

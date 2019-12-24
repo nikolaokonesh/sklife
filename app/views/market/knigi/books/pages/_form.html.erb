@@ -5,7 +5,7 @@
   <%= form_with(model: [commentable, @page], html: { class: local_assigns[:class], data: { target: local_assigns[:target],
                      type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
-    <%= form.text_field :title, label: false, required: true, maxlength: 150, placeholder: 'Заголовок', class: 'field' %>
+    <%= form.text_field :title, label: false, required: true, maxlength: 400, placeholder: 'Заголовок', class: 'field' %>
 
     <div class="sod">
       <%= form.rich_text_area :body_page, placeholder: 'Содержание' %>

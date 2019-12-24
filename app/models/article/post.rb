@@ -7,7 +7,7 @@ module Article
 
     has_rich_text :body_post
     validates_presence_of :body_post
-    validates :body_post, length: { maximum: 32_000 }
+    # validates :body_post, length: { maximum: 32_000 }
 
     belongs_to :user, touch: true
     belongs_to :posttable, polymorphic: true, touch: true

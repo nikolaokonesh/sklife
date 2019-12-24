@@ -1,9 +1,8 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= link_to url_for(blob), title: blob_file_name_helper(blob), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
-      <%= image_tag(blob.representation(resize_to_fit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'rounded') %>
+    <%= link_to url_for(blob.representation(resize_to_fit: [ 1400, 1068 ])), title: blob_file_name_helper(blob), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
+      <%= image_tag(blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 200, 130 ] : [ 600, 315 ]), class: 'rounded') %>
     <% end %>
-
   <% end %>
 
   <figcaption class="attachment__caption mt-1 bg-gray-300">

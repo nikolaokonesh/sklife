@@ -16,6 +16,12 @@ export default class extends Controller {
     const galleryWrapper = document.querySelector('.pswp')
 
     var options = {
+      shareEl: false,
+      captionEl: false,
+      barsSize: {top:0, bottom:0},
+      bgOpacity: 0.9,
+      tapToClose: true,
+      fullscreenEl: false,
       // we don't want browser history for or example for the sake of simplicity
       history: false,
       // and I'm assuming we have unique links in each gallery
