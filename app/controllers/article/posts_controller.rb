@@ -51,6 +51,8 @@ module Article
     def update
       if @post.user == current_user
         if @post.update(post_params)
+          @post.update(description: @post.body_post.to_plain_text.to_s[0..200])
+
           flash[:notice] = 'Пост успешно обновлен!'
         else
           render partial: 'error', post: @post, status: :bad_request
@@ -82,7 +84,7 @@ module Article
     end
 
     def post_params
-      params.require(:post).permit(:title, :body_post, :posttable_id, :no_comments, :top, :subscribe,
+      params.require(:post).permit(:title, :body_post, :description, :posttable_id, :no_comments, :top, :subscribe,
                                    youtubes_attributes: %i[id url user_id _destroy])
     end
   end

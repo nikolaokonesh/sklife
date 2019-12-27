@@ -1,5 +1,5 @@
-<% keywords truncate(strip_tags(@category.body.body.to_s), length: 100, omission: '').split.uniq.sort %>
-<% description truncate(strip_tags(@category.body.body.to_s), length: 200) %>
+<% keywords truncate(strip_tags(@category.description), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@category.description), length: 200) %>
 <% content_for :canonical_link, category_url(@category, subdomain: false) %>
 
 
@@ -21,7 +21,7 @@
     <div id="show-listed">
       <div class="pb-6">
         <div class="px-2" data-controller="gallery">
-          <%= @category.body if @category.body.present? %>
+          <%= @category.body if @category.description.present? %>
         </div>
 
         <% @category.youtubes.all.each do |tube| %>

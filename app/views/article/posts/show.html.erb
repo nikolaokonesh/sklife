@@ -1,5 +1,5 @@
-<% keywords truncate(strip_tags(@post.body_post.body.to_s), length: 100, omission: '').split.uniq.sort %>
-<% description truncate(strip_tags(@post.body_post.body.to_s), length: 200) %>
+<% keywords truncate(strip_tags(@post.description), length: 100, omission: '').split.uniq.sort %>
+<% description truncate(strip_tags(@post.description), length: 200) %>
 <% content_for :canonical_link, category_post_url(@post.posttable, @post, subdomain: false) %>
 
 <% content_for :titleise do %>
@@ -20,12 +20,12 @@
     <div class="p-2" data-controller="gallery">
       <% if @post.subscribe.present? %>
         <% if current_user_subscribed? %>
-          <%= @post.body_post if @post.body_post.present? %>
+          <%= @post.body_post %>
         <% else %>
           <%= render 'tarif', full: true %>
         <% end %>
       <% else %>
-        <%= @post.body_post if @post.body_post.present? %>
+        <%= @post.body_post %>
       <% end %>
     </div>
 

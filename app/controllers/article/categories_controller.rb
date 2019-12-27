@@ -80,6 +80,7 @@ module Article
     end
 
     def category_upgrade
+      @category.update(description: @category.body.to_plain_text.to_s[0..200])
       @category.update(upgrade: @category.updated_at)
       @category.posts.update_all(updated_at: @category.updated_at) if @category.posts.present?
       flash[:notice] = 'Пост успешно обновлен!'
@@ -90,7 +91,7 @@ module Article
     end
 
     def category_params
-      params.require(:category).permit(:title, :body, :no_data, :no_comments,
+      params.require(:category).permit(:title, :body, :description, :no_data, :no_comments,
                                        youtubes_attributes: %i[id url user_id _destroy])
     end
   end

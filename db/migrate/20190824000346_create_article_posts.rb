@@ -2,6 +2,7 @@ class CreateArticlePosts < ActiveRecord::Migration[6.0]
   def change
     create_table :article_posts do |t|
       t.string :title
+      t.string :description
       t.integer :posttable_id
       t.string :posttable_type
       t.boolean :no_comments

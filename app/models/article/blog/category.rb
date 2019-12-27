@@ -16,6 +16,13 @@ module Article
       def subscribe?
         false
       end
+
+      after_create :descript_create
+
+      def descript_create
+        update_attribute(:description, body.to_plain_text.to_s[0..200])
+        save!
+      end
     end
   end
 end

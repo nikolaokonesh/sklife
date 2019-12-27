@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_080218) do
 
   create_table "article_categories", force: :cascade do |t|
     t.string "title"
+    t.string "description"
     t.boolean "no_data"
     t.boolean "no_comments"
     t.datetime "upgrade"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_080218) do
 
   create_table "article_posts", force: :cascade do |t|
     t.string "title"
+    t.string "description"
     t.integer "posttable_id"
     t.string "posttable_type"
     t.boolean "no_comments"

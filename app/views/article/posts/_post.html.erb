@@ -1,10 +1,7 @@
 <% cache post do %>
-  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600 pt-3', id: "post_#{post.id}" do %>
+  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex hover:text-gray-600 pt-5', id: "post_#{post.id}" do %>
 
-    <% image = post.body_post.embeds.includes(:blob).find{|embeds| embeds.image?} %>
-    <% if image.present? %>
-      <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 300 ])) %>');"></div>
-    <% end %>
+    <%= image_helper(post) %>
 
     <div class="mt-4 md:mt-0 px-2">
       <% if post.type.present? && request.subdomain.blank? %>
@@ -27,9 +24,7 @@
           <%= sanitize(strip_tags(post.title)) %>
         </div>
       <% end %>
-      <% if post.body_post.body.present? %>
-        <p class="mt-2"><%= truncate(strip_tags(post.rich_text_body_post.to_s), length: 200, omission: '...') %></p>
-      <% end %>
+      <p class="mt-2"><%= truncate(strip_tags(post.description), length: 200, omission: '...') %></p>
       <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
 
       <div class="inline-flex items-center text-xs pl-2">
@@ -37,5 +32,5 @@
       </div>
     </div>
   <% end %>
-  <div class="border-b mt-3"></div>
+  <div class="border-b mt-5"></div>
 <% end %>

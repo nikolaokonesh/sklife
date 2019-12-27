@@ -2,6 +2,7 @@ class CreateArticleCategories < ActiveRecord::Migration[6.0]
   def change
     create_table :article_categories do |t|
       t.string :title
+      t.string :description
       t.boolean :no_data
       t.boolean :no_comments
       t.datetime :upgrade

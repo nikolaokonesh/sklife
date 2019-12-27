@@ -2,6 +2,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - 'app/assets/**/*'
+    - 'app/helpers/action_text/**/*'
     - 'app/javascript/**/*'
     - 'bin/**/*'
     - 'config/**/*'
