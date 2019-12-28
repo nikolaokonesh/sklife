@@ -7,7 +7,7 @@ module PostsHelper
   def post_first_image(image)
     html = <<-HTML
     <div class="h-48 lg:h-auto lg:w-48 lg:mr-3 flex-none bg-cover
-                lg:rounded-lg text-center overflow-hidden"
+                lg:rounded-lg text-center overflow-hidden imagin"
           style="background-image:
                 url('#{main_app.url_for(image.representation(resize_to_fill: [300, 300]))}');">
     </div>

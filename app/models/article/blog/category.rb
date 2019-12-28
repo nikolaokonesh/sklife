@@ -7,7 +7,7 @@ module Article
       include YoutubeConcern
 
       has_rich_text :body
-      validates :body, length: { maximum: 32_000 }
+      validates :body, length: { maximum: 100_000 }
 
       belongs_to :user, touch: true
       has_many :posts, as: :posttable, dependent: :destroy
