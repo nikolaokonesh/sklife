@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["opencomment"]
 
   connect() {
-    setTimeout(() => this.opencommentTarget.click(), 100 )
+    setTimeout(() => this.opencommentTarget.click(), 500 )
   }
 
 }

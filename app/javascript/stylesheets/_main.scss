@@ -41,7 +41,7 @@ input {
 }
 
 .btn {
-  @apply .bg-gray-300 .shadow .text-gray-700 .py-2 .px-4 .border-b-4 .border-blue-400 .rounded .no-underline;
+  @apply .bg-gray-300 .shadow .text-gray-700 .py-2 .px-4 .border-b-4 .border-blue-400 .no-underline;
   transition: $transition;
   &:hover,
   &:active,

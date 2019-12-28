@@ -1,5 +1,5 @@
 <div class="block w-full justify-center pt-4 pb-4">
-  <%= link_to book_url(book, subdomain: false), class: 'w-full lg:flex' do %>
+  <%= link_to book_url(book, subdomain: false), class: 'w-full lg:flex lg:p-2 lg:rounded-lg shadow hover:text-gray-800 pt-5 link_to_post' do %>
     <% if book.pages.any? %>
       <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
       <% if image.present? %>
@@ -38,4 +38,4 @@
     </div>
   <% end %>
 </div>
-<div class="border-b"></div>
+<div class="border-b lg:border-0"></div>
