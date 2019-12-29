@@ -37,7 +37,7 @@ module Market
         if @book.save
           flash[:notice] = 'Категория успешно добавлена!'
         else
-          render partial: 'error', book: @book, status: :bad_request
+          render partial: 'error', locals: { post: @book }, status: :bad_request
         end
       end
 
@@ -53,7 +53,7 @@ module Market
           if @book.update(book_params)
             flash[:notice] = 'Пост успешно обновлен!'
           else
-            render partial: 'error', book: @book, status: :bad_request
+            render partial: 'error', locals: { post: @book }, status: :bad_request
           end
         else
           redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'

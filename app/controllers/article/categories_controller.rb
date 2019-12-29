@@ -37,7 +37,7 @@ module Article
       if @category.save
         flash[:notice] = 'Категория успешно добавлена!'
       else
-        render partial: 'error', category: @category, status: :bad_request
+        render partial: 'error', locals: { post: @category }, status: :bad_request
       end
       authorize! :manage, @category
     end
@@ -55,7 +55,7 @@ module Article
         if @category.update(category_params)
           category_upgrade
         else
-          render partial: 'error', category: @category, status: :bad_request
+          render partial: 'error', locals: { post: @category }, status: :bad_request
         end
       else
         redirect_to root_url, alert: 'Ошибка. Вы не в своей странице!'

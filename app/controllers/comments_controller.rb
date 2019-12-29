@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       Notifications::CommentJob.perform_later(@commentable, current_user, @comment,
                                               @comment.commentable_type.underscore)
     else
-      render partial: 'error', comment: @comment, status: :bad_request
+      render partial: 'error', locals: { post: @comment }, status: :bad_request
     end
   end
 

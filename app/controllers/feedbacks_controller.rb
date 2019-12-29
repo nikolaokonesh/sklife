@@ -10,7 +10,7 @@ class FeedbacksController < ApplicationController
 
       # Notifications::FeedbackJob.perform_later(@admin, current_user, @feedback)
     else
-      render partial: 'error', feedback: @feedback, status: :bad_request
+      render partial: 'error', locals: { post: @feedback }, status: :bad_request
     end
   end
 

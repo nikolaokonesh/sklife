@@ -64,7 +64,7 @@ module Article
           @posttable.update(upgrade: @posttable.updated_at)
           flash[:notice] = 'Пост успешно добавлен!'
         else
-          render partial: 'error', post: @post, status: :bad_request
+          render partial: 'error', locals: { post: @post }, status: :bad_request
         end
       end
 

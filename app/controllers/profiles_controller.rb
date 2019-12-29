@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
       imaginear_flow_present
       flash[:notice] = 'Профиль успешно обновлен!'
     else
-      render partial: 'error', profile: @profile, status: :bad_request
+      render partial: 'error', locals: { post: @profile }, status: :bad_request
     end
   end
 

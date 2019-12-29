@@ -21,7 +21,7 @@ module Market
           if @page.save
             flash[:notice] = 'Страница успешно добавлена!'
           else
-            render partial: 'error', page: @page, status: :bad_request
+            render partial: 'error', locals: { post: @page }, status: :bad_request
           end
           authorize! :manage, @page
         end
@@ -40,7 +40,7 @@ module Market
             if @page.update(page_params)
               flash[:notice] = 'Страница успешно обновлена!'
             else
-              render partial: 'error', page: @page, status: :bad_request
+              render partial: 'error', locals: { post: @page }, status: :bad_request
             end
           else
             redirect_to root_url, alert: 'Ошибка. Вы не в своей добавленной книге!'

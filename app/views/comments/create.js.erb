@@ -7,7 +7,7 @@
 comments.insertAdjacentHTML('afterbegin', '<%=j render partial: "comments/comment", locals: { comment: @comment }, format: :html %>')
 var coloraddcomment = document.querySelector("#comment_<%= @comment.id %>")
 coloraddcomment.classList.add("bg-green-200")
-setTimeout(() => coloraddcomment.classList.toggle('bg-green-200'), 2000)
+setTimeout(() => coloraddcomment.classList.toggle('bg-green-200'), 800)
 
 var form = comments.parentElement.querySelector("form")
 form.reset()

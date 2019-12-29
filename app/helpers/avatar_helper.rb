@@ -17,7 +17,7 @@ module AvatarHelper
     return '' unless user.profile.fon.attached?
 
     html = <<-HTML
-    <span class="h-10 w-10 flex cursor-pointer shadow-lg rounded mr-1"
+    <span class="h-10 w-10 flex cursor-pointer shadow-lg mr-1"
     style="background: url('#{main_app.url_for(user.profile.fon.variant(resize_to_fill: [size, size]))}')
       no-repeat center;">
     </span>
