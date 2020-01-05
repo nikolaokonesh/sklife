@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:index, :new, :create, :show, :destroy] do
       resources :comments, module: :posts
     end
+    get 'search/index'
   end
 
   constraints(Subdomain) do

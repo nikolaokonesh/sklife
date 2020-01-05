@@ -1,0 +1,23 @@
+.search__results {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  top: -1px;
+  position: relative;
+}
+
+.search__result {
+  a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+  }
+}
+
+.search__result--current, .search__result:hover {
+  background: #e0e0e0;
+}
+
+.search__result--empty {
+  padding: 10px;
+}

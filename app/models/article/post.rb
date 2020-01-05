@@ -19,5 +19,8 @@ module Article
       update_attribute(:description, body_post.to_plain_text.to_s[0..200])
       save!
     end
+
+    scope :search, -> (title) { where("title ILIKE ?", "%#{title}%") }
+
   end
 end
