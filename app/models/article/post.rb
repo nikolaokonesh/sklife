@@ -20,7 +20,6 @@ module Article
       save!
     end
 
-    scope :search, -> (title) { where("title ILIKE ?", "%#{title}%") }
-
+    scope :search, ->(title) { where('title ILIKE ?', "%#{title}%") }
   end
 end

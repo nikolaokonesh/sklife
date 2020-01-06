@@ -1,0 +1,7 @@
+<ul class="search__results" data-controller="search-results">
+  <% if @book.any? %>
+    <%= render partial: "book", collection: @book %>
+  <% else %>
+    <li class="search__result search__result--empty text-red-500">Никаких результатов, попробуйте ещё...</li>
+  <% end %>
+</ul>

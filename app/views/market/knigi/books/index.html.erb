@@ -6,6 +6,14 @@
   </div>
 <% end %>
 
+<div class="w-full bg-gray-100 p-2 mb-5 shadow-inner rounded" data-controller="search" data-search-url="<%= booksearch_index_url %>">
+  <div class="flex items-center">
+    <%= icon('fas', 'search', class: 'text-gray-500 pr-2')%>
+    <%= text_field_tag :query, "", placeholder: "Введите название книги", class: "w-full placeholder-gray-600", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
+  </div>
+  <div data-target="search.results"></div>
+</div>
+
 <div class="block" id="books_index" data-turbolinks-permanent>
   <%= render partial: 'market/knigi/books/book', collection: @books %>
 </div>

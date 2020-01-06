@@ -1,5 +1,5 @@
 <% cache post do %>
-  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex lg:p-2 lg:rounded-lg bg-gray-100 shadow-lg hover:shadow-xl hover:text-gray-800 pt-5', id: "post_#{post.id}" do %>
+  <%= link_to main_app.url_for([post.posttable, post, subdomain: notification_target_helper(post)]), class: 'md:flex lg:p-2 lg:rounded-lg bg-gray-100 hover:shadow-inner hover:text-gray-800 pt-5', id: "post_#{post.id}" do %>
 
     <%= image_helper(post) %>
 

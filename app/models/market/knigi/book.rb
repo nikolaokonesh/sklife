@@ -16,6 +16,8 @@ module Market
       def publication
         'Не завершено' if public.blank?
       end
+
+      scope :search, ->(title) { where('title ILIKE ?', "%#{title}%") }
     end
   end
 end

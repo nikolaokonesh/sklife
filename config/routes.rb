@@ -43,6 +43,7 @@ Rails.application.routes.draw do
           get :fail
         end
       end
+      get 'booksearch/index'
       resources :library, path: 'market/library', only:[:index]
     end
   end
