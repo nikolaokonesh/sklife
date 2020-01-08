@@ -75,3 +75,4 @@ gem 'activestorage-validator'
 gem 'devise', github: 'plataformatec/devise'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
+gem 'aws-sdk-s3', '~> 1.60', '>= 1.60.1'

@@ -17,16 +17,16 @@ test:
   database: sklife_test
 
 default_production: &default_production
-  username: sklife
-  password: <%= ENV['SKLIFE_DATABASE_PASSWORD'] %>
+  username: <%= Rails.application.credentials.dig(:db, :user) %>
+  password: <%= Rails.application.credentials.dig(:db, :pass) %>
 
 production:
   primary:
     <<: *default
     <<: *default_production
-    database: sklife_production
+    database: <%= Rails.application.credentials.dig(:db, :base) %>
   primary_replica:
     <<: *default
     <<: *default_production
-    database: sklife_production
+    database: <%= Rails.application.credentials.dig(:db, :base) %>
     replica: true
