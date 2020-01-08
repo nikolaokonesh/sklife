@@ -1,7 +1,7 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= link_to url_for(blob.representation(resize_to_fit: [ 1400, 1068 ])), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
-      <%= image_tag(blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 300, 190 ] : [ 800, 600 ]), class: 'rounded') %>
+    <%= link_to url_for(blob), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
+      <%= image_tag(blob.representation(resize_to_fill: [ 300, 200 ]), class: 'rounded mx-auto') %>
     <% end %>
   <% end %>
 

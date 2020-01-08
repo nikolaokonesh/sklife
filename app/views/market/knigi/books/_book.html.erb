@@ -3,7 +3,7 @@
     <% if book.pages.any? %>
       <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
       <% if image.present? %>
-        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 300 ])) %>');"></div>
+        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 200 ])) %>');"></div>
       <% else %>
       <% end %>
     <% end %>

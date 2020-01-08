@@ -8,7 +8,7 @@
       <span class="text-gray-700">[Комментарий удален]</span>
     <% else %>
       <div class="flex items-center">
-        <%= image_tag user_avatar(comment.user, 38), class: 'rounded-full mr-1' %>
+        <%= image_tag user_avatar(comment.user), class: 'rounded-full mr-1' %>
         <div>
           <%= link_to comment.user.username, main_app.root_url(subdomain: comment.user.slug), class: 'link' %>
           <small class="text-gray-500">

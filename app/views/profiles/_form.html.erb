@@ -28,7 +28,7 @@
                 <%#= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer' %>
                 <%#= form.label :avatar_purge, 'Удалить' %>
               </div> -->
-              <%= user_avatar_helper(@user_agent, 40) %> Фото
+              <%= user_avatar_helper(@user_agent) %> Фото
             <% else %>
               <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фото</div>
             <% end %>
@@ -38,7 +38,7 @@
         <div class="inline mr-2">
           <%= form.label :fon do %>
             <% if @user_agent.profile.fon.attached? %>
-              <%= user_fon_helper(@user_agent, 40) %> фон
+              <%= user_fon_helper(@user_agent) %> фон
               <!-- <div class="float-left">
                 <%#= form.check_box :fon_purge, checked: false, class: 'cursor-pointer' %>
                 <%#= form.label :fon_purge, 'Удалить' %>

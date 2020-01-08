@@ -11,7 +11,7 @@
           <div class="md:flex">
             <div class="flex items-center justify-center">
               <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'flex items-center justify-center nav-link', title: current_user.username do %>
-                <%= user_avatar_helper(current_user, 40) %>
+                <%= user_avatar_helper(current_user) %>
                 <%= content_tag :span, current_user.username, class: 'hidden lg:flex' %>
               <% end %>
 

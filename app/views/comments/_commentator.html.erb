@@ -2,7 +2,7 @@
   <%= link_to commentator_url_helper(commentator), class: 'card--category bg-white rounded px-2 pt-2 shadow-lg flex flex-col justify-between leading-normal' do %>
     <div class="block">
       <div class="flex items-center">
-        <%= image_tag user_avatar(commentator.user, 38), class: 'rounded-full mr-1' %>
+        <%= image_tag user_avatar(commentator.user), class: 'rounded-full mr-1' %>
         <div>
           <%= commentator.user.username %>
           <span class="text-xs text-gray-500">
