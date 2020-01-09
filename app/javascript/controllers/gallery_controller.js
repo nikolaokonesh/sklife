@@ -17,7 +17,7 @@ export default class extends Controller {
 
     var options = {
       shareEl: false,
-      captionEl: false,
+      captionEl: true,
       barsSize: {top:0, bottom:0},
       bgOpacity: 0.9,
       tapToClose: true,

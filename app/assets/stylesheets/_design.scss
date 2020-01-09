@@ -37,6 +37,8 @@ html {
   transition-duration: 1s;
 }
 
-.pswp__top-bar, .pswp__caption {
-  background-color: rgba(0, 0, 0, 0) !important;
+.pswp__caption__center {
+  max-width: 100% !important;
+  text-align: center !important;
+  font-size: 10px !important;
 }

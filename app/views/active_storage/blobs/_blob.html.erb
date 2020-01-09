@@ -1,20 +1,40 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
-  <% if blob.representable? %>
-    <%= link_to url_for(blob), data: { action: 'gallery#onImageClick', target: 'gallery.picture' } do %>
-      <%= image_tag(blob.representation(resize_to_fill: [ 300, 200 ]), width: 300, height: 200, class: 'rounded mx-auto bg-gray-200') %>
+  <% if blob.image? %>
+    <%= link_to url_for(blob), title: "#{blob.try(:caption)} |
+                                       #{link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment")} |
+                                       #{number_to_human_size blob.byte_size} |",
+        data: {action: 'gallery#onImageClick', target: 'gallery.picture'} do %>
+      <%= image_tag(blob.representation(resize_to_fill: [ 300, 200 ]), width: 300, height: 200, class: 'rounded-t mx-auto bg-gray-200') %>
     <% end %>
   <% end %>
 
-  <figcaption class="attachment__caption mt-1 bg-gray-300">
+  <figcaption class="attachment__caption bg-gray-200 rounded-b">
     <% if caption = blob.try(:caption) %>
-      <%= caption %>
-    <% else %>
-      <% unless blob.representable? %>
-        <span class="attachment__name hover:text-red-500">
-          <%= link_to icon('fas', 'download', blob.filename), url_for(blob) %></span>
-        <span class="attachment__size">
-          <%= number_to_human_size blob.byte_size %></span>
+      <% if blob.image? %>
+        <div class="text-xs">
+          <%= caption %> | <%= link_to icon('fas', 'download', class: 'hover:text-red-500'), rails_blob_path(blob, disposition: "attachment") %> | <%= number_to_human_size blob.byte_size %>
+        </div>
+      <% else %>
+        <div class="p-2">
+          <%= caption %> |
+          <span class="hover:text-red-500">
+            <%= link_to icon('fas', 'download', blob.filename), rails_blob_path(blob, disposition: "attachment") %> </span>
+          | <%= number_to_human_size blob.byte_size %>
+        </div>
       <% end %>
+    <% else %>
+      <span class="attachment__name hover:text-red-500 text-xs">
+        <% if blob.image? %>
+          <%= link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment") %>
+        <% else %>
+          <div class="p-2 w-full">
+            <%= link_to icon('fas', 'download', blob.filename), rails_blob_path(blob, disposition: "attachment") %>
+          </div>
+        <% end %>
+      </span>
+      <span class="attachment__size text-xs">
+        <%= number_to_human_size blob.byte_size %>
+      </span>
     <% end %>
   </figcaption>
 </figure>
