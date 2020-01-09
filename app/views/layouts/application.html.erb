@@ -17,6 +17,14 @@
   </head>
 
   <body>
+    <% if yield(:fullpath).present? %>
+      <%= yield(:fullpath) %>
+    <% else %>
+      <script>
+        Appcontroller = "<%= request.original_fullpath %>"
+      </script>
+    <% end %>
+
     <%= render 'shared/notice' %>
 
     <%= yield(:content_body)%>

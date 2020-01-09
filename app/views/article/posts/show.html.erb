@@ -2,6 +2,12 @@
 <% description truncate(strip_tags(@post.description), length: 200) %>
 <% content_for :canonical_link, category_post_url(@post.posttable, @post, subdomain: false) %>
 
+<% content_for :fullpath do %>
+  <script>
+    Appcontroller = "<%= category_path(@post.posttable) %>"
+  </script>
+<% end %>
+
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">

@@ -1,3 +1,9 @@
+<% content_for :fullpath do %>
+  <script>
+    Appcontroller = "<%= category_path(@post.posttable) %>"
+  </script>
+<% end %>
+
 <% content_for :titleise do %>
   <h1>Изменить пост</h1>
 <% end %>
