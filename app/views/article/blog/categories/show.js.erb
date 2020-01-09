@@ -8,7 +8,7 @@
   pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
 
   var colore = document.querySelector(".open-posts-color-<%= postak %>")
-  setTimeout(() => colore.classList.toggle("bg-green-100"), 1000)
+  setTimeout(() => colore.classList.toggle("bg-blue-100"), 1000)
 <% end %>
 
 <% if params[:pagina] %>
@@ -21,7 +21,7 @@
   pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
 
   var colorecomments = document.querySelector(".open-comments-color-<%= postakcomm %>")
-  setTimeout(() => colorecomments.classList.toggle('bg-green-100'), 1000)
+  setTimeout(() => colorecomments.classList.toggle('bg-blue-100'), 1000)
 <% end %>
 
 <% if params[:open] %>

@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="px-2 mt-2">
-      <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+      <%= content_tag(:button, 'Сохранить', type: 'submit', disable_with: disable_helper('Сохранение'), class: 'btn') %>
       <%= link_to 'Отмена', @category, class: 'link ml-3' %>
     </div>
   <% end %>

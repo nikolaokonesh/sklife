@@ -16,7 +16,7 @@
   pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
 
   var colorecomments = document.querySelector(".open-comments-color-<%= postakcomm %>")
-  setTimeout(() => colorecomments.classList.toggle('bg-green-100'), 1000)
+  setTimeout(() => colorecomments.classList.toggle('bg-blue-100'), 1000)
 <% end %>
 
 <% if params[:open] %>
