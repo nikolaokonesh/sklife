@@ -13,7 +13,7 @@
       <%= content_tag :div, icon('fas', 'phone', sanitize(strip_tags(@user_agent.profile.phone))), class: 'inline-block text-shadow' if @user_agent.profile.phone.present? %>
       <% if @user_agent == current_user %>
         <div class="block mb-5">
-          <%= link_to icon("fas", "pen", "Изменить профиль"), main_app.edit_profile_path(@user_agent.profile), class: 'block text-sm text-gray-200 hover:text-white p-2', remote: true %>
+          <%= link_to icon("fas", "pen", "Изменить профиль"), main_app.edit_profile_path(@user_agent.profile), class: 'block text-sm text-gray-200 hover:text-white p-2', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
         </div>
       <% end %>
     </div>

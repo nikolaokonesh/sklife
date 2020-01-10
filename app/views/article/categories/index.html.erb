@@ -2,11 +2,11 @@
 
 <% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
   <div class="block mb-5" id="btn_hide">
-    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link pl-2', title: 'Добавить категорию', remote: true %>
+    <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
   </div>
 <% elsif user_signed_in? && current_user.admin? %>
   <div class="block mb-5" id="btn_hide">
-    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_category_path, class: 'link pl-2', title: 'Добавить категорию', remote: true %>
+    <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
   </div>
 <% end %>
 
