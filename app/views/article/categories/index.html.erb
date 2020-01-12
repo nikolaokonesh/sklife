@@ -1,15 +1,15 @@
 <% content_for :canonical_link, root_url(subdomain: false) %>
-
-<% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
-  <div class="block mb-5" id="btn_hide">
-    <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
-  </div>
-<% elsif user_signed_in? && current_user.admin? %>
-  <div class="block mb-5" id="btn_hide">
-    <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
-  </div>
-<% end %>
-
+<div class="pagination">
+  <% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
+    <div class="block mb-5" id="btn_hide">
+      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pg-link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+    </div>
+  <% elsif user_signed_in? && current_user.admin? %>
+    <div class="block mb-5" id="btn_hide">
+      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pg-link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+    </div>
+  <% end %>
+</div>
 
 <div class="w-full bg-gray-100 p-2 mb-5 mt-5 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
   <div class="flex items-center">

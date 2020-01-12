@@ -2,7 +2,7 @@
   <footer class="z-50 max-w-4xl mx-auto lg:flex items-center bottom-0 text-xs pb-24 pt-24 px-4 lg:px-10">
     <div class="flex items-center">
       <%= link_to root_url(subdomain: false) do %>
-        <div style="background-image: url('<%= image_path('logo-dark.png') %>')" class='flex logotip'></div>
+        <div style="background: url('<%= image_path('logo-dark.png') %>') no-repeat" class='flex px-24 py-5'></div>
       <% end %>
       <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-700 pr-2' %>
     </div>
