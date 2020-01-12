@@ -1,24 +1,15 @@
 <% content_for :canonical_link, root_url(subdomain: false) %>
-<div class="pagination">
+<div>
   <% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
     <div class="block mb-5" id="btn_hide">
-      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pg-link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
     </div>
   <% elsif user_signed_in? && current_user.admin? %>
     <div class="block mb-5" id="btn_hide">
-      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pg-link pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+      <%= link_to icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
     </div>
   <% end %>
 </div>
-
-<div class="w-full bg-gray-100 p-2 mb-5 mt-5 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
-  <div class="flex items-center">
-    <%= icon('fas', 'search', class: 'text-gray-500 pr-2')%>
-    <%= text_field_tag :query, "", placeholder: "Поиск статьи", class: "w-full placeholder-gray-600", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
-  </div>
-  <div data-target="search.results"></div>
-</div>
-
 
 <div id="categories-index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
