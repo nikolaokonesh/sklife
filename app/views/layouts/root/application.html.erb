@@ -25,11 +25,10 @@
         <%= yield %>
       </div>
       <div class="w-full lg:w-1/4 lg:ml-auto mt-12 lg:mt-0">
-        <%= active_link_to main_app.root_path, class: 'link', active: :exclusive do %>
-          <div class="menu flex">
-            <div class="w-full">Главное</div>
-            <div class="float-right"><%= icon('fas', 'search', class: 'text-gray-500 pr-2')%></div>
-
+        <%= active_link_to main_app.root_path, class: 'link w-full', active: :exclusive do %>
+          <div class="flex menu">
+            <div>Главное</div>
+            <%= link_to icon('fas', 'search', class: 'text-gray-500 pr-2'), '#', data: {action: "click->modal#open"} %>
           </div>
         <% end %>
         <%= yield(:menu) %>
