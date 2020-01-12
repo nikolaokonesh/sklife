@@ -1,6 +1,6 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.image? %>
-    <%= link_to url_for(blob), title: "#{link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment")} | #{number_to_human_size blob.byte_size} |",
+    <%= link_to url_for(blob), title: "#{link_to icon('fas', 'download', 'скачать'), rails_blob_path(blob, disposition: "attachment")} | #{number_to_human_size blob.byte_size}",
         data: {action: 'gallery#onImageClick', target: 'gallery.picture'} do %>
       <%= image_tag(blob.representation(resize_to_fill: [ 300, 200 ]), width: 300, height: 200, class: 'rounded-t mx-auto bg-gray-200') %>
     <% end %>
