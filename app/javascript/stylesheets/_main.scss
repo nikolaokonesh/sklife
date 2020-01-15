@@ -93,7 +93,6 @@ h1 {
 }
 
 .pagination {
-  @apply .mt-4;
   .pg-link {
     @apply .px-2 .py-1 .text-gray-700;
     &:hover {

@@ -1,7 +1,7 @@
 <% content_for :canonical_link, root_url(subdomain: false) %>
-<% link_to_new_category = link_to(icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pl-2 text-xl', title: 'Добавить категорию', remote: true, data: {disable_with: disable_helper('Загрузка...')}) %>
+<% link_to_new_category = link_to(icon('fas', 'plus', 'Добавить категорию'), main_app.new_category_path, class: 'pl-2 text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')}) %>
 
-<div>
+<div class="pagination">
   <% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
     <div class="block mb-5" id="btn_hide">
       <%= link_to_new_category %>
@@ -24,6 +24,6 @@
 <div id="categories-index" data-turbolinks-permanent>
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
-<div class='pagination' id="categories-index-paginate" data-turbolinks-permanent>
+<div class='pagination mt-4' id="categories-index-paginate" data-turbolinks-permanent>
   <%= pag_helper(@posts, 'Далее') %>
 </div>
