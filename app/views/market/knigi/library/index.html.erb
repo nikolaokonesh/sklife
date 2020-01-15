@@ -7,6 +7,6 @@
 <div id="library_index" data-turbolinks-permanent>
   <%= render partial: 'market/knigi/books/book', collection: @library_books %>
 </div>
-<div class='text-center pagination' id="library_index_paginate" data-turbolinks-permanent>
+<div class='pagination mt-4' id="library_index_paginate" data-turbolinks-permanent>
   <%= pag_helper(@library_books, 'Далее') %>
 </div>

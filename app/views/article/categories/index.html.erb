@@ -16,7 +16,7 @@
 <div class="w-full bg-gray-100 p-2 mb-5 mt-5 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
   <div class="flex items-center">
     <%= icon('fas', 'search', class: 'text-gray-500 pr-2')%>
-    <%= text_field_tag :query, "", placeholder: "Введите слово", class: "w-full placeholder-gray-600", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
+    <%= text_field_tag :query, "", placeholder: "Введите слово", class: "w-full placeholder-gray-600 focus:placeholder-gray-400", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
   </div>
   <div data-target="search.results"></div>
 </div>
