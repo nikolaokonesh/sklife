@@ -30,7 +30,7 @@
     <%= yield(:content_body)%>
 
     <% cache "footer_v1" do %>
-      <%= render('shared/footer', color: 'inline-block text-gray-600 hover:text-gray-700 pr-2') %>
+      <%= render('shared/footer', color: 'inline-block link pr-2') %>
     <% end %>
 
     <%= render 'shared/photoswipe' %>
