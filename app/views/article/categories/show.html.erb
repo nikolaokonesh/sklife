@@ -36,7 +36,7 @@
           </div>
         <% end %>
         <% if @category.user == current_user %>
-          <div class="mb-4 pagination" id="btn_hide">
+          <div class="my-4 pagination" id="btn_hide">
             <%= link_to icon('fas', 'plus', 'Добавить вложенную страницу'), main_app.new_category_post_path(@category), class: 'link text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
           </div>
         <% end %>

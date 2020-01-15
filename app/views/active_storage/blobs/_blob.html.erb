@@ -1,6 +1,6 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.image? %>
-    <%= link_to url_for(blob), title: "#{link_to icon('fas', 'download', 'скачать'), rails_blob_path(blob, disposition: "attachment")} | #{number_to_human_size blob.byte_size}",
+    <%= link_to url_for(blob), title: number_to_human_size(blob.byte_size),
         data: {action: 'gallery#onImageClick', target: 'gallery.picture'} do %>
       <%= image_tag(blob.representation(resize_to_fill: [ 300, 200 ]), width: 300, height: 200, class: 'rounded-t mx-auto bg-gray-200') %>
     <% end %>
@@ -10,7 +10,7 @@
     <% if caption = blob.try(:caption) %>
       <% if blob.image? %>
         <div class="text-xs">
-          <%= caption %> | <%= link_to icon('fas', 'download', class: 'hover:text-red-500'), rails_blob_path(blob, disposition: "attachment") %> | <%= number_to_human_size blob.byte_size %>
+          <%= caption %>
         </div>
       <% else %>
         <div class="p-2">
@@ -23,15 +23,15 @@
     <% else %>
       <span class="attachment__name hover:text-red-500 text-xs">
         <% if blob.image? %>
-          <%= link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment") %>
+          <%#= link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment") %>
         <% else %>
           <div class="p-2 w-full">
             <%= link_to icon('fas', 'download', blob.filename), rails_blob_path(blob, disposition: "attachment") %>
+          <span class="attachment__size text-xs">
+            <%= number_to_human_size blob.byte_size %>
+          </span>
           </div>
         <% end %>
-      </span>
-      <span class="attachment__size text-xs">
-        <%= number_to_human_size blob.byte_size %>
       </span>
     <% end %>
   </figcaption>
