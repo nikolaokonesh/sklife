@@ -13,10 +13,10 @@
   <% if yield(:canonical_link).present? %>
     <%= stylesheet_link_tag yield(:canonical_link), rel: "canonical", media: nil %>
   <% end %>
-  <%= favicon_link_tag 'icon.ico' %>
+  <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
-  <body data-controller="modal" data-modal-allow-background-close="false">
+  <body>
     <% if yield(:fullpath).present? %>
       <%= yield(:fullpath) %>
     <% else %>
