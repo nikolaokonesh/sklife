@@ -4,29 +4,15 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
 
 development:
-  primary:
-    <<: *default
-    database: sklife_development
-  primary_replica:
-    <<: *default
-    database: sklife_development
-    replica: true
+  <<: *default
+  database: sklife_development
 
 test:
   <<: *default
   database: sklife_test
 
-default_production: &default_production
+production:
+  <<: *default
   username: <%= Rails.application.credentials.dig(:db, :user) %>
   password: <%= Rails.application.credentials.dig(:db, :pass) %>
-
-production:
-  primary:
-    <<: *default
-    <<: *default_production
-    database: <%= Rails.application.credentials.dig(:db, :base) %>
-  primary_replica:
-    <<: *default
-    <<: *default_production
-    database: <%= Rails.application.credentials.dig(:db, :base) %>
-    replica: true
+  database: <%= Rails.application.credentials.dig(:db, :base) %>
