@@ -22,7 +22,8 @@
         <%= form.check_box :public, class: 'my-4' %>
         <%= form.label :public, 'Опубликовать' %>
         <br/>
-        <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+        <%= render 'application/upload_progress' %>
+        <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'btn') %>
         <%= link_to 'Отмена', [@book, anchor: :vid], class: 'link' %>
       </div>
     <% end %>

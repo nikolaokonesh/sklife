@@ -12,7 +12,8 @@
     </div>
 
     <div class="px-2 mt-4">
-      <%= content_tag(:button, 'Сохранить', type: 'submit', data: {disable_with: disable_helper('Сохранение')}, class: 'btn') %>
+      <%= render 'application/upload_progress' %>
+      <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'btn') %>
     </div>
   <% end %>
 </div>
