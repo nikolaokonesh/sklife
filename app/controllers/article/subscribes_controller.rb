@@ -56,7 +56,7 @@ module Article
       if status.amount == (summ_short_month + '00').to_i
         1.month
       elsif status.amount == (summ_long_month + '00').to_i
-        12.month
+        6.month
       end
     end
 

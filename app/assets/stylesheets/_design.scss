@@ -39,3 +39,43 @@ html {
   text-align: center !important;
   font-size: 10px !important;
 }
+
+.base-loader__circle,
+.base-loader__img {
+  position:absolute;
+  top:50%;
+  left:50%;
+  font-size:8px
+}
+.base-loader__img {
+  width: 50px;
+  height: 48px;
+  margin-top: -27px;
+  margin-left: -28px;
+  background-image: asset_url("logo-sberbank-mini.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.base-loader__circle {
+  opacity: .6;
+  width: 70px;
+  height: 70px;
+  margin-top: -39px;
+  margin-left: -38px;
+  transform: translateZ(0);
+  animation: c 1s infinite linear;
+  text-indent: -9999em;
+  border-top: 4px solid hsla(0,0%,65%,.4);
+  border-right: 4px solid hsla(0,0%,65%,.4);
+  border-bottom: 4px solid hsla(0,0%,65%,.4);
+  border-left: 4px solid #5cb85c;
+  border-radius: 50%;
+}
+@keyframes c {
+ 0% {
+  transform:rotate(0deg)
+ }
+ to {
+  transform:rotate(1turn)
+ }
+}

@@ -1,0 +1,16 @@
+<div class='upload-progress fixed top-0 left-0 w-full h-full inset-0 overflow-y-auto flex items-center justify-center text-white' style="background-color: rgba(255, 255, 255, 0.9); z-index: 9998; display: none;" data-controller='pay-progress'>
+  <%# if user_signed_in? %>
+    <div class='spinner' data-target='pay-progress.spinner'>
+    </div>
+    <div class='done-indicator' data-target='pay-progress.done' style="display: none;">
+      <div class="base-loader__img"></div>
+    </div>
+    <div class="upload-comment" data-target='pay-progress.comment'>
+      <div class="base-loader__circle"></div>
+    </div>
+  <%# else %>
+    <!-- <div class="upload-comment" data-target='pay-progress.comment'>
+      Войдите или зарегистрируйтесь
+    </div> -->
+  <%# end %>
+</div>

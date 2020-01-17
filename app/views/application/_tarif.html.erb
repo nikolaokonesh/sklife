@@ -1,3 +1,5 @@
+<% user_signed_in? ? remotion = true : remotion = false %>
+
 <div class="flex flex-wrap rounded-t mb-10">
   <div class="w-full max-w-md mx-auto text-center">
     <h1 class="font-bold text-yellow-500">
@@ -19,12 +21,12 @@
                 <%= summ_short_month %><span class="text-3xl"><%= icon('fas', 'ruble-sign') %></span>
                 <span class="text-green-700 text-base block">1 месяц</span>
               </div>
-
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow pb-8">
               <div class="flex items-center justify-center">
-                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_short_month+"00").to_i), method: :post do |f| %>
-                  <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_short_month+"00").to_i), method: :post, remote: remotion do |f| %>
+                  <%= render 'application/pay_progress' %>
+                  <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit') do %>
                       <div class="w-full text-xl font-bold text-center">
                         Оформить
                       </div>
@@ -37,13 +39,14 @@
             <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
               <div class="pt-8 text-3xl font-bold text-center">
                 <%= summ_long_month %><span class="text-base"> <%= icon('fas', 'ruble-sign') %></span>
-                <span class="text-green-500 text-base block">Целый год</span>
+                <span class="text-green-500 text-base block">Пол года</span>
               </div>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow pb-8">
               <div class="flex items-center justify-center">
-                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_long_month+"00").to_i), method: :post do |f| %>
-                  <%= content_tag(:button, class: 'bg-green-500 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit', data: {disable_with: disable_helper('Переход в Сбербанк Онлайн')}) do %>
+                <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_long_month+"00").to_i), method: :post, remote: remotion do |f| %>
+                  <%= render 'application/pay_progress' %>
+                  <%= content_tag(:button, class: 'bg-green-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit') do %>
                       <div class="w-full text-lg font-bold text-center">
                         Оформить
                       </div>
