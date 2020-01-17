@@ -26,7 +26,7 @@
               <div class="flex items-center justify-center">
                 <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_short_month+"00").to_i), method: :post, remote: remotion do |f| %>
                   <%= render 'application/pay_progress' %>
-                  <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit') do %>
+                  <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit') do %>
                       <div class="w-full text-xl font-bold text-center">
                         Оформить
                       </div>
@@ -46,7 +46,7 @@
               <div class="flex items-center justify-center">
                 <%= form_for :subscribe, url: main_app.subscribes_url(amountorub: (summ_long_month+"00").to_i), method: :post, remote: remotion do |f| %>
                   <%= render 'application/pay_progress' %>
-                  <%= content_tag(:button, class: 'bg-green-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 rounded-lg border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit') do %>
+                  <%= content_tag(:button, class: 'bg-green-600 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 border-t-4 border-b-4 border-green-200 hover:border-green-300', type: 'submit') do %>
                       <div class="w-full text-lg font-bold text-center">
                         Оформить
                       </div>
