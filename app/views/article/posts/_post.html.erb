@@ -6,7 +6,6 @@
     <div class="mt-4 md:mt-0 px-2">
       <% if post.type.present? && request.subdomain.blank? %>
         <div class="ml-2 flex items-center">
-          <div class="flex"><%= user_avatar_helper(post.user) %></div>
           <div>
             <div class="text-gray-500">
               <%= post.user.name_full %>
