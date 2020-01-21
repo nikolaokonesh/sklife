@@ -15,7 +15,7 @@ Rails.application.configure do
     password: Rails.application.credentials.dig(:yandex, :pass),
     domain: config.app_domain
   }
-  config.hosts << /[a-z0-9]+\.sklife\.ru/
+  config.hosts << '.sklife.ru'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
