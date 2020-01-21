@@ -6,9 +6,9 @@ require "capistrano/deploy"
 require 'capistrano/bundler'
 require 'capistrano/rails'
 require 'capistrano/rails/collection'
-require 'whenever/capistrano'
+# require 'whenever/capistrano'
 require 'capistrano/rbenv'
-require 'capistrano/sitemap_generator'
+# require 'capistrano/sitemap_generator'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.0'
