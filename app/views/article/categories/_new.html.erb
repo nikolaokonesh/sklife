@@ -2,12 +2,12 @@
   <div class="mb-4">
 
     <% if request.subdomain.present? && @user_agent.categories.blank? %>
-      <div class="text-gray-600">
+      <div class="text-gray-600 px-2">
         Категория - это ваше меню навигации, создавайте "Новости", "Контакты" и то, что вам необходимо. Наполняйте категорию вложенными страницами, они будут отображены на главной странице.
       </div>
-      <div class="text-3xl pb-2">Создайте свою первую категорию</div>
+      <div class="text-3xl pb-2 px-2">Создайте свою первую категорию</div>
     <% else %>
-      <div class="text-3xl pb-2">Новая категория</div>
+      <div class="text-3xl pb-2 px-2">Новая категория</div>
     <% end %>
     <%= render 'form', category: @category %>
   </div>
