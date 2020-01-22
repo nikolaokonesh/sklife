@@ -1,7 +1,7 @@
 module AvatarHelper
   def user_avatar(user, size = 40)
     if user.profile.avatar.attached?
-      main_app.url_for(user.profile.avatar.variant(resize_to_fill: [size, size]))
+      url_for(user.profile.avatar.variant(resize_to_fill: [size, size]))
     else
       gravatar_image_url(user.email, size: size)
     end
@@ -18,7 +18,7 @@ module AvatarHelper
 
     html = <<-HTML
     <span class="h-10 w-10 flex cursor-pointer shadow-lg mr-1"
-    style="background: url('#{main_app.url_for(user.profile.fon.variant(resize_to_fill: [size, size]))}')
+    style="background: url('#{url_for(user.profile.fon.variant(resize_to_fill: [size, size]))}')
       no-repeat center;">
     </span>
     HTML
