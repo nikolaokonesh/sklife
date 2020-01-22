@@ -1,6 +1,6 @@
 import {Controller} from "stimulus"
-import * as PhotoSwipe from "photoswipe"
-import * as PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default"
+import PhotoSwipe from "photoswipe"
+import PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default"
 
 export default class extends Controller {
   static targets = ['picture']
