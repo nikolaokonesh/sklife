@@ -19,6 +19,7 @@ if (process.env.RAILS_ENV === "production") {
     require('@fullhuman/postcss-purgecss')({
       content: [
         './app/**/*.html.erb',
+        './app/**/*.js.erb',
         './app/helpers/**/*.rb',
         './app/javascript/**/*.js',
         // './app/javascript/**/*.vue',
