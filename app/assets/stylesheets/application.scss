@@ -19,3 +19,7 @@
 // @import "font-awesome/stacked";
 @import "icons";
 // @import "font-awesome/screen-reader";
+
+$pswp__assets-path: "photoswipe/src/css/default-skin/";
+@import "photoswipe/src/css/main";
+@import "photoswipe/src/css/default-skin/default-skin";
