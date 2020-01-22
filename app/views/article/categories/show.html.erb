@@ -44,7 +44,7 @@
 
       <div id="cate-show-<%= @category.id %>-<%= (@category.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
         <div class="block" id="categories-show-columns">
-          <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
+          <%= render partial: 'article/posts/post', collection: @posts %>
         </div>
         <div class="block pagination my-4" id="categories-show-paginator">
           <%= pag_helper(@posts, 'Далее') %>

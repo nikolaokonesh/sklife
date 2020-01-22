@@ -1,12 +1,10 @@
-<% cache post_small do %>
-  <%= link_to [post_small.posttable, post_small], class: 'block text-xs hover:text-gray-600 p-2 border-b' do %>
-    <span class="text-sm leading-tight">
-      <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post_small.subscribe == true %>
-      <%= sanitize(strip_tags(post_small.title)) %>
-    </span>
-    <span class="text-xs pl-2">
-      <%= content_tag :span, icon('fas', 'comment-dots', post_small.comments.count), class: 'pr-2' if post_small.comments.present? %>
-      <span class="bg-gray-200 inline-block px-1 rounded"><%= time_tag(post_small.created_at, :format=>'%d %B %Y г.') %></span>
-    </span>
-  <% end %>
+<%= link_to [post_small.posttable, post_small], class: 'block text-xs hover:text-gray-600 p-2 border-b' do %>
+  <span class="text-sm leading-tight">
+    <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post_small.subscribe == true %>
+    <%= sanitize(strip_tags(post_small.title)) %>
+  </span>
+  <span class="text-xs pl-2">
+    <%= content_tag :span, icon('fas', 'comment-dots', post_small.comments.count), class: 'pr-2' if post_small.comments.present? %>
+    <span class="bg-gray-200 inline-block px-1 rounded"><%= time_tag(post_small.created_at, :format=>'%d %B %Y г.') %></span>
+  </span>
 <% end %>

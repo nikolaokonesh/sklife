@@ -56,7 +56,7 @@
   <% if @posts.present? %>
     <div id="category-post-show-<%= @post.posttable.id %>" data-turbolinks-permanent>
       <div class="w-full" id="categories-show-columns">
-        <%= render partial: 'post_small', collection: @posts, cached: true %>
+        <%= render partial: 'post_small', collection: @posts %>
       </div>
       <div class="block pagination my-4" id="categories-show-paginator">
         <%= pag_helper(@posts, 'Далее') %>

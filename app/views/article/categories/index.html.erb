@@ -22,7 +22,7 @@
 </div>
 
 <div id="categories-index" data-turbolinks-permanent>
-  <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
+  <%= render partial: 'article/posts/post', collection: @posts %>
 </div>
 <div class='pagination mt-4' id="categories-index-paginate" data-turbolinks-permanent>
   <%= pag_helper(@posts, 'Далее') %>
