@@ -12,8 +12,7 @@
     "stimulus": "^1.1.1",
     "tailwindcss": "^1.1.4",
     "trix": "^1.2.2",
-    "turbolinks": "^5.2.0",
-    "webextension-polyfill": "^0.6.0"
+    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {

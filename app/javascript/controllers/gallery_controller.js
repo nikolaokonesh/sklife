@@ -16,18 +16,20 @@ export default class extends Controller {
     const galleryWrapper = document.querySelector('.pswp')
 
     var options = {
-      shareEl: false,
-      captionEl: true,
-      barsSize: {top:0, bottom:0},
-      bgOpacity: 0.85,
-      tapToClose: true,
-      fullscreenEl: false,
+      // shareEl: false,
+      // captionEl: true,
+      // barsSize: {top:0, bottom:0},
+      // bgOpacity: 0.85,
+      // tapToClose: true,
+      // fullscreenEl: false,
       // we don't want browser history for or example for the sake of simplicity
       history: false,
       // and I'm assuming we have unique links in each gallery
       index: this.items.findIndex(item => item.src === event.currentTarget.getAttribute('href'))
     }
+
     var gallery = new PhotoSwipe(galleryWrapper, PhotoSwipeUI_Default, this.items, options)
+
     // PhotoSwipe requires width and height do be declared up-front
     // let's work around that limitation, references:
     // https://github.com/dimsemenov/PhotoSwipe/issues/741#issuecomment-430725838
