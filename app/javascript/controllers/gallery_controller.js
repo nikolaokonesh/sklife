@@ -22,6 +22,7 @@ export default class extends Controller {
       bgOpacity: 0.85,
       tapToClose: true,
       fullscreenEl: false,
+      preload: [1,3],
       // we don't want browser history for or example for the sake of simplicity
       history: false,
       // and I'm assuming we have unique links in each gallery

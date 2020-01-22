@@ -3,7 +3,7 @@
 
 <div class="pagination">
   <% if user_signed_in? && request.subdomain.present? && @user_agent == current_user %>
-    <div class="block mb-5" id="btn_hide">
+    <div class="block my-5" id="btn_hide">
       <%= link_to_new_category %>
     </div>
   <% elsif user_signed_in? && current_user.admin? %>
