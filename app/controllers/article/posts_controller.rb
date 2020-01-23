@@ -84,7 +84,7 @@ module Article
     end
 
     def post_params
-      params.require(:post).permit(:title, :body_post, :description, :posttable_id, :no_comments, :top, :subscribe,
+      params.require(:post).permit(:title, :body_post, :description, :posttable_id, :no_data, :no_comments, :top, :subscribe,
                                    youtubes_attributes: %i[id url user_id _destroy])
     end
   end

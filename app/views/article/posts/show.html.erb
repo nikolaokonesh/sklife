@@ -42,9 +42,11 @@
     <% end %>
 
     <div class="block my-4 px-2">
-      <div class="float-right inline-block text-sm text-gray-600">
-        Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
-      </div>
+      <% if @post.no_data.blank? %>
+        <div class="float-right inline-block text-sm text-gray-600">
+          Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
+        </div>
+      <% end %>
       <div class="inline-block">
         <%#= link_to icon('fas', 'chevron-left fa-2x'), url_for(@post.posttable), class: 'text-gray-dark hover:text-gray-darker' %>
       </div>

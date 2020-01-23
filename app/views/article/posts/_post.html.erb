@@ -25,9 +25,11 @@
     <p class="mt-2"><%= truncate(strip_tags(post.description), length: 200, omission: '...') %></p>
     <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
 
-    <div class="inline-flex items-center text-xs pl-2">
-      <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
-    </div>
+    <% if post.no_data.blank? %>
+      <div class="inline-flex items-center text-xs pl-2">
+        <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 <div class="border-b mt-5"></div>

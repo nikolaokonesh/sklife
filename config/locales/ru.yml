@@ -65,6 +65,7 @@ ru:
         slug: "Ссылка"
         type: "Тип"
         subscribe: "По подписке"
+        no_data: "Не показывать дату публикации"
         no_comments: "Разрешить комментарии"
       feedback:
         message: "Содержание"

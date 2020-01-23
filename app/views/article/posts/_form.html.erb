@@ -29,19 +29,28 @@
     </div>
     <div class="px-2">
       <% if request.subdomain.blank? %>
-        <%= form.check_box :subscribe %>
-        <%= form.label :subscribe %>
+        <div class="block">
+          <%= form.check_box :subscribe %>
+          <%= form.label :subscribe %>
+        </div>
       <% end %>
-      <%= form.check_box :no_comments %>
-      <%= form.label :no_comments %>
-
+      <div class="block my-2">
+        <%= form.check_box :no_comments %>
+        <%= form.label :no_comments %>
+      </div>
+      <div class="block">
+        <%= form.check_box :no_data %>
+        <%= form.label :no_data %>
+      </div>
       <% if request.subdomain.blank? %>
         <div hidden>
           <%= form.check_box :top, checked: true %>
         </div>
       <% else %>
-        <%= form.check_box :top %>
-        <%= form.label :top %>
+        <div class="block mt-2">
+          <%= form.check_box :top %>
+          <%= form.label :top %>
+        </div>
       <% end %>
     </div>
     <%= render 'application/upload_progress' %>
