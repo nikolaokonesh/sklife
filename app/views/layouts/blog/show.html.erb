@@ -1,11 +1,15 @@
 <% content_for :header do %>
   <div class="w-full pb-24" style="<%= background_helper(@user_agent) %>">
     <div class="flex flex-wrap">
-      <div class="z-50 container max-w-3xl mx-auto">
-        <%= render 'shared/navbar' %>
+      <div class="w-full">
+        <div class="z-50 container max-w-3xl mx-auto">
+          <%= render 'shared/navbar' %>
+        </div>
       </div>
-      <div class="container max-w-2xl mx-auto lg:ml-48 pt-1">
-        <%= render 'shared/profile_mini' %>
+      <div class="w-full">
+        <div class="container max-w-2xl mx-auto l-3 pt-1">
+          <%= render 'shared/profile_mini' %>
+        </div>
       </div>
     </div>
   </div>

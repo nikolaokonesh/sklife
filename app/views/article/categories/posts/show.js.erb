@@ -2,7 +2,7 @@
   var colum = document.querySelector("#categories-show-columns")
   var pagin = document.querySelector("#categories-show-paginator")
 
-  colum.innerHTML += ('<%= j render(partial: "post_small", collection: @posts) %>')
+  colum.innerHTML += ('<%= j render(partial: "post_small", collection: @posts, cached: true) %>')
   pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
 <% end %>
 

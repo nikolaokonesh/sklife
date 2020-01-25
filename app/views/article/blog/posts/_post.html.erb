@@ -1,5 +1,5 @@
-<% cache post do %>
-  <%= link_to main_app.category_post_path(post.posttable, post), class: 'md:flex lg:rounded-lg hover:text-blue-700 lg:pt-5', id: "post_#{post.id}" do %>
+<% cache [post, sluga = post.user.slug] do %>
+  <%= link_to main_app.category_post_url(post.posttable, post, subdomain: sluga), class: 'md:flex lg:rounded-lg hover:text-blue-700 lg:pt-5', id: "post_#{post.id}" do %>
 
     <%= image_helper(post) %>
 
