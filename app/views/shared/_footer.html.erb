@@ -3,7 +3,9 @@
     <div class="flex items-center">
       <%= link_to root_url(subdomain: false) do %>
         <div class='flex'>
-         <%= render 'shared/logo_dark_svg' %>
+          <% cache "logo_dark_svg_v1" do %>
+            <%= render 'shared/logo_dark_svg' %>
+          <% end %>
         </div>
       <% end %>
       <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-700 pr-2' %>
