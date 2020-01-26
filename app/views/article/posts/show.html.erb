@@ -11,11 +11,11 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
-      <%= link_to icon('fas', 'chevron-left', sanitize(strip_tags(@post.posttable.title))), url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
       <div class="inline text-3xl leading-tight"><%= title sanitize(strip_tags(@post.title)) %></div>
       <div class="inline-block text-sm">
-        <%= link_to icon('fas', 'pen'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
-        <%= link_to icon('fas', 'trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>
+        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
+        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true if @post.user == current_user %>
       </div>
     </div>
   </div>
@@ -47,9 +47,6 @@
           Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
         </div>
       <% end %>
-      <div class="inline-block">
-        <%#= link_to icon('fas', 'chevron-left fa-2x'), url_for(@post.posttable), class: 'text-gray-dark hover:text-gray-darker' %>
-      </div>
     </div>
   </div>
 </div>
@@ -94,7 +91,7 @@
           <div class="d-block" id="comments-show-columns">
             <div id="open_comments" class="mt-4">
               <div data-controller="comments">
-                <%= icon('fas', 'spinner fa-pulse', 'Загрузка комментариев') %>
+                Загрузка комментариев...
                 <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "comments.opencomment"} do %>
                 <% end %>
               </div>

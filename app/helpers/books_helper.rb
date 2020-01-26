@@ -16,6 +16,6 @@ module BooksHelper
   end
 
   def user_view_page(user, page)
-    icon('fas', 'check', title: 'Прочтено', class: 'text-xs') if user.views.where(page: page).any?
+    icon_svg('check.svg', class: 'svg-default') if user.views.where(page: page).any?
   end
 end

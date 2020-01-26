@@ -1,9 +1,5 @@
 <% content_for :canonical_link, books_url(subdomain: false) %>
 
-<% if user_signed_in? %>
-  <%= link_to icon('fas', 'plus fa-2x'), main_app.new_book_path, class: 'link float-right', title: 'Добавить книгу' if current_user.admin? %>
-<% end %>
-
 <div id="library_index" data-turbolinks-permanent>
   <%= render partial: 'market/knigi/books/book', collection: @library_books %>
 </div>

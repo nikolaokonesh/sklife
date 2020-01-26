@@ -1,0 +1,31 @@
+.svg {
+  display: inline;
+  margin: 0 auto;
+  width: 1.5em;
+  height: 1.52em;
+}
+
+.svg-default {
+  @extend .svg;
+  fill: #BBB9B9;
+}
+
+.svg-white {
+  @extend .svg;
+  fill: #F6F6F6;
+}
+
+.svg-edit {
+  @extend .svg;
+  fill: #826ee8;
+  &:hover {
+    fill: #2a00ff;
+  }
+}
+.svg-trash {
+  @extend .svg;
+  fill: #F77777;
+  &:hover {
+    fill: #F90000;
+  }
+}

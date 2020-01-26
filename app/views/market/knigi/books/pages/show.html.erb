@@ -9,8 +9,8 @@
         <span class="d-inline-block">
           <%= title sanitize(strip_tags(@page.title)) %>
           <div class="inline-block">
-            <%= link_to icon('fas', 'pen'), edit_book_page_path(@page.commentable, @page, anchor: :vid), title: "Редактировать", class: 'link mx-1 text-xs' if @page.commentable.user == current_user %>
-            <%= link_to icon('fas', 'trash'), [@page.commentable, @page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true if @page.commentable.user == current_user %>
+            <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_page_path(@page.commentable, @page, anchor: :vid), title: "Редактировать", class: 'link mx-1 text-xs' if @page.commentable.user == current_user %>
+            <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@page.commentable, @page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true if @page.commentable.user == current_user %>
           </div>
         </span>
       </h1>
@@ -34,9 +34,9 @@
 
 <div class="w-full mt-5">
   <% if @page.prev(@page) %>
-    <%= link_to icon('fas', 'chevron-left fa-2x'), [@page.commentable, @page.prev(@page)], class: 'float-left hover:text-blue-600' %>
+    <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-edit'), [@page.commentable, @page.prev(@page)], class: 'float-left hover:text-blue-600' %>
   <% end %>
   <% if @page.next(@page) %>
-    <%= link_to icon('fas', 'chevron-right fa-2x'), [@page.commentable, @page.next(@page)], class: 'float-right hover:text-blue-600' %>
+    <%= link_to icon_svg('chevron-thin-right.svg', class: 'svg-edit'), [@page.commentable, @page.next(@page)], class: 'float-right hover:text-blue-600' %>
   <% end %>
 </div>

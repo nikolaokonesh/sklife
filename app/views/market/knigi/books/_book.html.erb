@@ -26,7 +26,7 @@
           <% if current_user.libraries.where(book: book).any? %>
             <div class="block lg:inline-block lg:p-3 pb-2 text-sm">
               <% if views_pages_helper(book, current_user) == book.pages.count %>
-                <%= icon('fas', 'check', class: 'text-green-500') %>
+                <%= icon_svg('check.svg', class: 'svg-default') %>
               <% else %>
                 Прочтено
               <% end %>

@@ -1,14 +1,14 @@
 <% content_for :canonical_link, books_url(subdomain: false) %>
 
 <% if user_signed_in? %>
-  <div class="block">
-    <%= link_to icon('fas', 'plus fa-2x'), main_app.new_book_path, class: 'link pl-2', title: 'Добавить книгу' if current_user.admin? %>
+  <div class="block pagination p-5">
+    <%= link_to 'Добавить книгу', main_app.new_book_path, class: 'pg-link pl-2 text-xl' if current_user.admin? %>
   </div>
 <% end %>
 
 <div class="w-full bg-gray-100 p-2 mb-4 mt-4 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= booksearch_index_url %>">
   <div class="flex items-center">
-    <%= icon('fas', 'search', class: 'text-gray-500 pr-2')%>
+    <%= icon_svg('search.svg', class: 'svg-default pr-1') %>
     <%= text_field_tag :query, "", placeholder: "Введите название книги", class: "w-full placeholder-gray-600", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
   </div>
   <div data-target="search.results"></div>

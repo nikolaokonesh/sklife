@@ -16,7 +16,11 @@
         <div class="p-2">
           <%= caption %> |
           <span class="hover:text-red-500">
-            <%= link_to icon('fas', 'download', blob.filename), rails_blob_path(blob, disposition: "attachment") %> </span>
+            <%= link_to rails_blob_path(blob, disposition: "attachment") do %>
+              <%= icon_svg('download.svg', class: 'svg-default') %>
+              <%= blob.filename %>
+            <% end %>
+          </span>
           | <%= number_to_human_size blob.byte_size %>
         </div>
       <% end %>
@@ -26,7 +30,10 @@
           <%#= link_to icon('fas', 'download'), rails_blob_path(blob, disposition: "attachment") %>
         <% else %>
           <div class="p-2 w-full">
-            <%= link_to icon('fas', 'download', blob.filename), rails_blob_path(blob, disposition: "attachment") %>
+            <%= link_to rails_blob_path(blob, disposition: "attachment") do %>
+              <%= icon('download.png', class: 'svg-default') %>
+              <%= blob.filename %>
+            <% end %>
           <span class="attachment__size text-xs">
             <%= number_to_human_size blob.byte_size %>
           </span>

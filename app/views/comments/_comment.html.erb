@@ -29,7 +29,7 @@
 
   <div data-controller="reply">
     <small>
-      <%= link_to icon('fas', 'level-up-alt', "Ответить"), "#", class: 'pl-4 link', data: { action: "click->reply#toggle" } unless comment.deleted? %>
+      <%= link_to icon_svg('level-down.svg', class: 'svg-default') + "Ответить", "#", class: 'pl-4 link', data: { action: "click->reply#toggle" } unless comment.deleted? %>
     </small>
 
     <% if local_assigns[:full] %>

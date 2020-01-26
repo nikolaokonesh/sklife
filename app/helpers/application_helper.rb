@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def disable_helper(texting)
-    icon('fas', 'spinner fa-pulse', texting)
+    texting
   end
 
   def notification_target_helper(notification)
@@ -21,10 +21,10 @@ module ApplicationHelper
   end
 
   def pag_helper(posts, texting, page = :page)
-    link_to_next_page(posts, icon('fas', 'chevron-down', texting),
+    link_to_next_page(posts, icon_svg('chevron-thin-down.svg', class: 'svg-default') + texting,
                       class: 'pg-link',
                       param_name: page, remote: true,
-                      data: { disable_with: icon('fas', 'spinner fa-pulse', 'Загрузка') })
+                      data: { disable_with: 'Загрузка...' })
   end
 
   def footer_class_link_helper

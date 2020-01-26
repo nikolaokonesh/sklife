@@ -2,3 +2,13 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "main";
+
+@import "design";
+@import "trix/dist/trix";
+@import "actiontext";
+@import "baseloader";
+@import "icons";
+@import "notifications";
+@import "search";
+
+$pswp__assets-path: "~photoswipe/src/css/default-skin/";

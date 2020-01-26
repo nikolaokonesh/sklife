@@ -1,41 +1,3 @@
-.logotip {
-  padding: 22px 97px;
-}
-
-.header-fon {
-  background: linear-gradient(#000224E3, #FFFFFF24);
-}
-
-.z-index {
-  &-plus {
-    z-index: 200;
-  }
-  &-minus {
-    z-index: -100;
-  }
-}
-
-.flash-hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 1s, opacity 1s linear;
-}
-
-.text-shadow {
-  text-shadow: 1px 2px 1px #333;
-}
-
-.posts-color {
-  transition-property: #FFF;
-  transition-duration: 1s;
-}
-
-.pswp__caption__center {
-  max-width: 100% !important;
-  text-align: center !important;
-  font-size: 10px !important;
-}
-
 .base-loader__circle,
 .base-loader__img {
   position:absolute;
@@ -48,7 +10,7 @@
   height: 48px;
   margin-top: -27px;
   margin-left: -28px;
-  background-image: asset_url("logo-sberbank-mini.png");
+  background-image: url("../images/logo-sberbank-mini.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -68,10 +30,10 @@
   border-radius: 50%;
 }
 @keyframes c {
- 0% {
-  transform:rotate(0deg)
- }
- to {
-  transform:rotate(1turn)
- }
+  0% {
+    transform:rotate(0deg)
+  }
+  to {
+    transform:rotate(1turn)
+  }
 }

@@ -59,8 +59,8 @@
 
       <%= render 'application/upload_progress' %>
 
-      <%= content_tag(:button, icon("fas", "check-circle", "Сохранить"), class: 'btn mb-2', type: 'submit') %>
-      <%= link_to icon("fas", "times-circle", "Отмена"), '#', class: 'link mb-2 ml-2', data: { action: "click->reply#toggle" } %>
+      <%= content_tag(:button, "Сохранить", class: 'btn mb-2', type: 'submit') %>
+      <%= link_to "Отмена", '#', class: 'link mb-2 ml-2', data: { action: "click->reply#toggle" } %>
     </div>
   <% end %>
 

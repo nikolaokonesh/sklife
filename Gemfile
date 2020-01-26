@@ -62,7 +62,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'active_link_to', '~> 1.0', '>= 1.0.5'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
-gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'kaminari'
 gem 'meta-tags', '~> 2.11', '>= 2.11.1'
@@ -75,7 +74,7 @@ gem 'validate_url', '~> 1.0', '>= 1.0.8'
 # gem 'phonelib'
 # gem 'ransack', github: 'activerecord-hackery/ransack'
 # gem 'foundation_rails_helper'
-
+# gem 'font-awesome-sass', '~> 5.8', '>= 5.8.1'
 gem 'activestorage-validator'
 gem 'aws-sdk-s3', '~> 1.60', '>= 1.60.1'
 gem 'devise', github: 'plataformatec/devise'

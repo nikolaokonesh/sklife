@@ -19,13 +19,12 @@
         <div class="uppercase tracking-wide leading-tight text-xs text-gray-500"><%= sanitize(strip_tags(post.posttable.title)) %>
         </div>
         <div class="block mt-1 text-lg leading-tight font-semibold">
-          <%= content_tag :span, icon('fas', 'crown'), class: 'text-yellow-500' if post.subscribe == true %>
+          <%= content_tag :span, icon_svg('crowns.svg', class: 'svg-default'), class: 'text-yellow-500' if post.subscribe == true %>
           <%= sanitize(strip_tags(post.title)) %>
+          <%= content_tag :span, icon_svg('chat.svg', class: 'svg-default') +  post.comments.count.to_s, class: 'pl-1 text-xs' if post.comments.present? %>
         </div>
       <% end %>
       <p class="mt-2"><%= truncate(strip_tags(post.description), length: 200, omission: '...') %></p>
-      <%= content_tag :span, icon('fas', 'comment-dots', post.comments.count), class: 'pl-1 text-xs' if post.comments.present? %>
-
       <% if post.no_data.blank? %>
         <div class="inline-flex items-center text-xs pl-2">
           <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>
