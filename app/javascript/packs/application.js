@@ -23,3 +23,4 @@ import "controllers"
 
 require("trix")
 require("@rails/actiontext")
+require("trix/dist/trix.css")
