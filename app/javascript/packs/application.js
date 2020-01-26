@@ -9,8 +9,6 @@ require("@rails/activestorage").start()
 // require("channels")
 
 require("stylesheets/application.scss")
-require('photoswipe/src/css/main.scss')
-require('photoswipe/src/css/default-skin/default-skin.scss')
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -23,4 +21,3 @@ import "controllers"
 
 require("trix")
 require("@rails/actiontext")
-require("trix/dist/trix.css")
