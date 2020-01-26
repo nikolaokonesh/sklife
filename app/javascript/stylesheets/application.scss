@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 @import "main";
 
-@import "actiontext";
+@import "actiontext" !default;
 @import "baseloader";
 @import "design";
 @import "icons";
