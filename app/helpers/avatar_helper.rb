@@ -1,7 +1,7 @@
 module AvatarHelper
   def user_avatar(user, size = 40)
     if user.profile.avatar.attached?
-      url_for(user.profile.avatar.variant(resize_to_fill: [size, size], quality: 50))
+      url_for(user.profile.avatar.variant(resize_to_fill: [size, size], quality: 70))
     else
       gravatar_image_url(user.email, size: size)
     end
