@@ -1,5 +1,5 @@
 <div class="items-center p-4">
-  <div class="h-56 w-56 mt-10 lg:mt-0 table rounded-full shadow-2xl mb-2 mx-auto bg-cover" style="background: url('<%= user_avatar(@user_agent, 300) %>') no-repeat center;">
+  <div class="h-56 w-56 mt-10 lg:mt-0 table rounded-full shadow-2xl mb-2 mx-auto" style="background: url('<%= user_avatar(@user_agent, 300) %>') 100% 100% no-repeat; background-size: cover;">
   </div>
   <div class="text-white text-center">
     <h2 class="text-2xl text-shadow font-bold leading-tight">
@@ -13,7 +13,7 @@
       <%= content_tag :div, icon_svg('old-mobile.svg', class: 'svg-default') + sanitize(strip_tags(@user_agent.profile.phone)), class: 'inline-block text-shadow' if @user_agent.profile.phone.present? %>
       <% if @user_agent == current_user %>
         <div class="block mb-5">
-          <%= link_to "Изменить профиль", main_app.edit_profile_path(@user_agent.profile), class: 'block text-sm text-gray-200 hover:text-white p-2', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+          <%= link_to "Изменить профиль", main_app.edit_profile_path(@user_agent.profile), class: 'inline-block text-sm text-green-400 hover:text-green-300 p-2', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
         </div>
       <% end %>
     </div>
