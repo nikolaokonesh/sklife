@@ -5,14 +5,14 @@
 
     <div class="mt-4 md:mt-0 px-2">
       <% if post.type.present? && request.subdomain.blank? %>
-        <div class="ml-2 flex items-center">
-          <div>
-            <div class="text-gray-500">
-              <%= post.user.name_full %>
-            </div>
-            <div class="text-lg leading-tight font-semibold">
-              <%= sanitize(strip_tags(post.title)) %>
-            </div>
+        <div>
+          <div class="text-gray-500">
+            <span class="inline-block pr-2 mr-1 border-r"><%= post.user.name_full %></span>
+            <span class="inline-block"><%= sanitize(strip_tags(post.posttable.title)) %></span>
+          </div>
+          <div class="text-lg leading-tight font-semibold">
+            <%= sanitize(strip_tags(post.title)) %>
+            <%= content_tag :span, icon_svg('chat.svg', class: 'svg-default') +  post.comments.count.to_s, class: 'pl-1 text-xs' if post.comments.present? %>
           </div>
         </div>
       <% else %>
@@ -24,7 +24,9 @@
           <%= content_tag :span, icon_svg('chat.svg', class: 'svg-default') +  post.comments.count.to_s, class: 'pl-1 text-xs' if post.comments.present? %>
         </div>
       <% end %>
-      <p class="mt-2"><%= truncate(strip_tags(post.description), length: 200, omission: '...') %></p>
+      <p class="mt-2">
+        <%= truncate(strip_tags(post.description), length: 200, omission: '...') %>
+      </p>
       <% if post.no_data.blank? %>
         <div class="inline-flex items-center text-xs pl-2">
           <%= time_tag(post.created_at, :format=>'%d %B %Y г.') %>

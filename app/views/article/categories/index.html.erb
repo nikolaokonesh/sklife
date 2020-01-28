@@ -16,13 +16,13 @@
 <div class="w-full bg-gray-100 p-2 mb-5 mt-5 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
   <div class="flex items-center">
     <%= icon_svg('search.svg', class: 'svg-default pr-1') %>
-    <%= text_field_tag :query, "", placeholder: "Введите слово", class: "w-full placeholder-gray-600 focus:placeholder-gray-400", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
+    <%= text_field_tag :query, "", placeholder: "Найти статью", class: "w-full placeholder-gray-400 focus:placeholder-gray-300", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
   </div>
   <div data-target="search.results"></div>
 </div>
 
 <div id="categories-index" data-turbolinks-permanent>
-  <%= render @posts, cached: true %>
+  <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
 <div class='pagination mt-4' id="categories-index-paginate" data-turbolinks-permanent>
   <%= pag_helper(@posts, 'Далее') %>

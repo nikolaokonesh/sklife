@@ -1,41 +1,31 @@
-<div class="block w-full justify-center pt-4 pb-4">
-  <%= link_to book_url(book, subdomain: false), class: 'w-full lg:flex lg:p-2 lg:rounded-lg shadow-lg bg-gray-100 hover:text-gray-800 pt-5 link_to_post' do %>
-    <% if book.pages.any? %>
-      <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
-      <% if image.present? %>
-        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fill: [ 300, 200 ], quality: 50)) %>');"></div>
-      <% else %>
-      <% end %>
-    <% end %>
-    <div class="p-3 flex flex-col justify-between leading-normal">
-      <div class="mb-1">
-        <div class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
-          <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
-        </div>
-        <div class="text-xl"><%= sanitize(strip_tags(book.title)) %></div>
-        <div class="text-base text-gray-600"><%= truncate(strip_tags(book.pages.first.body_page.body.to_s), length: 200, omission: '...') if book.pages.any? %></div>
-      </div>
-      <div class="block lg:flex items-center">
-        <div class="block lg:inline-block no-underline text-sm">
-          Автор: <%= sanitize(strip_tags(book.author)) %>
-        </div>
-        <div class="block lg:inline-block lg:ml-3 text-sm">
-          Книга <%= time_tag(book.data, :format=>'%Y года') %>
-        </div>
-        <% if user_signed_in? %>
-          <% if current_user.libraries.where(book: book).any? %>
-            <div class="block lg:inline-block lg:p-3 pb-2 text-sm">
-              <% if views_pages_helper(book, current_user) == book.pages.count %>
-                <%= icon_svg('check.svg', class: 'svg-default') %>
-              <% else %>
-                Прочтено
-              <% end %>
-              <%= views_pages_helper(book, current_user) %>/<%= book.pages.count %>
-            </div>
-          <% end %>
+<% cache book do %>
+  <div class="block w-full justify-center pt-4 pb-4">
+    <%= link_to book_path(book), class: 'w-full lg:flex lg:p-2 lg:rounded-lg shadow-lg bg-gray-100 hover:text-gray-800 pt-5 link_to_post' do %>
+      <% if book.pages.any? %>
+        <% image = book.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
+        <% if image.present? %>
+          <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image_url_helper(image)) %>');"></div>
+        <% else %>
         <% end %>
+      <% end %>
+      <div class="p-3 flex flex-col justify-between leading-normal">
+        <div class="mb-1">
+          <div class="text-sm text-gray-700 flex items-center px-2 pt-2 font-bold">
+            <%= content_tag :span, book.publication, class: "#{bookanounce_class(book.public)}" if user_signed_in? && current_user.admin? %>
+          </div>
+          <div class="text-xl"><%= sanitize(strip_tags(book.title)) %></div>
+          <div class="text-base text-gray-600"><%= truncate(strip_tags(book.pages.first.body_page.body.to_s), length: 200, omission: '...') if book.pages.any? %></div>
+        </div>
+        <div class="block lg:flex items-center">
+          <div class="block lg:inline-block no-underline text-sm">
+            Автор: <%= sanitize(strip_tags(book.author)) %>
+          </div>
+          <div class="block lg:inline-block lg:ml-3 text-sm">
+            Книга <%= time_tag(book.data, :format=>'%Y года') %>
+          </div>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
-<div class="border-b lg:border-0"></div>
+    <% end %>
+  </div>
+  <div class="border-b lg:border-0"></div>
+<% end %>

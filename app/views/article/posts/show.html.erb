@@ -1,6 +1,12 @@
 <% keywords truncate(strip_tags(@post.description), length: 100, omission: '').split.uniq.sort %>
 <% description truncate(strip_tags(@post.description), length: 200) %>
-<% content_for :canonical_link, category_post_url(@post.posttable, @post, subdomain: false) %>
+<% if request.subdomain.present? %>
+  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug) %>
+<% elsif @post.type.present? %>
+  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug) %>
+<% else %>
+  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: false) %>
+<% end %>
 
 <% content_for :fullpath do %>
   <script>
@@ -11,7 +17,12 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
-      <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <% if @post.type.blank? %>
+        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <% else %>
+        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), main_app.url_for([@post.posttable, subdomain: @post.user.slug]), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <% end %>
+
       <div class="inline text-3xl leading-tight"><%= title sanitize(strip_tags(@post.title)) %></div>
       <div class="inline-block text-sm">
         <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
@@ -31,7 +42,14 @@
           <%= render 'tarif', full: true %>
         <% end %>
       <% else %>
-        <%= @post.body_post %>
+        <% if request.subdomain.present? %>
+          <%= @post.body_post %>
+        <% elsif @post.type.present? %>
+          <%= truncate(strip_tags(@post.description), length: 200, omission: '...') %>
+          <%= link_to 'Продолжить просмотр', main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug), class: 'block btn text-center' %>
+        <% else %>
+          <%= @post.body_post %>
+        <% end %>
       <% end %>
     </div>
 

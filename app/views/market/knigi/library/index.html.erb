@@ -1,7 +1,7 @@
 <% content_for :canonical_link, books_url(subdomain: false) %>
 
 <div id="library_index" data-turbolinks-permanent>
-  <%= render partial: 'market/knigi/books/book', collection: @library_books %>
+  <%= render partial: 'market/knigi/books/book', collection: @library_books, cached: true %>
 </div>
 <div class='pagination mt-4' id="library_index_paginate" data-turbolinks-permanent>
   <%= pag_helper(@library_books, 'Далее') %>

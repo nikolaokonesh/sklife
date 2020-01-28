@@ -7,13 +7,7 @@ module Article
     include PostShowConcern
 
     def show
-      if request.subdomain.present?
-        redirect_to root_url, alert: 'Страница не найдена!'
-      elsif @post.type.nil?
-        post_show_conc
-      else
-        redirect_to root_url, alert: 'Страница не найдена!'
-      end
+      post_show_conc
     end
 
     def new

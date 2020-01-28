@@ -1,7 +1,10 @@
 <% keywords truncate(strip_tags(@category.description), length: 100, omission: '').split.uniq.sort %>
 <% description truncate(strip_tags(@category.description), length: 200) %>
-<% content_for :canonical_link, category_url(@category, subdomain: false) %>
-
+<% if request.subdomain.present? %>
+  <% content_for :canonical_link, main_app.category_url(@category, subdomain: @category.user.slug) %>
+<% else %>
+  <% content_for :canonical_link, main_app.category_url(@category, subdomain: false) %>
+<% end %>
 
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
