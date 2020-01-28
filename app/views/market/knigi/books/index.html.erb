@@ -9,7 +9,7 @@
 <div class="w-full bg-gray-100 p-2 mb-4 mt-4 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= booksearch_index_url %>">
   <div class="flex items-center">
     <%= icon_svg('search.svg', class: 'svg-default pr-1') %>
-    <%= text_field_tag :query, "", placeholder: "Введите название книги", class: "w-full placeholder-gray-400 focus:placeholder-gray-300", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
+    <%= text_field_tag :query, "", placeholder: "Введите название книги", class: "w-full placeholder-gray-500 focus:placeholder-gray-400", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>
   </div>
   <div data-target="search.results"></div>
 </div>
