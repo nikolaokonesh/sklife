@@ -1,12 +1,17 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "main";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'main';
 
-@import "baseloader";
-@import "design";
-@import "icons";
-@import "notifications";
-@import "search";
+@import 'baseloader';
+@import 'design';
+@import 'icons';
+@import 'notifications';
+@import 'search';
 
-@import "actiontexts";
+@import '../../../node_modules/trix/dist/trix';
+@import 'actiontexts';
+$pswp__assets-path: '../../../node_modules/photoswipe/src/css/default-skin/';
+@import '../../../node_modules/photoswipe/src/css/main';
+@import '../../../node_modules/~photoswipe/src/css/default-skin/default-skin';
+

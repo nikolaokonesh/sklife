@@ -9,12 +9,8 @@ require("@rails/activestorage").start()
 // require("channels")
 window.Rails = Rails
 
-import "trix/dist/trix.css"
-require("trix")
-require("@rails/actiontext")
 require("stylesheets/application.scss")
-import "photoswipe/src/css/main.scss"
-import "photoswipe/src/css/default-skin/default-skin.scss"
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -24,6 +20,8 @@ import "photoswipe/src/css/default-skin/default-skin.scss"
 
 import "controllers"
 
+require("trix")
+require("@rails/actiontext")
 
 // const Uppy = require('@uppy/core')
 // const Dashboard = require('@uppy/dashboard')
