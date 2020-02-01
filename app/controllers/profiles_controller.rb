@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  layout 'blog/show'
+  layout 'blog/index'
 
   def edit
     @profile = current_user.profile

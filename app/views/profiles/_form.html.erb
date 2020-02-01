@@ -5,51 +5,49 @@
   <%= form_with(model: @profile, html: { data: { type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
     <div class="z-10 relative">
-      <%= form.text_area :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-600 appearance-none w-full py-1 text-gray-700 leading-tight field' %>
+      <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
 
-      <%= form.text_area :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-600 appearance-none w-full py-1 text-gray-700 leading-tight field' %>
+      <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
 
       <div class="w-full max-w-md">
         <div class="flex flex-wrap mb-6">
-          <div class="w-full md:w-1/2 md:mb-0 lg:px-2">
-            <span class="px-3">E-mail:</span>
-            <%= form.email_field :email, label: false, maxlength: 50, placeholder: 'видно всем', class: 'placeholder-gray-600 appearance-none w-full py-1 text-gray-700 leading-tight field' %>
+          <div class="w-full md:w-1/2 md:mb-0">
+            <%= form.email_field :email, label: false, maxlength: 50, placeholder: 'E-mail (видно всем)', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
           </div>
-          <div class="w-full md:w-1/2 lg:px-2">
-            <span class="px-3">Номер телефона:</span>
-            <%= form.telephone_field :phone, label: false, maxlength: 50, placeholder: 'видно всем', class: 'placeholder-gray-600 appearance-none w-full py-1 text-gray-700 leading-tight field' %>
+          <div class="w-full md:w-1/2">
+            <%= form.telephone_field :phone, label: false, maxlength: 50, placeholder: 'Телефон (видно всем)',class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
           </div>
         </div>
       </div>
 
-      <div class="my-4 text-gray-600">Загрузите ваше фото, фоновое изображение и выберите цвет оттенка.</div>
-
-      <div class="flex w-full text-gray-700 mb-2">
+      <div class="flex w-full text-gray-200 mb-2">
         <div class="inline mr-2">
-          <div class="form-group" data-uppy="profile[avatar]">
-            <div>
-              <% if @user_agent.profile.avatar.attached? %>
-                <%= image_tag @user_agent.profile.avatar.variant(resize_to_fill: [40, 40], extent: "#{40}x#{40}", gravity: 'Center', quality: 80), data: { behavior: 'uppy-preview' }, class: 'h-10 w-10 rounded-full' %>
-              <% else %>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpj0DBTVsaja01_xWh37bcutvpd7rh7zEd528HD0d_l6A73osY" width="50" data-behavior="uppy-preview" class='rounded-full h-10 w-10' />
-              <% end %>
-            </div>
-            <%= form.label :avatar, 'Фото' %>
-            <%= link_to icon_svg('cycle.svg', class: 'svg-edit'), "#", class: '', data: { behavior: "uppy-trigger" } %>
-          </div>
+          <%= form.label :avatar do %>
+            <% if @user_agent.profile.avatar.attached? %>
+              <div class="float-left">
+                <%= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer' %>
+                <%= form.label :avatar_purge, 'Удалить' %>
+              </div>
+              <%= user_avatar_helper(@user_agent) %> Фото
+            <% else %>
+              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фото</div>
+            <% end %>
+            <%= form.file_field :avatar, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
+          <% end %>
         </div>
         <div class="inline mr-2">
-          <div class="form-group" data-uppy="profile[fon]">
-            <div>
-              <% if @user_agent.profile.fon.attached? %>
-                <%= image_tag @user_agent.profile.fon.variant(resize_to_fill: [40, 40], extent: "#{40}x#{40}", gravity: 'Center', quality: 80), data: { behavior: 'uppy-preview' }, class: 'h-10 w-10 rounded' %>
-              <% else %>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpj0DBTVsaja01_xWh37bcutvpd7rh7zEd528HD0d_l6A73osY" width="50" data-behavior="uppy-preview" class='rounded h-10 w-10' />
-              <% end %>
-            </div>
-            <%= form.label :fon %>
-            <%= link_to icon_svg('cycle.svg', class: 'svg-edit'), "#", class: '', data: { behavior: "uppy-trigger" } %>
-          </div>
+          <%= form.label :fon do %>
+            <% if @user_agent.profile.fon.attached? %>
+              <%= user_fon_helper(@user_agent) %> фон
+              <div class="float-left">
+                <%= form.check_box :fon_purge, checked: false, class: 'cursor-pointer' %>
+                <%= form.label :fon_purge, 'Удалить' %>
+              </div>
+            <% else %>
+              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фон</div>
+            <% end %>
+            <%= form.file_field :fon, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
+          <% end %>
         </div>
         <div class="inline mr-2">
           <%= form.label :bgcolor do %>
@@ -58,13 +56,6 @@
           <% end%>
         </div>
       </div>
-
-
-
-
-
-
-
 
       <%= render 'application/progress_upload' %>
 
