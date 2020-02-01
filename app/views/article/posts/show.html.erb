@@ -1,12 +1,11 @@
 <% keywords truncate(strip_tags(@post.description), length: 100, omission: '').split.uniq.sort %>
 <% description truncate(strip_tags(@post.description), length: 200) %>
-<% if request.subdomain.present? %>
-  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug) %>
-<% elsif @post.type.present? %>
-  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug) %>
+<% if request.subdomain.present? || @post.type.present? %>
+  <% subdomainering = @post.user.slug %>
 <% else %>
-  <% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: false) %>
+  <% subdomainering = false %>
 <% end %>
+<% content_for :canonical_link, main_app.category_post_url(@post.posttable, @post, subdomain: subdomainering) %>
 
 <% content_for :fullpath do %>
   <script>
@@ -17,12 +16,12 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
-      <% if @post.type.blank? %>
-        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
-      <% else %>
-        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + sanitize(strip_tags(@post.posttable.title)), main_app.url_for([@post.posttable, subdomain: @post.user.slug]), class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <% if @post.type.blank? || request.subdomain.present? %>
+        <%= link_to url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block' do %>
+          <%= icon_svg('chevron-thin-left.svg', class: 'svg-default') %>
+          <%= sanitize(strip_tags(@post.posttable.title)) %>
+        <% end %>
       <% end %>
-
       <div class="inline text-3xl leading-tight"><%= title sanitize(strip_tags(@post.title)) %></div>
       <div class="inline-block text-sm">
         <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2' if @post.user == current_user %>
@@ -34,21 +33,30 @@
 
 <div class="w-full">
   <div class="block justify-center">
-    <div class="p-2" data-controller="gallery">
+    <div data-controller="gallery">
       <% if @post.subscribe.present? %>
         <% if current_user_subscribed? %>
-          <%= @post.body_post %>
+          <div class="p-2"><%= @post.body_post %></div>
         <% else %>
-          <%= render 'tarif', full: true %>
+          <div class="p-2"><%= render 'tarif', full: true %></div>
         <% end %>
       <% else %>
         <% if request.subdomain.present? %>
-          <%= @post.body_post %>
+          <div class="p-2"><%= @post.body_post %></div>
         <% elsif @post.type.present? %>
-          <%= truncate(strip_tags(@post.description), length: 200, omission: '...') %>
-          <%= link_to 'Продолжить просмотр', main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug), class: 'block btn text-center' %>
+          <div class="p-2"><%= truncate(strip_tags(@post.description), length: 100, omission: '...') %></div>
+          <%= link_to main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug), class: 'block bg-teal-500 hover:bg-teal-600 text-white py-2 border-pink-500 border-l-4 lg:rounded' do %>
+            <span class="block text-gray-200 text-sm lg:text-base text-center">Продолжить просмотр на странице:</span>
+            <span class="flex items-center justify-center">
+              <%= user_avatar_helper(@post.user) %>
+              <div class="leading-tight">
+                <span class="block font-bold"><%= @post.user.name_full %></span>
+                <span class="block"><%= sanitize(strip_tags(@post.posttable.title)) %></span>
+              </div>
+            </span>
+          <% end %>
         <% else %>
-          <%= @post.body_post %>
+          <div class="p-2"><%= @post.body_post %></div>
         <% end %>
       <% end %>
     </div>
