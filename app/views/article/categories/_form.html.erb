@@ -1,6 +1,4 @@
-<div class="shadow-2xl bg-gray-100 py-2 lg:p-2" data-controller="form-error">
-
-  <ul class="post-errors" data-target="form-error.postErrors"></ul>
+<div class="bg-gray-200 pt-2" data-controller="form-error">
 
   <%= form_with(model: @category, html: { data: { type: "html",
                      action: "ajax:error->form-error#onPostError" } }) do |form| %>
@@ -27,7 +25,7 @@
       </div>
 
     </div>
-    <div class="px-2">
+    <div class="px-2 mb-4">
       <div class="inline-block">
         <%= form.check_box :no_data, class: 'my-4' %>
         <%= form.label :no_data, class: 'mr-2 text-sm' %>
@@ -37,10 +35,11 @@
         <%= form.label :no_comments, class: 'text-sm' %>
       </div>
     </div>
-    <div class="px-2 mt-2">
-      <%= render 'application/progress_upload' %>
-      <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'btn') %>
-      <%= link_to 'Отмена', @category, class: 'link ml-3' %>
+    <%= render 'application/progress_upload' %>
+    <ul class="post-errors" data-target="form-error.postErrors"></ul>
+    <div class="flex items-center">
+      <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'hover:bg-teal-600 bg-teal-500 text-white py-3 px-4') %>
+      <%= link_to 'Отмена', @category, class: 'hover:bg-red-600 bg-red-400 text-white py-3 px-4' %>
     </div>
   <% end %>
 </div>

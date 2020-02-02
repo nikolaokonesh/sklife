@@ -32,19 +32,15 @@
       <%= link_to icon_svg('level-down.svg', class: 'svg-default') + "Ответить", "#", class: 'pl-4 link', data: { action: "click->reply#toggle" } unless comment.deleted? %>
     </small>
 
-    <% if local_assigns[:full] %>
-      <% if comment.commentable.subscribe? %>
-        <% if current_user_subscribed? %>
-          <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 pl-1 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
-        <% else %>
-          <%= content_tag :div, class: "mt-2 pl-2 hidden", data: { target: "reply.form" } do %>
-            <div class="block text-red-600 form-commenting">
-              Оставить комментарий может только подписчик
-            </div>
-          <% end %>
-        <% end %>
+    <% if comment.commentable.subscribe? %>
+      <% if current_user_subscribed? %>
+        <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 pl-1 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
       <% else %>
-        <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>
+        <%= content_tag :div, class: "mt-2 pl-2 hidden", data: { target: "reply.form" } do %>
+          <div class="block text-red-600 form-commenting">
+            Оставить комментарий может только подписчик
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 hidden", target: "reply.form", postas: "postas_comment_#{comment.id}" } %>

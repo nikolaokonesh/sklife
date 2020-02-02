@@ -40,7 +40,10 @@
         <% end %>
         <% if @category.user == current_user %>
           <div class="my-4 pagination" id="btn_hide">
-            <%= link_to 'Добавить вложенную страницу', main_app.new_category_post_path(@category), class: 'link text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
+            <%= link_to main_app.new_category_post_path(@category), class: 'link text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')} do %>
+              <%= icon_svg('level-down.svg', class: 'svg-default') %>
+              Добавить вложенную страницу
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -66,8 +69,8 @@
           <div class="px-1" id="comments">
             <% if params[:comment] %>
               <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
-              <%= render partial: 'comments/comment', collection: @comments_parent, locals: {full: false}, continue_thread: 10  %>
-              <%= render partial: 'comments/comment', collection: @comments, locals: {full: false}, continue_thread: 10  %>
+              <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
+              <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
             <% else %>
               <div class="block" id="comments-show-columns">
                 <div id="open_comments" class="mt-4">

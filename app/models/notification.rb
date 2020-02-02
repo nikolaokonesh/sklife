@@ -4,4 +4,6 @@ class Notification < ActiveRecord::Base
   # Write your custom methods...
   scope :unread, -> { where(read_at: nil) }
   scope :recent, -> { order(created_at: :desc) }
+
+  after_commit -> { NotificationRelayJob.perform_later(self) }
 end

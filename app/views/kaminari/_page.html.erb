@@ -9,10 +9,10 @@
 -%>
 <% if page.current? %>
   <span class="page-item">
-    <%= content_tag :a, page, data: { remote: remote, disable_with: icon('fas', 'spinner fa-pulse') }, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'pg-link active' %>
+    <%= content_tag :a, page, data: { remote: remote }, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'pg-link active' %>
   </span>
 <% else %>
   <span class="page-item">
-    <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'pg-link', data: {disable_with: icon('fas', 'spinner fa-pulse')} %>
+    <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'pg-link' %>
   </span>
 <% end %>

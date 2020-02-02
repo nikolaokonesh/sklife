@@ -1,18 +1,18 @@
 <% if user_signed_in? %>
   <div data-controller="form-error">
     <%= form_with model: [commentable, Comment.new], html: { class: local_assigns[:class], data: { target: local_assigns[:target], type: "html", action: "ajax:success->form-error#onPostSuccess ajax:error->form-error#onPostError" } } do |form| %>
-      <div class="shadow-2xl bg-gray-100 pt-2">
-        <div class="flex items-center px-2 pb-1 mb-2 text-red-700">
-          <%= user_avatar_helper(current_user) %>
-          <%= current_user.username %>
-        </div>
+      <div class="bg-gray-200 pt-2">
         <div class="">
           <%= form.rich_text_area :body_comment, id: "#{postas}", placeholder: 'Напишите свой комментарий', data: { controller: "mentions", target: "mentions.field" } %>
         </div>
-        <ul class="post-errors" data-target="form-error.postErrors"></ul>
-        <div class="">
+        <div class="flex items-center">
           <%= form.hidden_field :parent_id, value: local_assigns[:parent_id] %>
-          <%= content_tag(:button, 'Создать комментарий', class: 'bg-gray-300 hover:bg-gray-500 text-gray-600 hover:text-white py-2 px-4', type: 'submit', data: {disable_with: disable_helper('Подождите...')}) %>
+          <div class="flex items-center px-2 text-red-700">
+            <%= user_avatar_helper(current_user) %>
+            <%= current_user.username %>
+          </div>
+          <%= content_tag(:button, 'Создать', class: 'bg-teal-400 hover:bg-teal-500 text-white hover:text-white py-3 px-4', type: 'submit', data: {disable_with: disable_helper('Подождите...')}) %>
+          <ul class="post-errors" data-target="form-error.postErrors"></ul>
         </div>
       </div>
     <% end %>

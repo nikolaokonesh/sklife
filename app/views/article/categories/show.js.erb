@@ -29,5 +29,5 @@
   var pagin = document.querySelector("#comments-show-paginator")
 
   pagin.classList.toggle("hidden")
-  opening.innerHTML = ('<%=j render(partial: "comments/comment", collection: @comments, locals: {full: true}, continue_thread: 10) %>')
+  opening.innerHTML = ('<%=j render(partial: "comments/comment", collection: @comments, continue_thread: 10) %>')
 <% end %>

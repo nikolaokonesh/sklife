@@ -10,6 +10,7 @@
 <% content_for :fullpath do %>
   <script>
     Appcontroller = "<%= category_path(@post.posttable) %>"
+    PostSmall = "<%= category_post_path(@post.posttable, @post) %>"
   </script>
 <% end %>
 
@@ -69,7 +70,7 @@
 
     <div class="block my-4 px-2">
       <% if @post.no_data.blank? %>
-        <div class="float-right inline-block text-sm text-gray-600">
+        <div class="text-sm w-full text-right inline-block text-gray-600">
           Опубликовано <%= time_tag(@post.created_at, :format=>'%d %B %Y в %H:%M') %>
         </div>
       <% end %>
@@ -111,8 +112,8 @@
       <div class="px-1" id="comments">
         <% if params[:comment] %>
           <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
-          <%= render partial: 'comments/comment', collection: @comments_parent, locals: {full: false}, continue_thread: 10  %>
-          <%= render partial: 'comments/comment', collection: @comments, locals: {full: false}, continue_thread: 10  %>
+          <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
+          <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
         <% else %>
           <div class="d-block" id="comments-show-columns">
             <div id="open_comments" class="mt-4">

@@ -1,5 +1,5 @@
 <% cache post_small do %>
-  <%= link_to [post_small.posttable, post_small], class: 'block text-xs hover:text-gray-600 p-2 border-b' do %>
+  <%= link_to [post_small.posttable, post_small], data: {"controller" => "activelinkpostsmall", "activelinkpostsmall-active-on" => "#{main_app.category_post_path(post_small.posttable, post_small)}"}, class: 'block text-xs link p-2 border-b' do %>
     <span class="text-sm leading-tight">
       <%= content_tag :span, icon_svg('crowns.svg', class: 'svg-default'), class: 'text-yellow-500' if post_small.subscribe == true %>
 

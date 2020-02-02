@@ -15,7 +15,7 @@
                 <%= content_tag :span, current_user.username, class: 'hidden lg:flex' %>
               <% end %>
 
-              <%= active_link_to main_app.notifications_url(subdomain: false), class: "flex nav-link mr-1 #{unread_notifications(current_user)}", title: 'Уведомления' do %>
+              <%= active_link_to main_app.notifications_url(subdomain: false), class: "flex nav-link mr-1 #{unread_notifications(current_user)}", id: 'notifications', title: 'Уведомления' do %>
                 <%= icon_svg('bell.svg', class: 'svg-white') %>
               <% end %>
 
