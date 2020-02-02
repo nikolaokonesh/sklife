@@ -9,9 +9,9 @@
 @import 'notifications';
 @import 'search';
 
-@import '../../../node_modules/trix/dist/trix';
+@import '~trix/dist/trix';
 @import 'actiontexts';
-$pswp__assets-path: '../../../node_modules/photoswipe/src/css/default-skin/';
-@import '../../../node_modules/photoswipe/src/css/main';
-@import '../../../node_modules/~photoswipe/src/css/default-skin/default-skin';
+$pswp__assets-path: '~photoswipe/src/css/default-skin/';
+@import '~photoswipe/src/css/main';
+@import '~photoswipe/src/css/default-skin/default-skin';
 
