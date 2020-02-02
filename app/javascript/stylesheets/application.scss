@@ -3,14 +3,13 @@
 @import 'tailwindcss/utilities';
 @import 'main';
 
+@import 'actiontext';
 @import 'baseloader';
 @import 'design';
 @import 'icons';
 @import 'notifications';
 @import 'search';
 
-@import '~trix/dist/trix';
-@import 'actiontexts';
 $pswp__assets-path: '~photoswipe/src/css/default-skin/';
 @import '~photoswipe/src/css/main';
 @import '~photoswipe/src/css/default-skin/default-skin';

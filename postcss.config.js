@@ -22,6 +22,8 @@ if (process.env.RAILS_ENV === "production") {
         './app/**/*.js.erb',
         './app/helpers/**/*.rb',
         './app/javascript/**/*.js',
+        './node_modules/photoswipe/**/*.js',
+        './node_modules/trix/**/*.js',
         // './app/javascript/**/*.vue',
         // './app/javascript/**/*.jsx',
       ],
