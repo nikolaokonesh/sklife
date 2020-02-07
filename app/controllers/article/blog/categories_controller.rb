@@ -3,7 +3,8 @@ module Article
     class CategoriesController < Article::CategoriesController
       before_action :authenticate_user!, except: %i[index show people]
       before_action :set_category, only: %i[show edit update destroy]
-      layout :determine_layout
+      # layout :determine_layout
+      layout 'blog/application'
 
       include CategoryShowConcern
 
@@ -50,9 +51,9 @@ module Article
 
       private
 
-      def determine_layout
-        %w[show new edit].include?(action_name) ? 'blog/show' : 'blog/index'
-      end
+      # def determine_layout
+      #   %w[show new edit].include?(action_name) ? 'blog/show' : 'blog/index'
+      # end
 
       def set_category
         @category = category_scope.friendly.find(params[:id])

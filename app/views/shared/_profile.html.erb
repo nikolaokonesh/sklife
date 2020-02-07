@@ -1,22 +1,19 @@
-<div class="items-center p-4">
-  <div class="h-56 w-56 mt-10 lg:mt-0 table rounded-full shadow-2xl mb-2 mx-auto" style="background: url('<%= user_avatar(@user_agent, 300) %>') 100% 100% no-repeat; background-size: cover;">
-  </div>
-  <div class="text-white text-center">
-    <h2 class="text-2xl text-shadow font-bold leading-tight">
-      <%= icon_svg('crowns.svg', class: 'w-8 h-8 inline -mt-2') if @user_agent.subscribed? %> <%= @user_agent.name_full %>
-    </h2>
-    <div class="mx-auto my-2 border-b-2 border-teal-500 opacity-25"></div>
-    <div class="text-sm leading-tight" id="btn_hide_profile">
-      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'pr-1 mb-1 text-shadow' %>
-      <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.bio)), class: 'pr-1 mb-1 text-shadow' %>
-      <%= content_tag :div, icon_svg('mail.svg', class: 'svg-default') + sanitize(strip_tags(@user_agent.profile.email)), class: 'inline-block text-shadow' if @user_agent.profile.email.present? %>
-      <%= content_tag :div, icon_svg('old-mobile.svg', class: 'svg-default') + sanitize(strip_tags(@user_agent.profile.phone)), class: 'inline-block text-shadow' if @user_agent.profile.phone.present? %>
-      <% if @user_agent == current_user %>
-        <div class="block mb-5">
-          <%= link_to "Редактировать данные", main_app.edit_profile_path(@user_agent.profile), class: 'inline-block text-sm text-green-400 hover:text-green-300 p-2', remote: true, data: {disable_with: disable_helper('Загрузка...')} %>
-        </div>
-      <% end %>
-    </div>
+<div class="h-48 w-48 lg:h-56 lg:w-56 rounded-full -mt-24 border-2 lg:border-4 border-white mb-2 lg:mx-0 mx-auto" style="background: url('<%= user_avatar(@user_agent, 300) %>') 100% 100% no-repeat; background-size: cover; background-color: #ffffff;">
+</div>
+<div class="text-gray-800 text-center mx-auto lg:ml-4 lg:-mt-8 lg:text-left">
+  <h2 class="text-2xl font-bold lg:text-white leading-normal">
+    <%= icon_svg('crowns.svg', class: 'w-8 h-8 inline -mt-2') if @user_agent.subscribed? %> <%= @user_agent.name_full %>
+  </h2>
+  <div class="text-sm leading-tight lg:max-w-xl" id="btn_hide_profile">
+    <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.org)), class: 'pr-1 mb-1 text-gray-800' %>
+    <%= content_tag :div, sanitize(strip_tags(@user_agent.profile.bio)), class: 'pr-1 mb-1 text-gray-700' %>
+    <%= content_tag :div, icon_svg('mail.svg', class: 'svg-default') + sanitize(strip_tags(@user_agent.profile.email)), class: 'inline-block text-gray-600' if @user_agent.profile.email.present? %>
+    <%= content_tag :div, icon_svg('old-mobile.svg', class: 'svg-default') + sanitize(strip_tags(@user_agent.profile.phone)), class: 'inline-block text-gray-600' if @user_agent.profile.phone.present? %>
+    <% if @user_agent == current_user %>
+      <div class="block mb-5">
+        <%= link_to "Редактировать данные", main_app.edit_profile_path(@user_agent.profile), class: 'inline-block text-sm text-green-400 hover:text-green-300 p-2', data: {disable_with: disable_helper('Загрузка...')} %>
+      </div>
+    <% end %>
   </div>
 </div>
 

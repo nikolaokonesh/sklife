@@ -1,67 +1,66 @@
-<div class="mt-2" data-controller="form-error">
-
-  <ul class="post-errors" data-target="form-error.postErrors"></ul>
-
-  <%= form_with(model: @profile, html: { data: { type: "html",
-                     action: "ajax:error->form-error#onPostError" } }) do |form| %>
-    <div class="z-10 relative">
-      <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
-
-      <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
-
-      <div class="w-full max-w-md">
-        <div class="flex flex-wrap mb-6">
-          <div class="w-full md:w-1/2 md:mb-0">
-            <%= form.email_field :email, label: false, maxlength: 50, placeholder: 'E-mail (видно всем)', class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
-          </div>
-          <div class="w-full md:w-1/2">
-            <%= form.telephone_field :phone, label: false, maxlength: 50, placeholder: 'Телефон (видно всем)',class: 'placeholder-gray-200 appearance-none w-full py-1 text-gray-200 leading-tight' %>
-          </div>
-        </div>
+<div class="max-w-5xl mx-auto" data-controller="form-error">
+  <div class="leading-tight bg-grey-lighter">
+    <div class="mx-auto bg-white overflow-hidden shadow-lg">
+      <div class="absolute z-10 w-full pt-2 pl-4 max-w-5xl">
+        <%= render 'shared/navbar' %>
       </div>
+      <%= form_with(model: @profile, html: { data: { type: "html",
+                    action: "ajax:error->form-error#onPostError" } }) do |form| %>
+        <div data-uppy="profile[fon]">
+          <div class="absolute z-10 w-full max-w-5xl text-center">
+            <%= link_to icon_svg('cycle.svg', class: 'svg-white'), '#', class: 'mt-24 lg:mt-32 shadow-lg inline-flex rounded font-bold text-white p-2 bg-pink-500 hover:bg-teal-800', data: { behavior: "uppy-trigger" } %>
+          </div>
+          <%= background_helper(@user_agent) %>
+        </div>
+        <div class="relative z-10 border-b px-4 pb-6 flex flex-wrap mb-4">
+          <ul class="post-errors" data-target="form-error.postErrors"></ul>
 
-      <div class="flex w-full text-gray-200 mb-2">
-        <div class="inline mr-2">
-          <%= form.label :avatar do %>
-            <% if @user_agent.profile.avatar.attached? %>
-              <div class="float-left">
-                <%= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer' %>
-                <%= form.label :avatar_purge, 'Удалить' %>
+          <div class="lg:mx-0 mx-auto" data-uppy="profile[avatar]">
+            <%= image_tag user_avatar(@user_agent, 300), width: 300, class: 'object-fit h-48 w-48 lg:h-56 lg:w-56 rounded-full -mt-24 border-2 lg:border-4 border-white bg-white mb-2 lg:mx-0 mx-auto', data: { behavior: 'uppy-preview' } %>
+            <div class="-mt-20 ml-20 lg:-mt-24 lg:ml-24  absolute">
+              <%= link_to icon_svg('cycle.svg', class: 'svg-white'), "#", class: 'shadow-inner inline-flex rounded font-bold text-white p-2 bg-pink-500 hover:bg-teal-800', data: { behavior: "uppy-trigger" } %>
+
+              <%#= form.label :avatar_purge, class: 'rounded inline-flex mt-5 p-1 bg-red-500 cursor-pointer hover:bg-red-700 px-1 text-white' do %>
+                <%#= form.check_box :avatar_purge, checked: false, class: 'cursor-pointer inline' %>
+                <!-- Удалить -->
+              <%# end %>
+            </div>
+          </div>
+          <div class="text-gray-800 text-center mx-auto lg:ml-4 lg:-mt-8 lg:text-left">
+            <h2 class="text-2xl font-bold lg:text-white leading-normal">
+              <%= icon_svg('crowns.svg', class: 'w-8 h-8 inline -mt-2') if @user_agent.subscribed? %> <%= @user_agent.name_full %>
+            </h2>
+            <div class="text-sm leading-tight lg:max-w-xl" id="btn_hide_profile">
+              <%= form.text_field :org, label: false, maxlength: 150, placeholder: 'Где Вы работайте или учитесь?', class: 'placeholder-gray-700 appearance-none w-full py-1 pr-1 mb-1 text-gray-800 leading-tight' %>
+              <%= form.text_field :bio, label: false, maxlength: 220, placeholder: 'Коротко о Вас, ваше хобби', class: 'placeholder-gray-700 appearance-none w-full py-1 pr-1 mb-1 text-gray-700 leading-tight' %>
+              <div class="inline text-gray-600">
+                <%= form.email_field :email, label: false, maxlength: 50, size: 20, placeholder: 'E-mail (видно всем)', class: 'placeholder-gray-700 appearance-none py-1 text-gray-600 leading-tight' %>
               </div>
-              <%= user_avatar_helper(@user_agent) %> Фото
-            <% else %>
-              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фото</div>
-            <% end %>
-            <%= form.file_field :avatar, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
-          <% end %>
-        </div>
-        <div class="inline mr-2">
-          <%= form.label :fon do %>
-            <% if @user_agent.profile.fon.attached? %>
-              <%= user_fon_helper(@user_agent) %> фон
-              <div class="float-left">
-                <%= form.check_box :fon_purge, checked: false, class: 'cursor-pointer' %>
-                <%= form.label :fon_purge, 'Удалить' %>
+              <div class="inline text-gray-600">
+                <%= form.telephone_field :phone, label: false, maxlength: 50, size: 20, placeholder: 'Телефон (видно всем)',class: 'placeholder-gray-700 appearance-none py-1 text-gray-600 leading-tight' %>
               </div>
-            <% else %>
-              <div class="px-2 mr-1 rounded cursor-pointer bg-green-800 hover:bg-green-700">Добавить Фон</div>
-            <% end %>
-            <%= form.file_field :fon, direct_upload: true, label: false, data: {disable_with: false}, class: 'hidden_file_field w-1' %>
-          <% end %>
-        </div>
-        <div class="inline mr-2">
-          <%= form.label :bgcolor do %>
-            <%= form.color_field :bgcolor, class: 'h-10 w-10 flex cursor-pointer shadow-lg rounded mr-1 mb-1' %>
-            Цвет <%= icon_svg('cycle.svg', class: 'svg-edit') %>
-          <% end%>
-        </div>
-      </div>
 
-      <%= render 'application/progress_upload' %>
+              <div id="note" class="mt-2"></div>
+              <% if @user_agent == current_user %>
+                <div class="flex items-center mb-5">
+                  <%= render 'application/progress_upload' %>
 
-      <%= content_tag(:button, "Сохранить", class: 'btn mb-2', type: 'submit') %>
-      <%= link_to "Отмена", '#', class: 'link mb-2 ml-2', data: { action: "click->reply#toggle" } %>
+                  <%= content_tag(:button, "Сохранить", class: 'mb-2 rounded bg-pink-500 hover:bg-teal-800 hover:bg-teal-800 px-6 py-3 font-bold text-white border-b-4 border-teal-500 hover:border-pink-500', type: 'submit') %>
+                  <%= link_to "Отмена", root_path, class: 'link mb-2 ml-2', data: { action: "click->reply#toggle" } %>
+
+                  <div class="inline ml-5">
+                    <%= form.label :bgcolor do %>
+                      <%= form.color_field :bgcolor, title: 'Выберите оттенок фона', class: 'h-10 w-10 cursor-pointer shadow-lg rounded-full mr-1 mb-1' %>
+                    <% end%>
+                  </div>
+
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
+  </div>
 </div>

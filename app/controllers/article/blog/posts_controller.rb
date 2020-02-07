@@ -3,7 +3,8 @@ module Article
     class PostsController < Article::PostsController
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_post, only: %i[show edit update destroy]
-      layout :determine_layout
+      # layout :determine_layout
+      layout 'blog/application'
 
       include PostShowConcern
 
@@ -49,9 +50,9 @@ module Article
 
       private
 
-      def determine_layout
-        %w[show new edit].include?(action_name) ? 'blog/show' : 'blog/index'
-      end
+      # def determine_layout
+      #   %w[show new edit].include?(action_name) ? 'blog/show' : 'blog/index'
+      # end
 
       def set_post
         @post = post_scope.friendly.find(params[:id])
