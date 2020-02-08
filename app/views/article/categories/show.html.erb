@@ -28,13 +28,11 @@
         </div>
 
         <% @category.youtubes.all.each do |tube| %>
-          <div class="py-2">
-            <iframe id="ytplayer" type="text/html" width="100%" height="280" class="rounded border-2" src="https://www.youtube.com/embed/<%= tube.uid %>" frameborder="0" allowfullscreen></iframe>
-          </div>
+          <%= render 'youtube_video', tube: tube %>
         <% end %>
 
         <% if @category.no_data.blank? %>
-          <div class="text-right text-gray-600 text-sm my-4">
+          <div class="text-right text-gray-600 text-sm m-4">
             Опубликовано <%= time_tag(@category.created_at, :format=>'%d %B %Y в %H:%M') %>
           </div>
         <% end %>
