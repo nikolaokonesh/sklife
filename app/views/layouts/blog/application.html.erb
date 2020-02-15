@@ -7,11 +7,11 @@
           <%= render 'shared/navbar' %>
         </div>
         <%= background_helper(@user_agent) %>
-        <div class="relative z-10 border-b px-4 pb-6 flex flex-wrap mb-4">
+        <div class="relative z-10 px-4 pb-2 flex flex-wrap" style="background: <%= @user_agent.profile.bgcolor %>17;">
           <%= render 'shared/profile' %>
         </div>
         <div class="flex flex-wrap lg:flex-no-wrap flex-row-reverse">
-          <div class="w-full lg:max-w-3xl">
+          <div class="w-full lg:max-w-3xl mt-4">
             <% if content_for?(:titleise) %>
               <div class="w-full max-w-lg xl:max-w-2xl px-2">
                 <%= yield :titleise %>

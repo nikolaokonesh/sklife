@@ -14,7 +14,7 @@
 </div>
 
 <div class="lg:mr-4">
-  <div class="w-full bg-gray-100 p-2 mb-4 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
+  <div class="w-full bg-gray-100 p-2 mb-2 lg:mt-0 shadow-inner lg:rounded" data-controller="search" data-search-url="<%= search_index_url %>">
     <div class="flex items-center">
       <%= icon_svg('search.svg', class: 'svg-default pr-1') %>
       <%= text_field_tag :query, "", placeholder: "Найти статью", class: "w-full placeholder-gray-500 focus:placeholder-gray-400", data: { action: "keyup->search#fetchResults keydown->search#navigateResults", target: "search.query" }, autofocus: false, autocomplete: "off" %>

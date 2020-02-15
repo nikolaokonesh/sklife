@@ -1,6 +1,6 @@
 <nav class="w-full flex items-center justify-between flex-wrap pt-5 xl:mb-0">
   <div class="flex items-center flex-no-shrink text-white">
-    <%= link_to main_app.root_url(subdomain: false) do %>
+    <%= link_to main_app.root_url(subdomain: false), data: {"controller" => "loadernext", "action" => "click->loadernext#next"} do %>
       <%= icon_svg 'logo-big.svg', class: 'w-48 w-48' %>
     <% end %>
   </div>
@@ -10,7 +10,7 @@
         <% if user_signed_in? %>
           <div class="md:flex">
             <div class="flex items-center justify-center">
-              <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'flex items-center justify-center nav-link', title: current_user.username do %>
+              <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'flex items-center justify-center nav-link', title: current_user.username, data: {"controller" => "loadernext", "action" => "click->loadernext#next"} do %>
                 <%= user_avatar_helper(current_user) %>
                 <%= content_tag :span, current_user.username, class: 'hidden lg:flex' %>
               <% end %>
@@ -24,8 +24,8 @@
                   <%= icon_svg('air.svg', class: 'svg-white') %>
                 </div>
                 <div data-target="dropdown.menu" class="absolute right-0 text-xs mt-3 hidden">
-                  <div class="bg-white shadow rounded border overflow-hidden">
-                    <%= link_to main_app.root_url(subdomain: current_user.slug), class: 'dropdown-menu font-bold' do %>
+                  <div class="bg-white border overflow-hidden">
+                    <%= link_to main_app.root_url(subdomain: current_user.slug), data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'dropdown-menu font-bold' do %>
                       <%= icon_svg('user.svg', class: 'svg-default') %>
                       <%= current_user.username %>
                     <% end %>
@@ -40,11 +40,11 @@
                         Вы подписчик
                       <% end %>
                     <% end %>
-                    <%= link_to main_app.edit_user_registration_url(subdomain: false), class: 'dropdown-menu' do %>
+                    <%= link_to main_app.edit_user_registration_url(subdomain: false), data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'dropdown-menu' do %>
                       <%= icon_svg('cog.svg', class: 'svg-default') %>
                       Настройки
                     <% end %>
-                    <%= link_to main_app.destroy_user_session_path, class: 'dropdown-menu', method: :delete do %>
+                    <%= link_to main_app.destroy_user_session_path, data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'dropdown-menu', method: :delete do %>
                       <%= icon_svg('log-out.svg', class: 'svg-default') %>
                       Выйти
                     <% end %>
@@ -55,8 +55,8 @@
           </div>
         <% else %>
           <div class="sign">
-            <%= active_link_to "Вход", main_app.new_user_session_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white' %>
-            <%= active_link_to "Регистрация", main_app.new_user_registration_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white mr-2' %>
+            <%= active_link_to "Вход", main_app.new_user_session_url(subdomain: false), data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'inline-block p-1 text-gray-300 hover:text-white' %>
+            <%= active_link_to "Регистрация", main_app.new_user_registration_url(subdomain: false), data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'inline-block p-1 text-gray-300 hover:text-white mr-2' %>
           </div>
         <% end %>
       </div>
