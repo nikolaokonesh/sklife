@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["hidden"]
 
   connect() {
-    setTimeout(() => this.hiddenTarget.classList.add('flash-hidden'), 8000 )
+    setTimeout(() => this.hiddenTarget.classList.add('flash-hidden'), 3000 )
   }
 
 }

@@ -26,7 +26,7 @@
 
     </div>
     <div class="px-2 mb-3">
-      <% if request.subdomain.blank? %>
+      <% if request.subdomain.blank? && @post.user.admin? %>
         <div class="block">
           <%= form.check_box :subscribe %>
           <%= form.label :subscribe %>
