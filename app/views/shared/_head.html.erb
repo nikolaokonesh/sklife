@@ -7,7 +7,9 @@
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_packs_with_chunks_tag 'plugin' %>
+<% if yield(:uppy_controller).present? %>
+  <%= javascript_packs_with_chunks_tag yield(:uppy_controller), 'data-turbolinks-track': 'reload' %>
+<% end %>
 <% if yield(:canonical_link).present? %>
   <%= stylesheet_link_tag yield(:canonical_link), rel: "canonical", media: nil %>
 <% end %>
