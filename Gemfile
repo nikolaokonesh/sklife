@@ -82,3 +82,4 @@ gem 'foreman', '~> 0.87.0'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
 gem 'haml', '~> 5.1', '>= 5.1.2'
+gem 'active_model_serializers', '~> 0.10.0'
