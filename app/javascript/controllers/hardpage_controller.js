@@ -1,10 +1,10 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["opencomment"]
+  static targets = ["open"]
 
   connect() {
-    setTimeout(() => this.opencommentTarget.click(), 500 )
+    setTimeout(() => this.openTarget.click(), 500 )
   }
 
 }

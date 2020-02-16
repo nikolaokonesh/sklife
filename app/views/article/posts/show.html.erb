@@ -115,9 +115,9 @@
         <% else %>
           <div class="d-block" id="comments-show-columns">
             <div id="open_comments" class="mt-4">
-              <div data-controller="comments">
+              <div data-controller="hardpage">
                 Загрузка комментариев...
-                <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "comments.opencomment"} do %>
+                <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "hardpage.open"} do %>
                 <% end %>
               </div>
             </div>
