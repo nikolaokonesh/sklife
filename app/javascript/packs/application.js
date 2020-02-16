@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
@@ -21,6 +20,7 @@ import "controllers"
 
 require("trix")
 require("@rails/actiontext")
+require("turbolinks").start()
 
 document.addEventListener("turbolinks:request-start", function(event) {
   var loaderpage = document.querySelector("#loaderpage")
