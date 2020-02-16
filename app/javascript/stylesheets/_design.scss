@@ -6,6 +6,10 @@
   background: linear-gradient(#000224E3, #FFFFFF24);
 }
 
+.turbolinks-progress-bar {
+  visibility: hidden;
+}
+
 .z-index {
   &-plus {
     z-index: 1000;
