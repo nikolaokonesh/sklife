@@ -7,6 +7,7 @@ module Article
     include CategoryShowConcern
 
     def index
+      @book_index = Market::Knigi::Book.order(created_at: :desc).where(public: true).limit(3)
       @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post)
                             .with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc)
                             .page(params[:page])

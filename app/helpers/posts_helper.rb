@@ -1,7 +1,7 @@
 module PostsHelper
 
   def image_url_helper(image)
-    image.representation(resize_to_fill: [500, 300], quality: 50)
+    image.representation(resize_to_fill: [300, 300], quality: 50)
   end
 
   def image_helper(post)

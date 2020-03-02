@@ -1,0 +1,12 @@
+<% cache book_index do %>
+  <% if book_index.pages.any? %>
+    <% image = book_index.pages.first.body_page.embeds.includes(:blob).find{|embeds| embeds.image?} %>
+    <% if image.present? %>
+      <div class="block p-2 mx-auto">
+        <%= link_to book_path(book_index) do %>
+          <div class="h-64 w-56 lg:h-64 lg:w-48 bg-cover shadow-inner bg-gray-100 lg:rounded text-center overflow-hidden" style="background-image: url('<%= main_app.url_for(image.representation(resize_to_fit: [500, 300], quality: 50)) %>');"></div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
