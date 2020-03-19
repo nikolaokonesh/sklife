@@ -25,6 +25,7 @@ if (process.env.RAILS_ENV === "production") {
         './node_modules/photoswipe/**/*.js',
         './node_modules/trix/**/*.js',
         './node_modules/@uppy/**/*.js',
+        './node_modules/unpoly/**/*.js',
         // './app/javascript/**/*.vue',
         // './app/javascript/**/*.jsx',
       ],

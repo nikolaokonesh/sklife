@@ -7361,6 +7361,11 @@ unpipe@1.0.0, unpipe@~1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
+unpoly@^0.61.0:
+  version "0.61.0"
+  resolved "https://registry.yarnpkg.com/unpoly/-/unpoly-0.61.0.tgz#e1699dab9d22ea151d72dad32b6e0ef12566ac1a"
+  integrity sha512-pf2ATBiZdTVy7xYc9YcKbUNU7XqCo3nM6Bd3WHlYC7/itkrmxSGN1UZSp2chs9zuQhSihrfuph8bxDNGxLoemA==
+
 unquote@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/unquote/-/unquote-1.1.1.tgz#8fded7324ec6e88a0ff8b905e7c098cdc086d544"

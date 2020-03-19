@@ -14,7 +14,7 @@ gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -83,3 +83,4 @@ gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'whenever', require: false
 gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'unpoly-rails'

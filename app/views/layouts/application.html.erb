@@ -15,12 +15,15 @@
 
     <%= render 'shared/notice' %>
 
-    <%= yield(:content_body)%>
+    <div class="main">
+      <%= yield(:content_body)%>
+    </div>
 
     <% cache "footer_v1" do %>
       <%= render('shared/footer', color: 'inline-block link pr-2') %>
     <% end %>
 
     <%= render 'shared/photoswipe' %>
+    <%= javascript_packs_with_chunks_tag 'component' %>
   </body>
 </html>

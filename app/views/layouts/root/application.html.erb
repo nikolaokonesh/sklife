@@ -28,7 +28,7 @@
               <%= yield %>
             </div>
             <div class="w-full lg:max-w-xs mt-9 lg:mr-4 lg:mt-0">
-              <%= active_link_to main_app.root_path, class: 'link w-full', active: :exclusive do %>
+              <%= active_link_to main_app.root_path, class: 'link w-full', active: :exclusive, "up-target" => ".main" do %>
                 <div class="menu">
                   Главное
                 </div>
