@@ -6,4 +6,4 @@ require("trix")
 require("@rails/actiontext")
 import "controllers"
 
-require("unpoly/dist/unpoly.min.js")
+require("unpoly/dist/unpoly")
