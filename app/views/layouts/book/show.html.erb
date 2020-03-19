@@ -1,7 +1,7 @@
 <% content_for :content_body do %>
   <div class="w-full mx-auto px-2 lg:px-8 lg:py-6">
     <div class="flex flex-wrap flex-row-reverse">
-      <div class="w-full lg:w-1/2 lg:mr-auto bg-gray-100 rounded border-t-4 border-b-4 shadow-2xl my-2 lg:m-2 p-2 lg:p-8">
+      <div class="book w-full lg:w-1/2 lg:mr-auto bg-gray-100 rounded border-t-4 border-b-4 shadow-2xl my-2 lg:m-2 p-2 lg:p-8">
         <% if content_for?(:titleise) %>
           <div class="w-full max-w-lg xl:max-w-2xl px-2">
             <%= yield :titleise %>
@@ -12,7 +12,7 @@
       <div class="w-full lg:w-1/4 lg:ml-auto bg-gray-100 rounded border-t-4 border-b-4 shadow-2xl my-2 lg:m-2 px-2">
 
         <div class="my-3 text-center">
-          <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + title(sanitize(strip_tags(@page.commentable.title))), url_for(@page.commentable), class: 'text-lg text-gray-600 hover:text-gray-700' %>
+          <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + title(sanitize(strip_tags(@page.commentable.title))), url_for(@page.commentable), class: 'text-lg text-gray-600 hover:text-gray-700', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
           <div class="text-xs text-gray-600">Автор: <%= title(sanitize(strip_tags(@page.commentable.author))) %></div>
           <div class="text-xs text-gray-600">Год выпуска: <%= time_tag(@page.commentable.data, :format=>'%Y') %></div>
         </div>

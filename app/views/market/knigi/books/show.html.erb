@@ -8,8 +8,8 @@
   <h1>
     <span class="inline-block"><%= title sanitize(strip_tags(@book.title)) %></span>
     <small class="h6">
-      <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_path(@book), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'link mx-4' if @book.user == current_user %>
-      <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @book, method: :delete, class: 'link--destroy', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @book.user == current_user %>
+      <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_path(@book), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'link mx-4', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @book.user == current_user %>
+      <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @book, method: :delete, class: 'link--destroy', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true, "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @book.user == current_user %>
     </small>
   </h1>
   <div class="block text-sm text-gray-600">
@@ -46,5 +46,5 @@
 <% end %>
 
 <div class="block mt-5">
-  <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-edit'), books_path, class: 'link text-lg' %>
+  <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-edit'), books_path, class: 'link text-lg', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
 </div>

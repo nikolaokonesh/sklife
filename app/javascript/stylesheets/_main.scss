@@ -51,6 +51,17 @@ input {
   }
 }
 
+.up-active {
+  .menu {
+    transition: $transition;
+    background-color: #ffb8b8 !important;
+  }
+}
+a.up-active {
+  transition: $transition;
+  background-color: #ffb8b8 !important;
+}
+
 .link {
   @apply .text-teal-700;
   &:hover,

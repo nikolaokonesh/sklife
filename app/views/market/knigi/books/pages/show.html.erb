@@ -9,8 +9,8 @@
         <span class="d-inline-block">
           <%= title sanitize(strip_tags(@page.title)) %>
           <div class="inline-block">
-            <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_page_path(@page.commentable, @page, anchor: :vid), title: "Редактировать", class: 'link mx-1 text-xs' if @page.commentable.user == current_user %>
-            <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@page.commentable, @page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true if @page.commentable.user == current_user %>
+            <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_page_path(@page.commentable, @page, anchor: :vid), title: "Редактировать", class: 'link mx-1 text-xs', "up-target" => ".book", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @page.commentable.user == current_user %>
+            <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@page.commentable, @page], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'link--destroy text-xs', title: "Удалить", remote: true, "up-target" => ".book", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @page.commentable.user == current_user %>
           </div>
         </span>
       </h1>
@@ -27,7 +27,7 @@
     <span class="text-gray-500">
       <%= truncate(strip_tags(@page.body_page.body.to_s), length: 500, omission: '...') %>
     </span>
-    <%= link_to @page.commentable, class: 'block mt-2 bg-green-400 text-gray-200 text-center p-3 hover:bg-green-500 hover:text-white rounded shadow' do %>
+    <%= link_to @page.commentable, class: 'block mt-2 bg-green-400 text-gray-200 text-center p-3 hover:bg-green-500 hover:text-white rounded shadow', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
       <% @page.commentable.price == 0 ? 'Нажмите "Читать" на титульной странице' : 'Приобрести полную версию' %>
     <% end %>
   <% end %>
@@ -36,9 +36,9 @@
 
 <div class="w-full mt-5">
   <% if @page.prev(@page) %>
-    <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-edit'), [@page.commentable, @page.prev(@page)], class: 'float-left hover:text-blue-600' %>
+    <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-edit'), [@page.commentable, @page.prev(@page)], class: 'float-left hover:text-blue-600', "up-target" => ".book", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
   <% end %>
   <% if @page.next(@page) %>
-    <%= link_to icon_svg('chevron-thin-right.svg', class: 'svg-edit'), [@page.commentable, @page.next(@page)], class: 'float-right hover:text-blue-600' %>
+    <%= link_to icon_svg('chevron-thin-right.svg', class: 'svg-edit'), [@page.commentable, @page.next(@page)], class: 'float-right hover:text-blue-600', "up-target" => ".book", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
   <% end %>
 </div>

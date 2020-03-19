@@ -11,6 +11,10 @@ module Article
       @posts = Article::Post.includes(:posttable, :comments, :user, :rich_text_body_post)
                             .with_rich_text_body_post_and_embeds.where(top: true).order(created_at: :desc)
                             .page(params[:page])
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
 
     def show

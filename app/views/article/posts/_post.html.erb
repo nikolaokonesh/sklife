@@ -1,5 +1,5 @@
 <% cache post do %>
-  <%= link_to main_app.category_post_path(post.posttable, post), class: 'md:flex lg:rounded-lg hover:text-blue-700 lg:pt-5', id: "post_#{post.id}" do %>
+  <%= link_to category_post_path(post.posttable, post), class: 'md:flex lg:rounded-lg hover:text-blue-700 lg:pt-5', id: "post_#{post.id}", "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
 
     <%= image_helper(post) %>
 

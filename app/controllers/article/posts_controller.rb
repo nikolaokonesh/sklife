@@ -8,6 +8,10 @@ module Article
 
     def show
       post_show_conc
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
 
     def new

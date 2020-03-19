@@ -2,7 +2,7 @@
 
 <% if user_signed_in? %>
   <div class="block pagination p-5">
-    <%= link_to 'Добавить книгу', main_app.new_book_path, class: 'pg-link pl-2 text-xl' if current_user.admin? %>
+    <%= link_to 'Добавить книгу', main_app.new_book_path, class: 'pg-link pl-2 text-xl', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if current_user.admin? %>
   </div>
 <% end %>
 

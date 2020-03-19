@@ -1,5 +1,5 @@
 <% cache category do %>
-  <%= link_to main_app.category_path(category), data: {"controller" => "activelink", "activelink-active-on" => "#{main_app.category_path(category)}"}, class: 'link', "up-target" => ".main" do %>
+  <%= link_to main_app.category_path(category), class: 'link', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
     <div class="menu">
       <%= sanitize(strip_tags(category.title)) %>
       <%= content_tag :span, icon_svg('chat.svg', class: 'svg-default') +  category.comments.count.to_s, class: 'pl-2 text-xs' if category.comments.present? %>

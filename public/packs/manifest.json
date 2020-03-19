@@ -1,23 +1,23 @@
 {
-  "application.js": "/packs/js/application-0ab98ac74ce800b2f083.js",
-  "application.js.map": "/packs/js/application-0ab98ac74ce800b2f083.js.map",
-  "component.js": "/packs/js/component-ffde317d3a8997fe72da.js",
-  "component.js.map": "/packs/js/component-ffde317d3a8997fe72da.js.map",
+  "application.js": "/packs/js/application-94fae237387fcc3cd95f.js",
+  "application.js.map": "/packs/js/application-94fae237387fcc3cd95f.js.map",
+  "component.js": "/packs/js/component-8694123851a61079d01d.js",
+  "component.js.map": "/packs/js/component-8694123851a61079d01d.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-0ab98ac74ce800b2f083.js"
+        "/packs/js/application-94fae237387fcc3cd95f.js"
       ],
       "js.map": [
-        "/packs/js/application-0ab98ac74ce800b2f083.js.map"
+        "/packs/js/application-94fae237387fcc3cd95f.js.map"
       ]
     },
     "component": {
       "js": [
-        "/packs/js/component-ffde317d3a8997fe72da.js"
+        "/packs/js/component-8694123851a61079d01d.js"
       ],
       "js.map": [
-        "/packs/js/component-ffde317d3a8997fe72da.js.map"
+        "/packs/js/component-8694123851a61079d01d.js.map"
       ]
     },
     "uppy_controller": {

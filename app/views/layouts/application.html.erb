@@ -7,17 +7,13 @@
   <body>
     <% if yield(:fullpath).present? %>
       <%= yield(:fullpath) %>
-    <% else %>
-      <script>
-        Appcontroller = "<%= request.original_fullpath %>"
-      </script>
     <% end %>
+
+    <%= render 'spinner' %>
 
     <%= render 'shared/notice' %>
 
-    <div class="main">
-      <%= yield(:content_body)%>
-    </div>
+    <%= yield(:content_body)%>
 
     <% cache "footer_v1" do %>
       <%= render('shared/footer', color: 'inline-block link pr-2') %>

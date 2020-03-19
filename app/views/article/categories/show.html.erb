@@ -9,11 +9,11 @@
 <% content_for :titleise do %>
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
-      <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block' %>
+      <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
       <div class="inline-block text-3xl leading-tight"><%= title sanitize(strip_tags(@category.title)) %></div>
       <div class="inline-block text-sm">
-        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-2' if @category.user == current_user %>
-        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @category.user == current_user %>
+        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-2', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @category.user == current_user %>
+        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true, "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @category.user == current_user %>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
           <% end %>
           <div class="px-1" id="comments">
             <% if params[:comment] %>
-              <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link' %></h5>
+              <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "", class: 'link' %></h5>
               <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
               <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
             <% else %>

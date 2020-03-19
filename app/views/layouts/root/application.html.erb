@@ -19,7 +19,7 @@
         </div>
         <div class="w-full mx-auto mt-8 lg:-mt-5 lg:py-6">
           <div class="flex flex-wrap lg:flex-no-wrap flex-row-reverse">
-            <div class="w-full lg:max-w-3xl">
+            <div class="main w-full lg:max-w-3xl">
               <% if content_for?(:titleise) %>
                 <div class="w-full max-w-lg xl:max-w-2xl px-2">
                   <%= yield :titleise %>
@@ -28,7 +28,7 @@
               <%= yield %>
             </div>
             <div class="w-full lg:max-w-xs mt-9 lg:mr-4 lg:mt-0">
-              <%= active_link_to main_app.root_path, class: 'link w-full', active: :exclusive, "up-target" => ".main" do %>
+              <%= active_link_to main_app.root_path, class: 'link w-full', active: :exclusive, "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
                 <div class="menu">
                   Главное
                 </div>
