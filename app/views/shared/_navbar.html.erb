@@ -55,8 +55,8 @@
           </div>
         <% else %>
           <div class="sign">
-            <%= active_link_to "Вход", main_app.new_user_session_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white' %>
-            <%= active_link_to "Регистрация", main_app.new_user_registration_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white mr-2' %>
+            <%= active_link_to "Вход", main_app.new_user_session_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
+            <%= active_link_to "Регистрация", main_app.new_user_registration_url(subdomain: false), class: 'inline-block p-1 text-gray-300 hover:text-white mr-2', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
           </div>
         <% end %>
       </div>
