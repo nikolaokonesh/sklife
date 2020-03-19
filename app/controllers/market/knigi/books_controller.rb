@@ -72,14 +72,19 @@ module Market
       def library
         type = params[:type]
         if type == 'add'
-          response = @sbrf_client.register(amount: params[:amountorub],
-                                           order_number: SecureRandom.random_number(10_000_000_000),
-                                           return_url: success_book_url(@book),
-                                           fail_url: fail_book_url(@book))
-          if response.success?
-            redirect_to response.form_url, allow_other_host: true
+          if @book.price == 0
+            current_user.library_additions << @book
+            redirect_to book_url(@book), notice: "Вы добавили книгу: #{@book.title}"
           else
-            redirect_to root_url, alert: 'Ошибка. Обратитесь к администратору'
+            response = @sbrf_client.register(amount: params[:amountorub],
+                                             order_number: SecureRandom.random_number(10_000_000_000),
+                                             return_url: success_book_url(@book),
+                                             fail_url: fail_book_url(@book))
+            if response.success?
+              redirect_to response.form_url, allow_other_host: true
+            else
+              redirect_to root_url, alert: 'Ошибка. Обратитесь к администратору'
+            end
           end
         else
           redirect_to book_url(@book), notice: 'Looks like nothing happened. Try once more!'
@@ -99,7 +104,7 @@ module Market
                                               about: "книга: #{@book.title}",
                                               price: @book.price)
               current_user.library_additions << @book
-              redirect_to books_url, notice: "Вы добавили в библиотеку книгу: #{@book.title}"
+              redirect_to books_url, notice: "Вы добавили книгу: #{@book.title}"
             else
               redirect_to books_url, alert: 'Данный запрос был ранее задан и обработан.'
             end

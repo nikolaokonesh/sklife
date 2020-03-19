@@ -4,7 +4,10 @@
       <%= form_for :book, url: add_book_path(book, type: "add", amountorub: (book.price.to_s+"00").to_i), method: :put, data: {disable_with: disable_helper('Переход в Сбербанк-Онлайн')}, remote: true do |f| %>
         <%= render 'application/progress_pay' %>
         <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit') do %>
-          Читать за <%= book.price %> руб
+          Читать
+          <% if book.price != 0 %>
+           за <%= book.price %> руб
+          <% end %>
         <% end %>
       <% end %>
     <% else %>
