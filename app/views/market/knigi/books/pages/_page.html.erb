@@ -1,4 +1,4 @@
-<%= link_to [page.commentable, page], class: "block border-b link p-1", "up-target" => ".book", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
+<%= link_to [page.commentable, page], class: "block border-b link p-1", "up-dash" => ".book", "up-transition" => "cross-fade" do %>
   <%= user_view_page(current_user, page) if user_signed_in? %>
   <%= sanitize(strip_tags(page.title)) %>
 <% end %>

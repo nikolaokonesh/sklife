@@ -17,7 +17,7 @@
         <div class="flex items-center">
           <div class="inline-block media-content border-left bg-gray-200 text-gray-700 rounded px-2">
             <% unless notification.target.commentable.nil? %>
-              <%= link_to main_app.category_url(notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "data-turbolinks" => "false" do %>
+              <%= link_to main_app.category_url(notification.target.commentable, comment: notification.target.id, anchor: dom_id(notification.target), subdomain: notification_target_helper(notification.target.commentable)), "up-dash" => ".main", "up-transition" => "cross-fade" do %>
                 <%= comment_body_notification_helper(notification.target) %>
               <% end %>
             <% end %>

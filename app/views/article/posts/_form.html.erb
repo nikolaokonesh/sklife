@@ -55,7 +55,7 @@
     <ul class="post-errors" data-target="form-error.postErrors"></ul>
     <div class="flex items-center">
       <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'hover:bg-teal-600 bg-teal-500 text-white py-3 px-4') %>
-      <%= link_to 'Отмена', @posttable, class: 'hover:bg-red-600 bg-red-400 text-white py-3 px-4' %>
+      <%= link_to 'Отмена', @posttable, class: 'hover:bg-red-600 bg-red-400 text-white py-3 px-4', "up-dash" => ".main", "up-transition" => "cross-fade" %>
     </div>
   <% end %>
 </div>

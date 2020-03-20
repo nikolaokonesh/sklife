@@ -5,7 +5,7 @@
   <div class="flex flex-wrap items-center">
     <%= render partial: 'market/knigi/books/book_index', collection: @book_index %>
     <div class="block pr-2">
-      <%= link_to icon_svg('chevron-thin-right.svg', class: 'svg-edit'), main_app.books_path, class: 'hover:text-blue-600', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
+      <%= link_to icon_svg('chevron-thin-right.svg', class: 'svg-edit'), main_app.books_path, class: 'hover:text-blue-600', "up-dash" => ".main", "up-transition" => "cross-fade" %>
     </div>
   </div>
 <% end %>

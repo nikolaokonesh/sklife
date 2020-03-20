@@ -1,7 +1,7 @@
 <div class="bg-green-100 border-t-4 border-b-2 border-green-200 pt-3 pb-4 px-4 mb-8 rounded text-center">
   <div class="lg:inline-block block mt-4">
     <% if user_signed_in? %>
-      <%= form_for :book, url: add_book_path(book, type: "add", amountorub: (book.price.to_s+"00").to_i), method: :put, data: {disable_with: disable_helper('Переход в Сбербанк-Онлайн')}, remote: true do |f| %>
+      <%= form_for :book, url: add_book_path(book, type: "add", amountorub: (book.price.to_s+"00").to_i), method: :put, data: {disable_with: disable_helper('Переход в Сбербанк-Онлайн')}, "up-dash" => ".main", "up-transition" => "cross-fade" do |f| %>
         <%= render 'application/progress_pay' %>
         <%= content_tag(:button, class: 'bg-green-700 text-gray-300 text-lg hover:text-white py-2 px-4 mb-2 border-t-4 border-b-4 border-green-300 hover:border-green-400', type: 'submit') do %>
           Читать
@@ -18,6 +18,6 @@
   </div>
   <div class="inline-block text-gray-700 mt-4 ml-2">
     Онлайн-книга будет сохранена в вашей
-    <%= link_to 'библиотеке', main_app.library_index_url(subdomain: false), class: 'hover:text-blue-500' %>
+    <%= link_to 'библиотеке', main_app.library_index_url(subdomain: false), class: 'hover:text-blue-500', "up-dash" => ".main", "up-transition" => "cross-fade" %>
   </div>
 </div>

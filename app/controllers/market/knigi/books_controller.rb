@@ -22,6 +22,10 @@ module Market
           @page = Market::Knigi::Page.new
           @pages = @book.pages.order(created_at: :asc)
         end
+        respond_to do |format|
+          format.html
+          format.js
+        end
       end
 
       def new

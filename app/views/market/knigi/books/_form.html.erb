@@ -24,7 +24,7 @@
         <br/>
         <%= render 'application/progress_upload' %>
         <%= content_tag(:button, 'Сохранить', type: 'submit', class: 'btn') %>
-        <%= link_to 'Отмена', [@book, anchor: :vid], class: 'link' %>
+        <%= link_to 'Отмена', @book, class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %>
       </div>
     <% end %>
   </div>

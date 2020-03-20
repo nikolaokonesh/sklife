@@ -5,7 +5,7 @@
     <% else %>
       <%= render 'notifications/titleise', title: 'Все уведомления' %>
       <div class="block mb-5 text-right">
-        <%= link_to 'Удалить всё', clean_notifications_path, class: 'btn text-sm', method: 'delete' %>
+        <%= link_to 'Удалить всё', clean_notifications_path, class: 'btn text-sm', method: 'delete', "up-dash" => ".main", "up-transition" => "cross-fade" %>
       </div>
       <% @notification_groups.each do |group, notifications| %>
         <div class="notification-group  leading-normal">

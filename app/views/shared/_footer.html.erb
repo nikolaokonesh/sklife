@@ -1,18 +1,18 @@
 <div class="w-full absolute">
   <footer class="z-50 max-w-4xl mx-auto lg:flex items-center bottom-0 text-xs pb-10 pt-24 px-4 lg:px-10">
     <div class="flex items-center">
-      <%= link_to root_url(subdomain: false) do %>
+      <%= link_to main_app.root_url(subdomain: false) do %>
         <div class='flex'>
           <%= icon_svg 'logo-dark.svg', class: 'w-48 w-48' %>
         </div>
       <% end %>
       <%= content_tag :span, "© #{Date.today.year}", class: 'flex font-bold text-gray-700 pr-2' %>
     </div>
-    <%= link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false)}"}, class: color %>
-    <%= link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'about', subdomain: false)}"}, class: color %>
-    <%= link_to "Конфиденциальность", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false)}"}, class: color %>
-    <%= link_to "Способы оплаты", main_app.url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false)}"}, class: color %>
-    <%= link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false)}"}, class: color %>
-    <%= link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false)}"}, class: color %>
+    <%= link_to "Реквизиты", main_app.url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'contacts', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
+    <%= link_to "Услуги", main_app.url_for(controller: "/static", action: 'show', page: 'about', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'about', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
+    <%= link_to "Конфиденциальность", main_app.url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'privacy', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
+    <%= link_to "Способы оплаты", main_app.url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'payments', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
+    <%= link_to 'Тарифы', main_app.url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'subscribes', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
+    <%= link_to 'Обратная связь', main_app.url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false), data: {"controller" => "activelink", "activelink-active-on" => "#{url_for(controller: "/static", action: 'show', page: 'feedback', subdomain: false)}"}, "up-dash" => ".main", "up-transition" => "cross-fade", class: color %>
   </footer>
 </div>

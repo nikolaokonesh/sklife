@@ -49,7 +49,7 @@
                   <%= render 'application/progress_upload' %>
 
                   <%= content_tag(:button, "Сохранить", class: 'mb-2 rounded bg-pink-500 hover:bg-teal-800 hover:bg-teal-800 px-6 py-3 font-bold text-white border-b-4 border-teal-500 hover:border-pink-500', type: 'submit') %>
-                  <%= link_to "Отмена", root_path, class: 'link mb-2 ml-2', data: { action: "click->reply#toggle" } %>
+                  <%= link_to "Отмена", root_path, class: 'link mb-2 ml-2', "up-dash" => "body", "up-transition" => "cross-fade" %>
 
                   <div class="inline ml-5">
                     <%= form.label :bgcolor do %>

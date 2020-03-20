@@ -18,8 +18,8 @@
 <% else %>
   <div class="block text-gray-600 leading-normal font-normal text-center">
     Перед этим
-    <%= link_to 'войдите', main_app.new_user_session_path, class: 'link' %>
+    <%= link_to 'войдите', main_app.new_user_session_path, class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %>
     или
-    <%= link_to 'зарегистрируйтесь', main_app.new_user_registration_path, class: 'link' %>
+    <%= link_to 'зарегистрируйтесь', main_app.new_user_registration_path, class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %>
   </div>
 <% end %>

@@ -17,17 +17,17 @@
   <div class="flex flex-wrap">
     <div class="w-full max-w-3xl mx-auto">
       <% if @post.type.blank? || request.subdomain.present? %>
-        <%= link_to url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" do %>
+        <%= link_to url_for(@post.posttable), class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-dash" => ".main", "up-transition" => "cross-fade" do %>
           <%= icon_svg('chevron-thin-left.svg', class: 'svg-default') %>
           <%= sanitize(strip_tags(@post.posttable.title)) %>
         <% end %>
       <% else %>
-        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %>
+        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-dash" => ".main", "up-transition" => "cross-fade" %>
       <% end %>
       <div class="inline text-3xl leading-tight"><%= title sanitize(strip_tags(@post.title)) %></div>
       <div class="inline-block text-sm">
-        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @post.user == current_user %>
-        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true, "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" if @post.user == current_user %>
+        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_post_path(@post.posttable, @post), title: "Редактировать", class: 'text-blue-500 mx-2', "up-dash" => ".main", "up-transition" => "cross-fade" if @post.user == current_user %>
+        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), [@post.posttable, @post], method: :delete, data: { confirm: 'Вы уверены?' }, class: 'text-red-600', title: "Удалить", remote: true, "up-dash" => ".main", "up-transition" => "cross-fade" if @post.user == current_user %>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
       <% end %>
 
       <% if @post.type.present? && request.subdomain.blank? %>
-        <%= link_to main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug), data: {"controller" => "loadernext", "action" => "click->loadernext#next"}, class: 'block bg-teal-500 hover:bg-teal-600 text-white py-2 border-pink-500 border-l-4 px-2' do %>
+        <%= link_to main_app.category_post_url(@post.posttable, @post, subdomain: @post.user.slug), class: 'block bg-teal-500 hover:bg-teal-600 text-white py-2 border-pink-500 border-l-4 px-2' do %>
           <span class="block text-gray-200 text-sm lg:text-base text-center">Продолжить просмотр на странице:</span>
           <span class="flex items-center justify-center">
             <%= user_avatar_helper(@post.user) %>
@@ -108,7 +108,7 @@
       <% end %>
       <div class="px-1" id="comments">
         <% if params[:comment] %>
-          <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link', "up-target" => ".main", "up-transition" => "cross-fade", "up-instant" => "", "up-preload" => "" %></h5>
+          <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %></h5>
           <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
           <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
         <% else %>

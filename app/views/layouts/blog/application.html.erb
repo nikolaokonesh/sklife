@@ -6,12 +6,14 @@
         <div class="absolute z-10 w-full pt-2 pl-4 max-w-5xl">
           <%= render 'shared/navbar' %>
         </div>
-        <%= background_helper(@user_agent) %>
-        <div class="relative z-10 px-4 pb-2 flex flex-wrap" style="background: <%= @user_agent.profile.bgcolor %>17;">
-          <%= render 'shared/profile' %>
+        <div class="profile">
+          <%= background_helper(@user_agent) %>
+          <div class="relative z-10 px-4 pb-2 flex flex-wrap" style="background: <%= @user_agent.profile.bgcolor %>17;">
+            <%= render 'shared/profile' %>
+          </div>
         </div>
         <div class="flex flex-wrap lg:flex-no-wrap flex-row-reverse">
-          <div class="w-full lg:max-w-3xl mt-4">
+          <div class="main w-full lg:max-w-3xl mt-4">
             <% if content_for?(:titleise) %>
               <div class="w-full max-w-lg xl:max-w-2xl px-2">
                 <%= yield :titleise %>
@@ -20,7 +22,7 @@
             <%= yield %>
           </div>
           <div class="w-full lg:max-w-xs mt-9 lg:mr-4 lg:mt-0">
-            <%= active_link_to main_app.root_path, class: 'link', active: :exclusive do %>
+            <%= link_to main_app.root_path, class: 'link', active: :exclusive, "up-dash" => ".main", "up-transition" => "cross-fade" do %>
               <div class="menu">
                 Главное
               </div>
