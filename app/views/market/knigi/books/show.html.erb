@@ -9,7 +9,7 @@
     <span class="inline-block"><%= title sanitize(strip_tags(@book.title)) %></span>
     <small class="h6">
       <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_book_path(@book), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'link mx-4', "up-dash" => ".main", "up-transition" => "cross-fade" if @book.user == current_user %>
-      <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @book, method: :delete, class: 'link--destroy', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true, "up-dash" => ".main", "up-transition" => "cross-fade" if @book.user == current_user %>
+      <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @book, method: :delete, class: 'link--destroy', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @book.user == current_user %>
     </small>
   </h1>
   <div class="block text-sm text-gray-600">

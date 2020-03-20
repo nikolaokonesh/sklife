@@ -1,93 +1,95 @@
-<% keywords truncate(strip_tags(@category.description), length: 100, omission: '').split.uniq.sort %>
-<% description truncate(strip_tags(@category.description), length: 200) %>
-<% if request.subdomain.present? %>
-  <% content_for :canonical_link, main_app.category_url(@category, subdomain: @category.user.slug) %>
-<% else %>
-  <% content_for :canonical_link, main_app.category_url(@category, subdomain: false) %>
-<% end %>
+<div class="main">
+  <% keywords truncate(strip_tags(@category.description), length: 100, omission: '').split.uniq.sort %>
+  <% description truncate(strip_tags(@category.description), length: 200) %>
+  <% if request.subdomain.present? %>
+    <% content_for :canonical_link, main_app.category_url(@category, subdomain: @category.user.slug) %>
+  <% else %>
+    <% content_for :canonical_link, main_app.category_url(@category, subdomain: false) %>
+  <% end %>
 
-<% content_for :titleise do %>
-  <div class="flex flex-wrap">
-    <div class="w-full max-w-3xl mx-auto">
-      <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-dash" => ".main", "up-transition" => "cross-fade" %>
-      <div class="inline-block text-3xl leading-tight"><%= title sanitize(strip_tags(@category.title)) %></div>
-      <div class="inline-block text-sm">
-        <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-2', "up-dash" => ".main", "up-transition" => "cross-fade" if @category.user == current_user %>
-        <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true, "up-dash" => ".main", "up-transition" => "cross-fade" if @category.user == current_user %>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<div class="py-3 mb-4 flex justify-center">
-  <div class="w-full">
-    <div id="show-listed">
-      <div class="pb-6">
-        <div class="px-2" data-controller="gallery">
-          <%= @category.body if @category.description.present? %>
-        </div>
-
-        <% @category.youtubes.all.each do |tube| %>
-          <%= render 'youtube_video', tube: tube %>
-        <% end %>
-
-        <% if @category.no_data.blank? %>
-          <div class="text-right text-gray-600 text-sm m-4">
-            Опубликовано <%= time_tag(@category.created_at, :format=>'%d %B %Y в %H:%M') %>
-          </div>
-        <% end %>
-        <% if @category.user == current_user %>
-          <div class="my-4 pagination" id="btn_hide">
-            <%= link_to main_app.new_category_post_path(@category), class: 'link text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')} do %>
-              <%= icon_svg('level-down.svg', class: 'svg-default') %>
-              Добавить вложенную страницу
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-      <div id="cate-show-<%= @category.id %>-<%= (@category.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
-        <div class="block" id="categories-show-columns">
-          <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
-        </div>
-        <div class="block pagination my-4" id="categories-show-paginator">
-          <%= pag_helper(@posts, 'Далее') %>
+  <% content_for :titleise do %>
+    <div class="flex flex-wrap">
+      <div class="w-full max-w-3xl mx-auto">
+        <%= link_to icon_svg('chevron-thin-left.svg', class: 'svg-default') + "Главное", root_path, class: 'mb-2 text-gray-500 hover:text-gray-600 block', "up-dash" => ".main", "up-transition" => "cross-fade", "up-cache" => "false" %>
+        <div class="inline-block text-3xl leading-tight"><%= title sanitize(strip_tags(@category.title)) %></div>
+        <div class="inline-block text-sm">
+          <%= link_to icon_svg('edit.svg', class: 'svg-edit'), edit_category_path(@category), data: { toggle: "tooltip", placement: "bottom" }, title: "Редактировать", class: 'text-blue-500 mx-2', "up-dash" => ".main", "up-transition" => "cross-fade" if @category.user == current_user %>
+          <%= link_to icon_svg('trash.svg', class: 'svg-trash'), @category, method: :delete, class: 'text-red-700', data: { toggle: "tooltip", placement: "right", confirm: 'Вы уверены?' }, title: "Удалить", remote: true if @category.user == current_user %>
         </div>
       </div>
     </div>
+  <% end %>
 
-    <% if @category.no_comments.present? %>
-      <div class="pt-2 mb-4 flex justify-center">
-        <div class="w-full mt-4">
-          <% unless params[:comment] %>
-            <div id="commentos_back">
-              <%= render partial: "comments/form", locals: { commentable: @category, postas: 'postas_post' } %>
+  <div class="py-3 mb-4 flex justify-center">
+    <div class="w-full">
+      <div id="show-listed">
+        <div class="pb-6">
+          <div class="px-2" data-controller="gallery">
+            <%= @category.body if @category.description.present? %>
+          </div>
+
+          <% @category.youtubes.all.each do |tube| %>
+            <%= render 'youtube_video', tube: tube %>
+          <% end %>
+
+          <% if @category.no_data.blank? %>
+            <div class="text-right text-gray-600 text-sm m-4">
+              Опубликовано <%= time_tag(@category.created_at, :format=>'%d %B %Y в %H:%M') %>
             </div>
           <% end %>
-          <div class="px-1" id="comments">
-            <% if params[:comment] %>
-              <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %></h5>
-              <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
-              <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
-            <% else %>
-              <div class="block" id="comments-show-columns">
-                <div id="open_comments" class="mt-4">
-                  <div data-controller="hardpage">
-                    Загрузка комментариев...
-                    <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "hardpage.open"} do %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+          <% if @category.user == current_user %>
+            <div class="my-4 pagination" id="btn_hide">
+              <%= link_to main_app.new_category_post_path(@category), class: 'link text-xl pg-link', remote: true, data: {disable_with: disable_helper('Загрузка...')} do %>
+                <%= icon_svg('level-down.svg', class: 'svg-default') %>
+                Добавить вложенную страницу
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="cate-show-<%= @category.id %>-<%= (@category.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
+          <div class="block" id="categories-show-columns">
+            <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
           </div>
-          <br />
-          <div class="block pagination mb-4 hidden" id="comments-show-paginator">
-            <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
+          <div class="block pagination my-4" id="categories-show-paginator">
+            <%= pag_helper(@posts, 'Далее') %>
           </div>
         </div>
       </div>
-    <% end %>
 
+      <% if @category.no_comments.present? %>
+        <div class="pt-2 mb-4 flex justify-center">
+          <div class="w-full mt-4">
+            <% unless params[:comment] %>
+              <div id="commentos_back">
+                <%= render partial: "comments/form", locals: { commentable: @category, postas: 'postas_post' } %>
+              </div>
+            <% end %>
+            <div class="px-1" id="comments">
+              <% if params[:comment] %>
+                <h5 class="pt-4"><%= link_to "← Смотреть все комментарии", url_for(anchor: 'commentos_back'), class: 'link', "up-dash" => ".main", "up-transition" => "cross-fade" %></h5>
+                <%#= render partial: 'comments/comment', collection: @comments_parent, continue_thread: 10  %>
+                <%= render partial: 'comments/comment', collection: @comments, continue_thread: 10  %>
+              <% else %>
+                <div class="block" id="comments-show-columns">
+                  <div id="open_comments" class="mt-4">
+                    <div data-controller="hardpage">
+                      Загрузка комментариев...
+                      <%= link_to url_for(open: 'true'), class: 'hidden', remote: true, data: {target: "hardpage.open"} do %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <br />
+            <div class="block pagination mb-4 hidden" id="comments-show-paginator">
+              <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <% if current_user.newsubscribed? %>
-  <div class="mb-4">
+  <div class="mb-4 btn_hide">
 
     <% if request.subdomain.present? && @user_agent.categories.blank? %>
       <div class="text-gray-600 px-2">

@@ -17,7 +17,7 @@
           </g>
           </svg>
         </div>
-        <div class="w-full mx-auto mt-8 lg:-mt-5 lg:py-6">
+        <div class="main-full w-full mx-auto mt-8 lg:-mt-5 lg:py-6">
           <div class="flex flex-wrap lg:flex-no-wrap flex-row-reverse">
             <div class="main w-full lg:max-w-3xl">
               <% if content_for?(:titleise) %>
@@ -28,7 +28,7 @@
               <%= yield %>
             </div>
             <div class="w-full lg:max-w-xs mt-9 lg:mr-4 lg:mt-0">
-              <%= link_to main_app.root_path, class: 'link w-full', "up-dash" => ".main", "up-transition" => "cross-fade" do %>
+              <%= link_to main_app.root_path, class: 'link w-full', "up-dash" => ".main", "up-transition" => "cross-fade", "up-cache" => "false" do %>
                 <div class="menu">
                   Главное
                 </div>

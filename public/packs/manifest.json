@@ -1,8 +1,8 @@
 {
   "application.js": "/packs/js/application-94fae237387fcc3cd95f.js",
   "application.js.map": "/packs/js/application-94fae237387fcc3cd95f.js.map",
-  "component.js": "/packs/js/component-8694123851a61079d01d.js",
-  "component.js.map": "/packs/js/component-8694123851a61079d01d.js.map",
+  "component.js": "/packs/js/component-70721deac9ee148c7fb8.js",
+  "component.js.map": "/packs/js/component-70721deac9ee148c7fb8.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -14,25 +14,15 @@
     },
     "component": {
       "js": [
-        "/packs/js/component-8694123851a61079d01d.js"
+        "/packs/js/component-70721deac9ee148c7fb8.js"
       ],
       "js.map": [
-        "/packs/js/component-8694123851a61079d01d.js.map"
-      ]
-    },
-    "uppy_controller": {
-      "js": [
-        "/packs/js/uppy_controller-94423315d8fd1e8491c1.js"
-      ],
-      "js.map": [
-        "/packs/js/uppy_controller-94423315d8fd1e8491c1.js.map"
+        "/packs/js/component-70721deac9ee148c7fb8.js.map"
       ]
     }
   },
   "media/default-skin/default-skin.png": "/packs/media/default-skin/default-skin-e3f799c6.png",
   "media/default-skin/default-skin.svg": "/packs/media/default-skin/default-skin-b257fa9c.svg",
   "media/default-skin/preloader.gif": "/packs/media/default-skin/preloader-e34aafbb.gif",
-  "media/images/logo-sberbank-mini.png": "/packs/media/images/logo-sberbank-mini-69f440f9cce226f8546f5f1ffcba0d33.png",
-  "uppy_controller.js": "/packs/js/uppy_controller-94423315d8fd1e8491c1.js",
-  "uppy_controller.js.map": "/packs/js/uppy_controller-94423315d8fd1e8491c1.js.map"
+  "media/images/logo-sberbank-mini.png": "/packs/media/images/logo-sberbank-mini-69f440f9cce226f8546f5f1ffcba0d33.png"
 }
