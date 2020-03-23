@@ -18,7 +18,7 @@
 
     <%= yield(:content_body)%>
 
-    <% cache "footer_v1" do %>
+    <% cache "footer_v2" do %>
       <%= render('shared/footer', color: 'inline-block link pr-2') %>
     <% end %>
 
