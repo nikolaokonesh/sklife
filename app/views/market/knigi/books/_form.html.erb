@@ -18,6 +18,7 @@
           </div>
         </div>
       </div>
+      <%= form.rich_text_area :body_book, placeholder: 'Авторы/описание/кол.копий и т.д. (необязательно)' %>
       <div class="px-2">
         <%= form.check_box :public, class: 'my-4' %>
         <%= form.label :public, 'Опубликовать' %>
