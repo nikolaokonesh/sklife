@@ -78,7 +78,7 @@ module Market
         if type == 'add'
           if @book.price == 0
             current_user.library_additions << @book
-            redirect_to book_url(@book), notice: "Вы добавили книгу: #{@book.title}"
+            redirect_to book_url(@book), "up-target" => ".main", notice: "Вы добавили книгу: #{@book.title}"
           else
             response = @sbrf_client.register(amount: params[:amountorub],
                                              order_number: SecureRandom.random_number(10_000_000_000),

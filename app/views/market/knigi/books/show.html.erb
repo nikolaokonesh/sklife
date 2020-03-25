@@ -15,6 +15,9 @@
   <div class="block text-sm text-gray-600">
     <span class="mx-2 inline-block">Автор: <%= sanitize(strip_tags(@book.author)) %></span>
     <span class="mx-2 inline-block">Книга <%= time_tag(@book.data, :format=>'%Y года выпуска') %></span>
+    <div class="pt-3 max-w-md mx-auto">
+      <%= @book.body_book %>
+    </div>
   </div>
 </div>
 
