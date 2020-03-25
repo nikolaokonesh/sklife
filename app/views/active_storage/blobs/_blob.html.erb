@@ -2,7 +2,7 @@
   <% if blob.image? %>
     <%= link_to main_app.url_for(blob.representation(quality: 50)), title: "#{link_to( 'Скачать оригинал ' + number_to_human_size(blob.byte_size), rails_blob_path(blob, disposition: "attachment"))}",
         data: {action: 'gallery#onImageClick', target: 'gallery.picture'} do %>
-      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'w-full mx-auto rounded' %>
+      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: 'mx-auto rounded' %>
     <% end %>
   <% end %>
 
