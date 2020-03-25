@@ -1,11 +1,3 @@
-<% if params[:page] %>
-  var colum = document.querySelector("#categories-show-columns")
-  var pagin = document.querySelector("#categories-show-paginator")
-
-  colum.innerHTML += ('<%= j render(partial: "post_small", collection: @posts, cached: true) %>')
-  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
-<% end %>
-
 <% if params[:pagina] %>
   <% postakcomm = SecureRandom.random_number(10000000000) %>
 
@@ -13,7 +5,7 @@
   var pagin = document.querySelector("#comments-show-paginator")
 
   colum.innerHTML += ("<%= j render partial: 'article/categories/comment', locals: {comments: @comments, postak: postakcomm} %>")
-  pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
+  pagin.innerHTML = ("<%= j pag_comment_helper(@comments, 'Еще комментарии', :pagina) %>")
 
   var colorecomments = document.querySelector(".open-comments-color-<%= postakcomm %>")
   setTimeout(() => colorecomments.classList.toggle('bg-blue-100'), 1000)

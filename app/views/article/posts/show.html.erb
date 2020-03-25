@@ -77,11 +77,11 @@
 
 <div class="mb-12 block">
   <% if @posts.present? %>
-    <div id="category-post-show-<%= @post.posttable.id %>" data-turbolinks-permanent>
-      <div class="w-full" id="categories-show-columns">
+    <div>
+      <div class="w-full tasks">
         <%= render partial: 'post_small', collection: @posts, cached: true %>
       </div>
-      <div class="block pagination my-4" id="categories-show-paginator">
+      <div class="block tasks-link my-4">
         <%= pag_helper(@posts, 'Далее') %>
       </div>
     </div>
@@ -125,7 +125,7 @@
       </div>
       <br />
       <div class="block pagination mb-4 hidden" id="comments-show-paginator">
-        <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
+        <%= pag_comment_helper(@comments, 'Еще комментарии', :pagina) %>
       </div>
     </div>
   </div>

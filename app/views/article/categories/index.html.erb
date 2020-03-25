@@ -32,9 +32,9 @@
   </div>
 </div>
 
-<div id="categories-index" data-turbolinks-permanent>
+<div class="tasks">
   <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
 </div>
-<div class='pagination mt-4' id="categories-index-paginate" data-turbolinks-permanent>
+<div class='tasks-link mt-4'>
   <%= pag_helper(@posts, 'Далее') %>
 </div>

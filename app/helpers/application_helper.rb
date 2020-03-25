@@ -23,6 +23,13 @@ module ApplicationHelper
   def pag_helper(posts, texting, page = :page)
     link_to_next_page(posts, icon_svg('chevron-thin-down.svg', class: 'svg-default') + texting,
                       class: 'pg-link',
+                      param_name: page,
+                      "up-dash" => ".tasks:after, .tasks-link")
+  end
+
+  def pag_comment_helper(posts, texting, page = :page)
+    link_to_next_page(posts, icon_svg('chevron-thin-down.svg', class: 'svg-default') + texting,
+                      class: 'pg-link',
                       param_name: page, remote: true,
                       data: { disable_with: 'Загрузка...' })
   end

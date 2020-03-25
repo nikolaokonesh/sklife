@@ -47,11 +47,11 @@
           <% end %>
         </div>
 
-        <div id="cate-show-<%= @category.id %>-<%= (@category.upgrade.strftime("%Y-%m-%d-%H-%M-%S")) %>" data-turbolinks-permanent>
-          <div class="block" id="categories-show-columns">
+        <div>
+          <div class="tasks block">
             <%= render partial: 'article/posts/post', collection: @posts, cached: true %>
           </div>
-          <div class="block pagination my-4" id="categories-show-paginator">
+          <div class="tasks-link block my-4">
             <%= pag_helper(@posts, 'Далее') %>
           </div>
         </div>
@@ -84,7 +84,7 @@
             </div>
             <br />
             <div class="block pagination mb-4 hidden" id="comments-show-paginator">
-              <%= pag_helper(@comments, 'Еще комментарии', :pagina) %>
+              <%= pag_comment_helper(@comments, 'Еще комментарии', :pagina) %>
             </div>
           </div>
         </div>

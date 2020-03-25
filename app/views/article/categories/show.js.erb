@@ -1,16 +1,3 @@
-<% if params[:page] %>
-  <% postak = SecureRandom.random_number(10000000000) %>
-
-  var colum = document.querySelector("#categories-show-columns")
-  var pagin = document.querySelector("#categories-show-paginator")
-
-  colum.innerHTML += ("<%= j render partial: 'article/categories/index', locals: {posts: @posts, postak: postak} %>")
-  pagin.innerHTML = ("<%= j pag_helper(@posts, 'Далее') %>")
-
-  var colore = document.querySelector(".open-posts-color-<%= postak %>")
-  setTimeout(() => colore.classList.toggle("bg-blue-100"), 1500)
-<% end %>
-
 <% if params[:pagina] %>
   <% postakcomm = SecureRandom.random_number(10000000000) %>
 
@@ -18,7 +5,7 @@
   var pagin = document.querySelector("#comments-show-paginator")
 
   colum.innerHTML += ("<%= j render partial: 'article/categories/comment', locals: {comments: @comments, postak: postakcomm} %>")
-  pagin.innerHTML = ("<%= j pag_helper(@comments, 'Еще комментарии', :pagina) %>")
+  pagin.innerHTML = ("<%= j pag_comment_helper(@comments, 'Еще комментарии', :pagina) %>")
 
   var colorecomments = document.querySelector(".open-comments-color-<%= postakcomm %>")
   setTimeout(() => colorecomments.classList.toggle('bg-blue-100'), 1000)
