@@ -12,5 +12,6 @@
 <%= favicon_link_tag 'favicon.ico' %>
 <%= tag.meta name: "direct-upload-url", content: rails_direct_uploads_path %>
 <% if Rails.env.production? %>
-  <script data-ad-client="ca-pub-4850440471181142" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <%= render 'shared/m_google' %>
+  <%= render 'shared/m_yandex' %>
 <% end %>

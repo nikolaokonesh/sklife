@@ -1,11 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  respond_to do |format|
-    format.html
-    format.js
-  end
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_subscribed?
   helper_method :summ_short_month
