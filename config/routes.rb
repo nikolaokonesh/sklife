@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin123', as: 'rails_admin'
   devise_for :users
 
   concern :article do

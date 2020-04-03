@@ -84,3 +84,4 @@ gem 'whenever', require: false
 gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'unpoly-rails'
+gem 'rails_admin', '~> 2.0', '>= 2.0.1'

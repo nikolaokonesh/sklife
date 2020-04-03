@@ -25,13 +25,15 @@ class User < ApplicationRecord
 
   has_many :feedbacks, dependent: :destroy
 
-  noname = %w[Админ Менеджер Автор Агент www
-              Admin Administrator Adminka Halyma Sklife
-              Manager Managers User Users Book mail Mail майл Майл info Info Инфо инфо
-              Books Shop Shops Shopping Oriflame Иванчиненков]
+  noname = %w[Админ Менеджер Автор Агент майл Майл Инфо инфо]
 
   validates :first_name,
             presence: true,
+            format: {
+              with: /^[А-Яа-яЁё\s]+$/,
+              multiline: true,
+              message: ': только буквы, на русском'
+            },
             exclusion: {
               in: noname,
               message: '%{value} - запрещено использовать это имя.'
@@ -39,6 +41,11 @@ class User < ApplicationRecord
 
   validates :last_name,
             presence: true,
+            format: {
+              with: /^[А-Яа-яЁё\s]+$/,
+              multiline: true,
+              message: ': только буквы, на русском'
+            },
             exclusion: {
               in: noname,
               message: '%{value} - запрещено использовать эту фамилию.'
