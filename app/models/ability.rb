@@ -7,6 +7,8 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user.admin?
+      can :access, :rails_admin   # grant access to rails_admin
+      can :read, :dashboard       # grant access to the dashboard
       can :manage, :all
     else
       can :manage, [
